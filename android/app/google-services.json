@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989737490393",
+    "project_id": "ecuaventure-bf481",
+    "storage_bucket": "ecuaventure-bf481.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989737490393:android:511ba76ab0db6effdeebc8",
+        "android_client_info": {
+          "package_name": "com.example.ecuaventure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989737490393-eqscada8sg16pt5ed047kmlqp1d6ve8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK2KISD0Kk1YoCmsBG7k0ZAz_RXmThmb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989737490393-eqscada8sg16pt5ed047kmlqp1d6ve8p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
