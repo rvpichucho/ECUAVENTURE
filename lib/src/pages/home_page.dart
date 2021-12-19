@@ -1,37 +1,55 @@
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:ecuaventure/src/services/motorcycle_service.dart';
 import 'package:ecuaventure/src/widgets/motorcycle_card.dart';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+ const HomePage({Key? key}) : super(key: key);
 
   @override
-  HomePageState createState() => HomePageState();
+   HomePageState createState() =>  HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class  HomePageState extends State <HomePage> {
+  final ServiceMotorcycle _service = ServiceMotorcycle();
+  List<Motorcycles>? _listCar;
   @override
+  
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
+    _downloadContent();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference motorcycles =
-        FirebaseFirestore.instance.collection('motorcycles');
-    // ignore: avoid_print
-    print(motorcycles);
-    return Scaffold(
-        body: ListView(
-      children: [
-        //CarCard(model:e),
-      ],
-    ));
+    return _listCar==null ?
+    const Center(
+      child: SizedBox(
+        height: 50.0,width: 50.0,child: CircleAvatar(),
+      ),
+    )
+    :_listCar!.isEmpty 
+    ? const Center(child: SizedBox(child: Text('No hay datos dentro del servicio'))
+    )
+    :Container(
+      padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 7.0),
+      child: ListView(
+        children: _listCar!
+        .map((e) => MotorcyclesCard(model: e)).toList()));
+  }
+  _downloadContent(){
+    _service.getMotorcycle().then((value){
+      _listCar=value;
+      setState(() {
+        
+      });
+    }
+    );
   }
 }
+
+
+

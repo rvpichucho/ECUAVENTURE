@@ -1,30 +1,30 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+
 import 'dart:convert';
 
-class ServiceCar {
-  ServiceCar();
 
-  
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:http/http.dart' as http;
 
-  Future<List<Motorcycles>> getUsers() async {
-    List<Motorcycles> result = [];
 
-    try {
-      CollectionReference collection =
-          FirebaseFirestore.instance.collection("motorcycles");
-      QuerySnapshot users = await collection.get();
+
+class ServiceMotorcycle{
+  ServiceMotorcycle();
+  final String _rootUrl="https://ecuaventure-d9eb0.web.app/api/motorcycle";
+  Future<List<Motorcycles>> getMotorcycle() async{
+    List<Motorcycles> result=[];
+    try{
+      var url =Uri.parse(_rootUrl);
       
-      Map<String, dynamic> content = docs.data();
+      final response=await http.get(url);
+      if(response.body.isEmpty) return result;
+      List<dynamic> listBody=json.decode(response.body);
       
-      if (users.docs.length != 0) {
-        for (var doc in users.docs) {
-          print(doc.data());
-          //result.add(doc.data());
-        }
+      for(var item in listBody){
+        final tabla= Motorcycles.fromJson(item);
+        result.add(tabla);
       }
       return result;
-    } catch (ex) {
+    }catch(ex){
       return result;
     }
   }

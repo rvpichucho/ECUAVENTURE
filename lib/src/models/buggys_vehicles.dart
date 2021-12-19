@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final motorcycles = motorcyclesFromJson(jsonString);
+//     final buggys = buggysFromJson(jsonString);
 
 import 'dart:convert';
 
-Motorcycles motorcyclesFromJson(String str) => Motorcycles.fromJson(json.decode(str));
+Buggys buggysFromJson(String str) => Buggys.fromJson(json.decode(str));
 
-String motorcyclesToJson(Motorcycles data) => json.encode(data.toJson());
+String buggysToJson(Buggys data) => json.encode(data.toJson());
 
-class Motorcycles {
-    Motorcycles({
+class Buggys {
+    Buggys({
         this.idmotorcycle,
         this.name,
         this.model,
@@ -23,7 +23,7 @@ class Motorcycles {
     String? description;
     String? img;
 
-    factory Motorcycles.fromJson(Map<String, dynamic> json) => Motorcycles(
+    factory Buggys.fromJson(Map<String, dynamic> json) => Buggys(
         idmotorcycle: json["idmotorcycle"],
         name: json["name"],
         model: json["model"],
