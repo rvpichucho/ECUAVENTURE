@@ -1,5 +1,5 @@
 
-import 'package:ecuaventure/src/pages/home_page.dart';
+//import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/menu_page.dart';
 
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
      home:Scaffold(
-        appBar:AppBar(title: const Text("Motos")) ,body: const HomePage()),
+        appBar:AppBar(title: const Text("Motos")) ,body: const Menu()),
     
     );
   }

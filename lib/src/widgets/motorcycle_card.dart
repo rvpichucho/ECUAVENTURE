@@ -8,14 +8,12 @@ class MotorcyclesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final url=model.thumb!;
-    var textTheme;
-    return Container(
+    
+    return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(5.0),
-        ),
+      color: Colors.blueGrey,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            
       child:  IntrinsicHeight(
         child:  Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,7 +43,6 @@ class MotorcyclesCard extends StatelessWidget {
               child: InkWell(
                 child: const Icon(Icons.play_arrow, size: 40.0),
                 onTap: () {
-                  // TODO(implement)
                 },
               ),
             ),
@@ -61,7 +58,6 @@ class MotorcyclesCard extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  // TODO(implement)
                 },
               ),
             ),
