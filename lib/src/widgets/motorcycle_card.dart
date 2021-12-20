@@ -36,6 +36,7 @@ class MotorcyclesCard extends StatelessWidget {
                 children: <Widget>[
                   Text(model.name ?? ""),
                   Text(model.model?? ""),
+                  Text(model.description ??""),
                 ],
               ),
             ),

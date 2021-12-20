@@ -1,5 +1,6 @@
 
 import 'package:ecuaventure/src/pages/home_page.dart';
+import 'package:ecuaventure/src/pages/menu_page.dart';
 
 import 'package:flutter/material.dart';
 
