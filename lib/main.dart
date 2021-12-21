@@ -1,8 +1,7 @@
-
-//import 'package:ecuaventure/src/pages/home_page.dart';
+import 'package:ecuaventure/src/components/menu_lateral.dart';
 import 'package:ecuaventure/src/pages/menu_page.dart';
-
 import 'package:flutter/material.dart';
+import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
 
 void main() {
   runApp(const MyApp());
@@ -14,18 +13,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false, //PARA QUITAR EL DEBUG DE LA APP
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-     home:Scaffold(
-        appBar:AppBar(title: const Text("Motos")) ,body: const Menu()),
-    
+      title: 'ecuadventure',
+      home: Menu(),
     );
   }
 }
-
-
-  
