@@ -1,7 +1,5 @@
-import 'package:ecuaventure/src/components/menu_lateral.dart';
 import 'package:ecuaventure/src/pages/menu_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
 
 void main() {
   runApp(const MyApp());

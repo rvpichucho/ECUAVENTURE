@@ -1,6 +1,6 @@
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
 class MenuLateral extends StatelessWidget {
   const MenuLateral({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class MenuLateral extends StatelessWidget {
               ],
             ),
             decoration: const BoxDecoration(
-              color: Colorconst.BLUE,
+              color: color_const.blueC,
             ),
           ),
           ListTile(

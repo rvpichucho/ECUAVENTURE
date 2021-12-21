@@ -1,7 +1,7 @@
 import 'package:ecuaventure/src/components/menu_lateral.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/pages/motorcycle_page.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colorconst.BLUE,
+          backgroundColor: color_const.blueC,
           centerTitle: true,
           title: const Text(
             "MENU",
@@ -28,37 +28,39 @@ class _MenuState extends State<Menu> {
           )),
       drawer: const MenuLateral(),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 0),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Colorconst.BEIGE, // background color
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 200,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    ListMotorcycle(),
-                    ListSquares(),
-                  ],
+        color: color_const.beigeC, // background color
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 0),
+          child: ListView(
+            children: [
+              SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: const [
+                      ListMotorcycle(),
+                      ListSquares(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 200,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    ListBikes(),
-                    ListBuggys(),
-                  ],
+              SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: const [
+                      ListBikes(),
+                      ListBuggys(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -212,7 +214,7 @@ class ListBikes extends StatelessWidget {
                   MainAxisAlignment.end, // posion the everything to the bottom
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset('assets/Destacado.png'),
+                Image.asset('assets/bikes.png'),
                 const Text(
                   "Bicicletas",
                   style: TextStyle(

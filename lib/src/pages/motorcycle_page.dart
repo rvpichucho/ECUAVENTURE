@@ -1,6 +1,6 @@
 import 'package:ecuaventure/src/widgets/motorcycle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
 class MotorcyclePage extends StatefulWidget {
   const MotorcyclePage({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _MotorcyclePageState extends State<MotorcyclePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colorconst.BLUE,
+          backgroundColor: color_const.blueC,
           centerTitle: true,
           title: const Text(
             "Motos",

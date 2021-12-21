@@ -1,5 +1,5 @@
 import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as Colorconst;
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter/material.dart';
 
 class MotorcyclesCard extends StatelessWidget {
@@ -15,7 +15,7 @@ class MotorcyclesCard extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Card(
-              color: Colorconst.SKY_COLOR,
+              color: color_const.skyColorC,
               child: Padding(
                 padding: const EdgeInsets.only(top: 60.0),
                 child: ListTile(
@@ -44,7 +44,7 @@ class MotorcyclesCard extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 50.0,
                   backgroundImage: AssetImage('assets/Destacado.png'),
-                  backgroundColor: Colorconst.LIGHT_BLUE,
+                  backgroundColor: color_const.ligthBlueC,
                 ),
                 alignment: FractionalOffset(0.5, 0.0),
               ),
