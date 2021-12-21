@@ -1,6 +1,8 @@
 
 import 'package:ecuaventure/src/pages/home_page.dart';
+import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -12,7 +14,11 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
+    final motoinfo =Provider.of<MotoProvider>(context);
     return Scaffold(
+      appBar:AppBar(
+        title: Text(motoinfo.moto),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -188,7 +194,8 @@ class Boton extends StatelessWidget {
           backgroundColor:Colors.green,
         onPressed:()=>{
           Navigator.push(
-            context,MaterialPageRoute(builder: (context) => const HomePage()))
+            context,MaterialPageRoute(builder: (context) => const Motos()))
+            
           
         })
       ],
