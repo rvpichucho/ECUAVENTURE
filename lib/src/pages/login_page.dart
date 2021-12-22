@@ -1,6 +1,7 @@
 import 'package:ecuaventure/src/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -64,6 +65,8 @@ class EmailPaswordForm extends StatefulWidget {
 }
 
 class _EmailPaswordFormState extends State<EmailPaswordForm> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -82,6 +85,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.email,
@@ -136,8 +140,9 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Menu()));
+                    saveName();
+                    //Navigator.push(context,
+                    //MaterialPageRoute(builder: (context) => const Menu()));
                   },
                 ),
               ),
@@ -146,6 +151,16 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
         ),
       ),
     );
+  }
+
+  void saveName() {
+    //var _controller = TextEditingController();
+
+    String name = emailController.text;
+    saveNamePreference(name).then((bool commit) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Menu()));
+    });
   }
 }
 
@@ -161,4 +176,17 @@ _avatar() {
         color: Colors.white,
         size: 50,
       )));
+}
+
+Future<bool> saveNamePreference(String name) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString("name", name);
+  // ignore: deprecated_member_use
+  return prefs.commit();
+}
+
+Future<String?> getNamePreference() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? name = prefs.getString("name");
+  return name;
 }

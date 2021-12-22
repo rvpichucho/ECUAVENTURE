@@ -1,5 +1,10 @@
+
+
+import 'dart:async';
+
 import 'package:ecuaventure/src/components/menu_lateral.dart';
-import 'package:ecuaventure/src/pages/home_page.dart';
+import 'package:ecuaventure/src/pages/bike_page.dart';
+import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/pages/motorcycle_page.dart';
@@ -7,6 +12,7 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
+  static String routeNme="/Menu";
   const Menu({Key? key}) : super(key: key);
 
   @override
@@ -14,6 +20,13 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+
+  String _name ="";
+  @override
+  void initState(){
+    getNamePreference().then(updateName);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final motoinfo =Provider.of<MotoProvider>(context);
@@ -21,9 +34,9 @@ class _MenuState extends State<Menu> {
       appBar: AppBar(
           backgroundColor: color_const.blueC,
           centerTitle: true,
-          title: const Text(
-            "MENU",
-            style: TextStyle(
+          title: Text(
+            motoinfo.moto,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -36,9 +49,13 @@ class _MenuState extends State<Menu> {
         width: MediaQuery.of(context).size.width,
         color: color_const.beigeC, // background color
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 0),
+          padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 0),
           child: ListView(
             children: [
+              Container(
+              padding: const EdgeInsets.only(left: 16.0, top: 20.0),
+              child: Text("Bienvenido: "+_name, style: TextStyle(color: Colors.blue[900], fontSize: 24.0, fontWeight: FontWeight.bold)),
+            ),
               SizedBox(
                 height: 200,
                 child: SingleChildScrollView(
@@ -68,6 +85,14 @@ class _MenuState extends State<Menu> {
         ),
       ),
     );
+  }
+
+ 
+
+  FutureOr updateName(String? name) {
+    setState(() {
+      _name =name!;
+    });
   }
 }
 
@@ -131,21 +156,52 @@ class ListSquares extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:<Widget> [
-        // ignore: deprecated_member_use
-        FloatingActionButton(
-          child:const Icon(Icons.motorcycle_sharp),
-          elevation: 50.0,
-          backgroundColor:Colors.green,
-        onPressed:()=>{
-          Navigator.push(
-            context,MaterialPageRoute(builder: (context) => const Motos()))
-            
-          
-        })
-      ],
+    return StreamBuilder(
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return MaterialButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MotorcyclePage()));
+          },
+          child: Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width / 2 -
+                32, // minus 32 due to the margin
+            margin: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.yellow[100],
+              borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  spreadRadius: 0.5,
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 5.0,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment:
+                  MainAxisAlignment.center, // posion the everything to the bottom
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset('assets/rocket250-1.png'),
+                const Text(
+                  "Cuadrones",
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -162,7 +218,7 @@ class ListBikes extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MotorcyclePage()));
+                    builder: (context) => const BikePage()));
           },
           child: Container(
             height: 200,

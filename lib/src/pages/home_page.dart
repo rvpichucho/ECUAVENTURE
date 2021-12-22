@@ -18,15 +18,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Motos extends StatelessWidget {
-  const Motos({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar:AppBar(title: const Text("Listado de motos")) ,body: const HomePage());
-    
-  }
-}
-
 

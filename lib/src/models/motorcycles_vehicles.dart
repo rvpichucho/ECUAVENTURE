@@ -14,21 +14,21 @@ class Motorcycles {
         this.name,
         this.model,
         this.description,
-        this.img,
+        this.image,
     });
 
     String? idmotorcycle;
     String? name;
     String? model;
     String? description;
-    String? img;
+    String? image;
 
     factory Motorcycles.fromJson(Map<String, dynamic> json) => Motorcycles(
         idmotorcycle: json["idmotorcycle"],
         name: json["name"],
         model: json["model"],
         description: json["description"],
-        img: json["img"],
+        image: json["image"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -36,6 +36,6 @@ class Motorcycles {
         "name": name,
         "model": model,
         "description": description,
-        "img": img,
+        "image": image,
     };
 }

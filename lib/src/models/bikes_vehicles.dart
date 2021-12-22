@@ -10,32 +10,32 @@ String bikesToJson(Bikes data) => json.encode(data.toJson());
 
 class Bikes {
     Bikes({
-        this.idmotorcycle,
+        this.idbike,
         this.name,
         this.model,
         this.description,
-        this.img,
+        this.image,
     });
 
-    String? idmotorcycle;
+    String? idbike;
     String? name;
     String? model;
     String? description;
-    String? img;
+    String? image;
 
     factory Bikes.fromJson(Map<String, dynamic> json) => Bikes(
-        idmotorcycle: json["idmotorcycle"],
+        idbike: json["idbike"],
         name: json["name"],
         model: json["model"],
         description: json["description"],
-        img: json["img"],
+        image: json["image"],
     );
 
     Map<String, dynamic> toJson() => {
-        "idmotorcycle": idmotorcycle,
+        "idbike": idbike,
         "name": name,
         "model": model,
         "description": description,
-        "img": img,
+        "image": image,
     };
 }
