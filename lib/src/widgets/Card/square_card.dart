@@ -1,10 +1,11 @@
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:ecuaventure/src/models/squares_vehicles.dart';
 import 'package:flutter/material.dart';
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
-class BikeCard extends StatelessWidget {
-  const BikeCard({Key? key, required this.model}) : super(key: key);
-  final Bikes model;
+class SquareCard extends StatelessWidget {
+  const SquareCard({Key? key, required this.model}) : super(key: key);
+  final Squares model;
+
   @override
   Widget build(BuildContext context) {
     final url = model.image!;

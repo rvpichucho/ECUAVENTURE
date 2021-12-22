@@ -9,34 +9,33 @@ Squares squaresFromJson(String str) => Squares.fromJson(json.decode(str));
 String squaresToJson(Squares data) => json.encode(data.toJson());
 
 class Squares {
-    Squares({
-        this.idmotorcycle,
-        this.name,
-        this.model,
-        this.description,
-        this.img,
-    });
+  Squares({
+    this.idsquare,
+    this.name,
+    this.model,
+    this.description,
+    this.image,
+  });
 
-    String? idmotorcycle;
-    String? name;
-    String? model;
-    String? description;
-    String? img;
+  String? idsquare;
+  String? name;
+  String? model;
+  String? description;
+  String? image;
 
-    factory Squares.fromJson(Map<String, dynamic> json) => Squares(
-        idmotorcycle: json["idmotorcycle"],
+  factory Squares.fromJson(Map<String, dynamic> json) => Squares(
+        idsquare: json["idsquare"],
         name: json["name"],
         model: json["model"],
         description: json["description"],
-        img: json["img"],
-    );
+        image: json["image"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "idmotorcycle": idmotorcycle,
+  Map<String, dynamic> toJson() => {
+        "idsquare": idsquare,
         "name": name,
         "model": model,
         "description": description,
-        "img": img,
-    };
+        "image": image,
+      };
 }
-
