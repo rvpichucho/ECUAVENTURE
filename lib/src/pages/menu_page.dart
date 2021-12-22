@@ -45,11 +45,13 @@ class _MenuState extends State<Menu> {
           )),
       drawer: const MenuLateral(),
       body: Container(
+       
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: color_const.beigeC, // background color
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 0),
+          padding: const EdgeInsets.all(0.0),
+          
           child: ListView(
             children: [
               Container(
@@ -111,10 +113,10 @@ class ListMotorcycle extends StatelessWidget {
                     builder: (context) => const MotorcyclePage()));
           },
           child: Container(
-            height: 200,
+            height: 180,
             width: MediaQuery.of(context).size.width / 2 -
                 32, // minus 32 due to the margin
-            margin: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.all(2.0),
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.yellow[100],
@@ -166,10 +168,10 @@ class ListSquares extends StatelessWidget {
                     builder: (context) => const MotorcyclePage()));
           },
           child: Container(
-            height: 200,
+            height: 180,
             width: MediaQuery.of(context).size.width / 2 -
                 32, // minus 32 due to the margin
-            margin: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.all(2.0),
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.yellow[100],
@@ -221,10 +223,10 @@ class ListBikes extends StatelessWidget {
                     builder: (context) => const BikePage()));
           },
           child: Container(
-            height: 200,
+            height: 180,
             width: MediaQuery.of(context).size.width / 2 -
                 32, // minus 32 due to the margin
-            margin: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.all(2.0),
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.yellow[100],
@@ -276,10 +278,10 @@ class ListBuggys extends StatelessWidget {
                     builder: (context) => const MotorcyclePage()));
           },
           child: Container(
-            height: 200,
+            height: 180,
             width: MediaQuery.of(context).size.width / 2 -
                 32, // minus 32 due to the margin
-            margin: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.all(2.0),
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.yellow[100],
