@@ -45,8 +45,15 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text('Iniciar sesión',
                         style: Theme.of(context).textTheme.headline3),
                   ),
+                  
                   const SizedBox(height: 25.0),
                   const EmailPaswordForm(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text('Ingresar el nombre para que el SharedPreferences guarde el dato ',
+                        style: Theme.of(context).textTheme.headline6),
+                  ),
+                  
                 ]),
               ),
             ],
@@ -88,7 +95,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                       controller: emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        icon: Icon(Icons.email,
+                        icon: Icon(Icons.person,
                             color: Theme.of(context).primaryColorDark),
                         /*hintText: 'nombre@gmail.com',
                         labelText: 'Ingrese su correro electrónico',*/
@@ -141,6 +148,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
+                  
                   onPressed: () {
                     saveName();
                     //Navigator.push(context,
@@ -157,7 +165,6 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
 
   void saveName() {
     //var _controller = TextEditingController();
-
     String name = emailController.text;
     saveNamePreference(name).then((bool commit) {
       Navigator.push(

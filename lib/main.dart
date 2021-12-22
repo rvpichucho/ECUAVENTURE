@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/pages/login_page.dart';
+import 'package:ecuaventure/src/providers/provider_color.dart';
 //import 'package:ecuaventure/src/pages/menu_page.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
          ChangeNotifierProvider(create:(_)=>MotoProvider()),
+         ChangeNotifierProvider(create:(_)=>ThemeChanger()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false, //PARA QUITAR EL DEBUG DE LA APP

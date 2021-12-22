@@ -5,6 +5,7 @@ import 'package:ecuaventure/src/pages/bike_page.dart';
 import 'package:ecuaventure/src/pages/buggy_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/pages/square_page.dart';
+import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/pages/motorcycle_page.dart';
@@ -30,9 +31,11 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     final motoinfo = Provider.of<MotoProvider>(context);
+    final colorinfo=Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: color_const.blueC,
+          //backgroundColor: color_const.blueC,
+          
           centerTitle: true,
           title: Text(
             motoinfo.moto,
@@ -41,6 +44,7 @@ class _MenuState extends State<Menu> {
               fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
+            
             textAlign: TextAlign.center,
           )),
       drawer: const MenuLateral(),
@@ -48,7 +52,7 @@ class _MenuState extends State<Menu> {
        
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: color_const.beigeC, // background color
+        color: colorinfo.beigeC, // background color
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           
@@ -100,11 +104,15 @@ class _MenuState extends State<Menu> {
   }
 }
 
+class ThemeProvider {
+}
+
 class ListMotorcycle extends StatelessWidget {
   const ListMotorcycle({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    
     return StreamBuilder(
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
