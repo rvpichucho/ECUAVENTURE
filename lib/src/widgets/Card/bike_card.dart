@@ -43,8 +43,8 @@ class BikeCard extends StatelessWidget {
               child: Align(
                 child: CircleAvatar(
                   radius: 50.0,
-                  //backgroundImage: AssetImage('assets/Destacado.png'),
-                  backgroundImage:NetworkImage("https://moto.suzuki.es/assets/images/listado_motos/2021/GSX-S1000%20GT/GSX-S1000GT_M2_YSF_Right%20(1).jpg"),
+                  backgroundImage: AssetImage('assets/Destacado.png'),
+                 
                   backgroundColor: color_const.ligthBlueC,
                 ),
                 alignment: FractionalOffset(0.5, 0.0),
