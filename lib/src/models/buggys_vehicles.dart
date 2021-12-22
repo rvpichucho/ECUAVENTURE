@@ -9,33 +9,33 @@ Buggys buggysFromJson(String str) => Buggys.fromJson(json.decode(str));
 String buggysToJson(Buggys data) => json.encode(data.toJson());
 
 class Buggys {
-    Buggys({
-        this.idmotorcycle,
-        this.name,
-        this.model,
-        this.description,
-        this.img,
-    });
+  Buggys({
+    this.idbuggy,
+    this.name,
+    this.model,
+    this.description,
+    this.image,
+  });
 
-    String? idmotorcycle;
-    String? name;
-    String? model;
-    String? description;
-    String? img;
+  String? idbuggy;
+  String? name;
+  String? model;
+  String? description;
+  String? image;
 
-    factory Buggys.fromJson(Map<String, dynamic> json) => Buggys(
-        idmotorcycle: json["idmotorcycle"],
+  factory Buggys.fromJson(Map<String, dynamic> json) => Buggys(
+        idbuggy: json["idbuggy"],
         name: json["name"],
         model: json["model"],
         description: json["description"],
-        img: json["img"],
-    );
+        image: json["image"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "idmotorcycle": idmotorcycle,
+  Map<String, dynamic> toJson() => {
+        "idbuggy": idbuggy,
         "name": name,
         "model": model,
         "description": description,
-        "img": img,
-    };
+        "image": image,
+      };
 }

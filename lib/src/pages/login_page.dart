@@ -90,15 +90,17 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                         border: InputBorder.none,
                         icon: Icon(Icons.email,
                             color: Theme.of(context).primaryColorDark),
-                        hintText: 'nombre@gmail.com',
-                        labelText: 'Ingrese su correro electrónico',
+                        /*hintText: 'nombre@gmail.com',
+                        labelText: 'Ingrese su correro electrónico',*/
+                        hintText: 'Nombre Apellido',
+                        labelText: 'Ingrese su nombre',
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 25.0),
+            /*const SizedBox(height: 25.0),
             Card(
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -120,7 +122,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   ),
                 ],
               ),
-            ),
+            ),*/
             const SizedBox(height: 25.0),
             Container(
               alignment: AlignmentDirectional.center,

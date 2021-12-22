@@ -15,7 +15,7 @@ class MenuLateral extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                  child: Image.asset('assets/Destacado.png'),
+                  child: Image.asset('assets/icon.png'),
                 ),
                 const Text(
                   "ECUadventure",

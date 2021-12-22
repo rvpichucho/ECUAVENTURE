@@ -1,10 +1,10 @@
-
-
 import 'dart:async';
 
 import 'package:ecuaventure/src/components/menu_lateral.dart';
 import 'package:ecuaventure/src/pages/bike_page.dart';
+import 'package:ecuaventure/src/pages/buggy_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
+import 'package:ecuaventure/src/pages/square_page.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/pages/motorcycle_page.dart';
@@ -12,7 +12,7 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
-  static String routeNme="/Menu";
+  static String routeNme = "/Menu";
   const Menu({Key? key}) : super(key: key);
 
   @override
@@ -20,16 +20,16 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-
-  String _name ="";
+  String _name = "";
   @override
-  void initState(){
+  void initState() {
     getNamePreference().then(updateName);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    final motoinfo =Provider.of<MotoProvider>(context);
+    final motoinfo = Provider.of<MotoProvider>(context);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: color_const.blueC,
@@ -53,9 +53,13 @@ class _MenuState extends State<Menu> {
           child: ListView(
             children: [
               Container(
-              padding: const EdgeInsets.only(left: 16.0, top: 20.0),
-              child: Text("Bienvenido: "+_name, style: TextStyle(color: Colors.blue[900], fontSize: 24.0, fontWeight: FontWeight.bold)),
-            ),
+                padding: const EdgeInsets.only(left: 16.0, top: 20.0),
+                child: Text("Bienvenido: " + _name,
+                    style: TextStyle(
+                        color: Colors.blue[900],
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold)),
+              ),
               SizedBox(
                 height: 200,
                 child: SingleChildScrollView(
@@ -87,11 +91,9 @@ class _MenuState extends State<Menu> {
     );
   }
 
- 
-
   FutureOr updateName(String? name) {
     setState(() {
-      _name =name!;
+      _name = name!;
     });
   }
 }
@@ -160,10 +162,8 @@ class ListSquares extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MotorcyclePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SquarePage()));
           },
           child: Container(
             height: 200,
@@ -184,8 +184,8 @@ class ListSquares extends StatelessWidget {
               ],
             ),
             child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // posion the everything to the bottom
+              mainAxisAlignment: MainAxisAlignment
+                  .center, // posion the everything to the bottom
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset('assets/rocket250-1.png'),
@@ -215,10 +215,8 @@ class ListBikes extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const BikePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const BikePage()));
           },
           child: Container(
             height: 200,
@@ -270,10 +268,8 @@ class ListBuggys extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MotorcyclePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const BuggyPage()));
           },
           child: Container(
             height: 200,

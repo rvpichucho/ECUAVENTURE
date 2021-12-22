@@ -7,7 +7,7 @@ class MotorcyclesCard extends StatelessWidget {
   final Motorcycles model;
   @override
   Widget build(BuildContext context) {
-    //final url=model.thumb!;
+    final url = model.image!;
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
@@ -38,15 +38,15 @@ class MotorcyclesCard extends StatelessWidget {
                 ),
               ),
             ),
-            const FractionalTranslation(
-              translation: Offset(0.0, -0.4),
+            FractionalTranslation(
+              translation: const Offset(0.0, -0.4),
               child: Align(
                 child: CircleAvatar(
                   radius: 50.0,
-                  backgroundImage: AssetImage('assets/Destacado.png'),
+                  backgroundImage: NetworkImage(url),
                   backgroundColor: color_const.ligthBlueC,
                 ),
-                alignment: FractionalOffset(0.5, 0.0),
+                alignment: const FractionalOffset(0.5, 0.0),
               ),
             ),
           ],
