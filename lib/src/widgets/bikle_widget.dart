@@ -36,8 +36,7 @@ class _BikeWidgetState extends State<BikeWidget> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.0),
       child: ListView(
-        children:
-            _listBike!.map((e) => BikeCard(model: e)).toList(),
+        children: _listBike!.map((e) => BikeCard(model: e)).toList(),
       ),
     );
   }

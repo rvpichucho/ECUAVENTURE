@@ -1,11 +1,24 @@
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
+import 'package:ecuaventure/src/providers/provider_menu.dart';
 //import 'package:ecuaventure/src/pages/menu_page.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
+import 'package:ecuaventure/src/theme/main_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MotoProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeChanger()),
+        ChangeNotifierProvider(create: (_) => MainProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,16 +27,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    /*return MultiProvider(
       providers: [
-         ChangeNotifierProvider(create:(_)=>MotoProvider()),
-         ChangeNotifierProvider(create:(_)=>ThemeChanger()),
+        ChangeNotifierProvider(create: (_) => MotoProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeChanger()),
+        ChangeNotifierProvider(create: (_) => MainProvider()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false, //PARA QUITAR EL DEBUG DE LA APP
         title: 'ecuadventure',
         home: LoginPage(),
       ),
-    );
+    );*/
+    final mainProvider = Provider.of<MainProvider>(context, listen: true);
+    return FutureBuilder<bool>(
+        future: mainProvider.getPreferences(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ScreenUtilInit(
+                designSize: const Size(360, 690),
+                builder: () => MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'ecuadventure',
+                    theme: AppTheme.themeData(mainProvider.mode),
+                    home: const LoginPage()));
+          }
+          return const SizedBox.square(
+              dimension: 50.0, child: CircularProgressIndicator());
+        });
   }
 }
