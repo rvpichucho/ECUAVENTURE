@@ -15,6 +15,7 @@ class MotorcyclesCard extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Card(
+              
               color: color_const.skyColorC,
               child: Padding(
                 padding: const EdgeInsets.only(top: 60.0),
