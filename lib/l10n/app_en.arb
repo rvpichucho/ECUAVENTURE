@@ -1,5 +1,11 @@
 {
-    "language": "English",
+    "language": "Login",
+    "sing_in":"Sing In",
+    "name":"Please enter your name",
+    "welcome":"Welcome",
+    "bicycles":"Bicycles",
+    "motorcycles":"Motorcycles",
+    "quad":"Quad bike",
     "@language":{
       "description": "The current Language"
     },

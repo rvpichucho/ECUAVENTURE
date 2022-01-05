@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('Iniciar sesión',
+                    child: Text(AppLocalizations.of(context)!.language,
                         style: Theme.of(context).textTheme.headline3),
                   ),
                   const SizedBox(height: 25.0),
@@ -99,7 +100,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                         /*hintText: 'nombre@gmail.com',
                         labelText: 'Ingrese su correro electrónico',*/
                         hintText: 'Nombre Apellido',
-                        labelText: 'Ingrese su nombre',
+                        labelText: AppLocalizations.of(context)!.name,
                       ),
                     ),
                   ),
@@ -142,9 +143,9 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 16.0),
-                    child: const Text(
-                      'INGRESAR',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    child: Text(
+                      AppLocalizations.of(context)!.sing_in,
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
                   onPressed: () {

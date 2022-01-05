@@ -1,5 +1,11 @@
 {
-    "language": "Español",
+    "language": "Iniciar sesión",
+    "name":"Ingrese su nombre",
+    "sing_in":"Ingresar",
+    "welcome":"Bienvenido",
+    "bicycles":"Bicicletas",
+    "motorcycles":"Motos",
+    "quad":"Cuadrones",
     "helloWorld": "Hola Mundo!",
     "hello": "Hola {username}"
 }

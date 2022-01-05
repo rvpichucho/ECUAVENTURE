@@ -1,7 +1,7 @@
 import 'package:ecuaventure/src/widgets/bikle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BikePage extends StatefulWidget {
   const BikePage({Key? key}) : super(key: key);
 
@@ -16,9 +16,9 @@ class _BikePageState extends State<BikePage> {
       appBar: AppBar(
           backgroundColor: color_const.blueC,
           centerTitle: true,
-          title: const Text(
-            "Bicicletas",
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.bicycles,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
               fontWeight: FontWeight.bold,

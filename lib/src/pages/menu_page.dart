@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/pages/motorcycle_page.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Menu extends StatefulWidget {
   static String routeNme = "/Menu";
   const Menu({Key? key}) : super(key: key);
@@ -56,7 +56,7 @@ class _MenuState extends State<Menu> {
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 16.0, top: 20.0),
-                child: Text("Bienvenido: " + _name,
+                child: Text(AppLocalizations.of(context)!.welcome+":" + _name,
                     style: TextStyle(
                         color: Colors.blue[900],
                         fontSize: 24.0,
@@ -140,9 +140,9 @@ class ListMotorcycle extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset('assets/Destacado.png'),
-                const Text(
-                  "Motos",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.motorcycles,
+                  style: const TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
@@ -193,9 +193,9 @@ class ListSquares extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset('assets/rocket250-1.png'),
-                const Text(
-                  "Cuadrones",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.quad,
+                  style: const TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
@@ -246,9 +246,9 @@ class ListBikes extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset('assets/bikes.png'),
-                const Text(
-                  "Bicicletas",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.bicycles,
+                  style: const TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
