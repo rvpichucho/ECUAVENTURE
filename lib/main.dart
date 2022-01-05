@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:ecuaventure/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 void main() {
   runApp(
     MultiProvider(
@@ -47,19 +48,18 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ScreenUtilInit(
-              
                 designSize: const Size(360, 690),
                 builder: () => MaterialApp(
-                  supportedLocales:L10n.all,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  localizationsDelegates: [
-                    AppLocalizations.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                  ],
+                    supportedLocales: L10n.all,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    localizationsDelegates: [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                    ],
                     debugShowCheckedModeBanner: false,
-                    title: 'ecuadventure',
+                    title: 'ecuaventure',
                     theme: AppTheme.themeData(mainProvider.mode),
                     home: const LoginPage()));
           }
