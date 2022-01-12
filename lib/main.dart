@@ -1,7 +1,6 @@
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
-//import 'package:ecuaventure/src/pages/menu_page.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:ecuaventure/src/theme/main_theme.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,15 @@ import 'package:provider/provider.dart';
 import 'package:ecuaventure/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [

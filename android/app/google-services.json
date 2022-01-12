@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "989737490393",
-    "project_id": "ecuaventure-bf481",
-    "storage_bucket": "ecuaventure-bf481.appspot.com"
+    "project_number": "579690237955",
+    "firebase_url": "https://ecuaventure-d9eb0-default-rtdb.firebaseio.com",
+    "project_id": "ecuaventure-d9eb0",
+    "storage_bucket": "ecuaventure-d9eb0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:989737490393:android:511ba76ab0db6effdeebc8",
+        "mobilesdk_app_id": "1:579690237955:android:59240aa678bf679e63fe36",
         "android_client_info": {
           "package_name": "com.example.ecuaventure"
         }
       },
       "oauth_client": [
         {
-          "client_id": "989737490393-eqscada8sg16pt5ed047kmlqp1d6ve8p.apps.googleusercontent.com",
+          "client_id": "579690237955-tua0soss5p7f0n00ds7ol0sil0r5h5d8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBK2KISD0Kk1YoCmsBG7k0ZAz_RXmThmb0"
+          "current_key": "AIzaSyCFgA0OE_X7zstCbdNNtWeJ2BvUiUko3BQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "989737490393-eqscada8sg16pt5ed047kmlqp1d6ve8p.apps.googleusercontent.com",
+              "client_id": "579690237955-tua0soss5p7f0n00ds7ol0sil0r5h5d8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
