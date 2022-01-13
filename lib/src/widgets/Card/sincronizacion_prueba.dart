@@ -1,65 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
 import 'package:flutter/material.dart';
 
 class Sincro extends StatefulWidget {
-  const Sincro({Key? key, required this.currentMotocycle}) : super(key: key);
-  final CollectionReference currentMotocycle;
+  const Sincro({Key? key}) : super(key: key);
 
   @override
   _SincroState createState() => _SincroState();
 }
 
 class _SincroState extends State<Sincro> {
-  @override
-  void initState() {
-    super.initState();
-    Firebase.initializeApp();
-    WidgetsFlutterBinding.ensureInitialized();
-  }
+  final Stream<QuerySnapshot> _mantenimientoStrem =
+      FirebaseFirestore.instance.collection('bikes').snapshots();
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: widget.currentMotocycle.orderBy('name').snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: Text('Loading'));
-          }
-
-          return Column(
-            children: <Widget>[
-              Flexible(
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  child: Column(
-                    children: snapshot.data!.docs.map((bikes) {
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: ListTile(
-                          title: Text(bikes['name'],
-                              style: Theme.of(context).textTheme.headline5),
-                          subtitle: Column(
-                            children: [
-                              ListTile(
-                                title: const Text('Modelo'),
-                                subtitle: Text(bikes['model']),
-                                leading: Icon(Icons.home_outlined,
-                                    color: Theme.of(context).primaryColorDark),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ],
+    return StreamBuilder<QuerySnapshot>(
+      stream: _mantenimientoStrem,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child:
+                SizedBox(child: Text('Error al consultar los mantenimientos.')),
           );
-        });
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: SizedBox(
+                height: 50.0, width: 50.0, child: CircularProgressIndicator()),
+          );
+        }
+
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.0),
+          child: ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            Bikes model =
+                Bikes.fromJson(document.data() as Map<String, dynamic>);
+            return BikeCard(model: model);
+          }).toList()),
+        );
+      },
+    );
   }
 }
