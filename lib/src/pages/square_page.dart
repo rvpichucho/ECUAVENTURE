@@ -1,8 +1,8 @@
-import 'package:ecuaventure/src/widgets/square_widget.dart';
+import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_details_card.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-class SquarePage extends StatefulWidget {
+
+/*class SquarePage extends StatefulWidget {
   const SquarePage({Key? key}) : super(key: key);
 
   @override
@@ -26,6 +26,39 @@ class _SquarePageState extends State<SquarePage> {
             textAlign: TextAlign.center,
           )),
       body: const SquareWidget(),
+    );
+  }
+}*/
+
+class SquarePage extends StatelessWidget {
+  const SquarePage({Key? key, required this.reservation})
+      : super(key: key);
+  final Squares reservation;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = reservation.image!;
+    return SafeArea(
+      child: Scaffold(
+          body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            expandedHeight: 180,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(reservation.name ?? "",
+                  overflow: TextOverflow.ellipsis),
+              // ignore: unrelated_type_equality_checks
+              background:Stack(fit: StackFit.expand,children:<Widget>[Image.network(url)]),
+              
+             
+            ),
+          ),
+          SliverFillRemaining(
+              child: SquareDetailsWidget(reservation: reservation))
+        ],
+      )),
     );
   }
 }

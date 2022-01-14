@@ -1,8 +1,7 @@
-import 'package:ecuaventure/src/widgets/motorcycle_widget.dart';
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_details_card.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-class MotorcyclePage extends StatefulWidget {
+/*class MotorcyclePage extends StatefulWidget {
   const MotorcyclePage({Key? key}) : super(key: key);
 
   @override
@@ -28,4 +27,37 @@ class _MotorcyclePageState extends State<MotorcyclePage> {
       body: const MotorcycleWidget(),
     );
   }
+}*/
+class MotorcyclePage extends StatelessWidget {
+  const MotorcyclePage({Key? key, required this.reservation})
+      : super(key: key);
+  final Motorcycles reservation;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = reservation.image!;
+    return SafeArea(
+      child: Scaffold(
+          body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            expandedHeight: 180,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(reservation.name ?? "",
+                  overflow: TextOverflow.ellipsis),
+              // ignore: unrelated_type_equality_checks
+              background:Stack(fit: StackFit.expand,children:<Widget>[Image.network(url)]),
+              
+             
+            ),
+          ),
+          SliverFillRemaining(
+              child: MotorcycleDetailsWidget(reservation: reservation))
+        ],
+      )),
+    );
+  }
 }
+

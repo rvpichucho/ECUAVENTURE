@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-//import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
-import 'package:ecuaventure/src/widgets/reservation_card.dart';
+import 'package:ecuaventure/src/widgets/bike_card/bike_card.dart';
 import 'package:flutter/material.dart';
 
-class MantenimientosFirebaseList extends StatefulWidget {
-  const MantenimientosFirebaseList({Key? key}) : super(key: key);
+class BikeFirebaseList extends StatefulWidget {
+  const BikeFirebaseList({Key? key}) : super(key: key);
 
   @override
-  State<MantenimientosFirebaseList> createState() =>
-      _MantenimientosFirebaseListState();
+  State<BikeFirebaseList> createState() =>
+      _BikeFirebaseListState();
 }
 
-class _MantenimientosFirebaseListState
-    extends State<MantenimientosFirebaseList> {
+class _BikeFirebaseListState
+    extends State<BikeFirebaseList> {
   final Stream<QuerySnapshot> _mantenimientoStrem =
       FirebaseFirestore.instance.collection('bikes').snapshots();
 
@@ -42,7 +41,7 @@ class _MantenimientosFirebaseListState
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Bikes model =
                 Bikes.fromJson(document.data() as Map<String, dynamic>);
-            return ReservationCard(model: model);
+            return BikeCard(model: model);
           }).toList()),
         );
       },

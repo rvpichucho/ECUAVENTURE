@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color colorMediumPriority = Colors.yellow;
   static final Color colorLowPriority = Colors.green.shade400;
-
+  static final Color colorHighPriority = Colors.red;
   static ThemeData themeData(bool ligthMode) {
     return ThemeData(
       primaryColor: const Color(0xFF1d87e5),

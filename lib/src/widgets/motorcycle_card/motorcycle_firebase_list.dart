@@ -1,21 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-//import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
-import 'package:ecuaventure/src/widgets/reservation_card.dart';
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_card.dart';
 import 'package:flutter/material.dart';
 
-class MantenimientosFirebaseList extends StatefulWidget {
-  const MantenimientosFirebaseList({Key? key}) : super(key: key);
+class MotorcycleFirebaseList extends StatefulWidget {
+  const MotorcycleFirebaseList({Key? key}) : super(key: key);
 
   @override
-  State<MantenimientosFirebaseList> createState() =>
-      _MantenimientosFirebaseListState();
+  State<MotorcycleFirebaseList> createState() =>
+      _MotorcycleFirebaseListState();
 }
 
-class _MantenimientosFirebaseListState
-    extends State<MantenimientosFirebaseList> {
+class _MotorcycleFirebaseListState
+    extends State<MotorcycleFirebaseList> {
   final Stream<QuerySnapshot> _mantenimientoStrem =
-      FirebaseFirestore.instance.collection('bikes').snapshots();
+      FirebaseFirestore.instance.collection('motorcycles').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +39,9 @@ class _MantenimientosFirebaseListState
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.0),
           child: ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Bikes model =
-                Bikes.fromJson(document.data() as Map<String, dynamic>);
-            return ReservationCard(model: model);
+            Motorcycles model =
+                Motorcycles.fromJson(document.data() as Map<String, dynamic>);
+            return MotorcycleCard(model: model);
           }).toList()),
         );
       },

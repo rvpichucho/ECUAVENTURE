@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:ecuaventure/src/components/menu_lateral.dart';
-import 'package:ecuaventure/src/pages/bike_page.dart';
-import 'package:ecuaventure/src/pages/buggy_page.dart';
+//import 'package:ecuaventure/src/pages/bike_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
-import 'package:ecuaventure/src/pages/square_page.dart';
+
 //import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
+import 'package:ecuaventure/src/widgets/bike_card/bike_firebase_list.dart';
+import 'package:ecuaventure/src/widgets/buggy_card/buggy_firebase_list.dart';
+import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_firebase_list.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_firebase_list.dart';
 import 'package:flutter/material.dart';
-import 'package:ecuaventure/src/pages/motorcycle_page.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -114,7 +116,7 @@ class ListMotorcycle extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MotorcyclePage()));
+                    builder: (context) => const MotorcycleFirebaseList()));
           },
           child: Container(
             height: 180,
@@ -167,7 +169,7 @@ class ListSquares extends StatelessWidget {
         return MaterialButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SquarePage()));
+                MaterialPageRoute(builder: (context) => const SquareFirebaseList()));
           },
           child: Container(
             height: 180,
@@ -220,7 +222,7 @@ class ListBikes extends StatelessWidget {
         return MaterialButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BikePage()));
+                MaterialPageRoute(builder: (context) => const BikeFirebaseList()));
           },
           child: Container(
             height: 180,
@@ -273,7 +275,7 @@ class ListBuggys extends StatelessWidget {
         return MaterialButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BuggyPage()));
+                MaterialPageRoute(builder: (context) => const BuggyFirebaseList()));
           },
           child: Container(
             height: 180,

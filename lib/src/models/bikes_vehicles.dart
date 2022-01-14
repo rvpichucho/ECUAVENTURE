@@ -31,6 +31,8 @@ class Bikes {
         image: json["image"],
     );
 
+  get background => null;
+
     Map<String, dynamic> toJson() => {
         "idbike": idbike,
         "name": name,
