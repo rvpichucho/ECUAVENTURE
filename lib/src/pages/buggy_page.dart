@@ -3,7 +3,6 @@ import 'package:ecuaventure/src/widgets/buggy_card/buggy_details_card.dart';
 
 import 'package:flutter/material.dart';
 
-
 /*class BuggyPage extends StatefulWidget {
   const BuggyPage({Key? key}) : super(key: key);
 
@@ -33,8 +32,7 @@ class _BuggyPageState extends State<BuggyPage> {
 }*/
 
 class BuggyPage extends StatelessWidget {
-  const BuggyPage({Key? key, required this.reservation})
-      : super(key: key);
+  const BuggyPage({Key? key, required this.reservation}) : super(key: key);
   final Buggys reservation;
 
   @override
@@ -45,16 +43,18 @@ class BuggyPage extends StatelessWidget {
           body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            backgroundColor: const Color.fromRGBO(229, 234, 233, 1),
             floating: true,
             pinned: true,
             expandedHeight: 180,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(reservation.name ?? "",
-                  overflow: TextOverflow.ellipsis),
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
               // ignore: unrelated_type_equality_checks
-              background:Stack(fit: StackFit.expand,children:<Widget>[Image.network(url)]),
-              
-             
+              background: Stack(
+                  fit: StackFit.expand, children: <Widget>[Image.network(url)]),
             ),
           ),
           SliverFillRemaining(

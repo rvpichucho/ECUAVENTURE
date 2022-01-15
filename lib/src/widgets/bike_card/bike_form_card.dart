@@ -4,7 +4,7 @@ import 'package:ecuaventure/src/services/fotos_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
 class ReservationDetailsFormWidget extends StatefulWidget {
   const ReservationDetailsFormWidget({Key? key, required this.id})
@@ -72,7 +72,6 @@ class _ReservationDetailsFormWidgetState
                       child: Text("Ingresar la fecha",
                           style: Theme.of(context).textTheme.subtitle1),
                     ),
-                   
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),
                       child: Text("Ingresar imagen inicial",
@@ -81,18 +80,23 @@ class _ReservationDetailsFormWidgetState
                     SizedBox(
                       height: 100.h,
                       width: 150.h,
-                      
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
                             onPressed: () => _selectImage(ImageSource.camera),
-                            icon: const Icon(Icons.camera),
+                            icon: const Icon(
+                              Icons.camera,
+                              color: color_const.blueC,
+                            ),
                             label: const Text("Cámara")),
                         ElevatedButton.icon(
                             onPressed: () => _selectImage(ImageSource.gallery),
-                            icon: const Icon(Icons.image),
+                            icon: const Icon(
+                              Icons.image,
+                              color: color_const.blueC,
+                            ),
                             label: const Text("Galería")),
                       ],
                     ),
@@ -105,11 +109,13 @@ class _ReservationDetailsFormWidgetState
                             child: Tooltip(
                               message: "Registrar inicio de mantenimiento",
                               child: ElevatedButton.icon(
-                                  onPressed: () {
-                                    _sendForm();
-                                  },
-                                  label: const Text("Guardar"),
-                                  icon: const Icon(Icons.save)),
+                                onPressed: () {
+                                  _sendForm();
+                                },
+                                label: const Text("Guardar"),
+                                icon: const Icon(Icons.save,
+                                    color: color_const.blueC),
+                              ),
                             ),
                           )
                   ],

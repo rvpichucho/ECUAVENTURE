@@ -2,9 +2,7 @@ import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_details_card.dart';
 //import 'package:ecuaventure/src/widgets/bikle_widget.dart';
 import 'package:flutter/material.dart';
-//import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 /*class BikePage extends StatefulWidget {
   const BikePage({Key? key}) : super(key: key);
@@ -35,8 +33,7 @@ class _BikePageState extends State<BikePage> {
 }*/
 
 class BikePage extends StatelessWidget {
-  const BikePage({Key? key, required this.reservation})
-      : super(key: key);
+  const BikePage({Key? key, required this.reservation}) : super(key: key);
   final Bikes reservation;
 
   @override
@@ -47,16 +44,18 @@ class BikePage extends StatelessWidget {
           body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            backgroundColor: const Color.fromRGBO(229, 234, 233, 1),
             floating: true,
             pinned: true,
             expandedHeight: 180,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(reservation.name ?? "",
-                  overflow: TextOverflow.ellipsis),
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
               // ignore: unrelated_type_equality_checks
-              background:Stack(fit: StackFit.expand,children:<Widget>[Image.network(url)]),
-              
-             
+              background: Stack(
+                  fit: StackFit.expand, children: <Widget>[Image.network(url)]),
             ),
           ),
           SliverFillRemaining(
