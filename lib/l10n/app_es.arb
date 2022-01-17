@@ -5,6 +5,7 @@
     "welcome":"Bienvenido",
     "bicycles":"Bicicletas",
     "motorcycles":"Motos",
+    "reservationI":"Reservación",
     "quad":"Cuadrones",
     "helloWorld": "Hola Mundo!",
     "hello": "Hola {username}"

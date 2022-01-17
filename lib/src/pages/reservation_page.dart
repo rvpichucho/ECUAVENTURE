@@ -19,12 +19,11 @@ class ReservationPage extends StatelessWidget {
             pinned: true,
             expandedHeight: 180,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(reservation.name ?? "",
-                  overflow: TextOverflow.ellipsis),
+              title:
+                  Text(reservation.name ?? "", overflow: TextOverflow.ellipsis),
               // ignore: unrelated_type_equality_checks
-              background:Stack(fit: StackFit.expand,children:<Widget>[Image.network(url)]),
-              
-             
+              background: Stack(
+                  fit: StackFit.expand, children: <Widget>[Image.network(url)]),
             ),
           ),
           SliverFillRemaining(

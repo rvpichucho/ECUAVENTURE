@@ -30,12 +30,16 @@ class BikeCard extends StatelessWidget {
                         title: const Text('Modelo'),
                         subtitle: Text(model.model.toString()),
                       ),
-                      ListTile(
+                      /*ListTile(
                         title: const Text('Descripción'),
                         subtitle: Text(model.description.toString()),
-                      ),
-                      Center(
-                        child: BikePriorityWidget(priority: model.prioridad),
+                      ),*/
+                      ListTile(
+                        title: const Text('Estado'),
+                        subtitle:
+                            model.prioridad == null || model.prioridad == 0
+                                ? null
+                                : BikePriorityWidget(priority: model.prioridad),
                       ),
                     ],
                   ),

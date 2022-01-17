@@ -1,8 +1,6 @@
 import 'package:ecuaventure/src/pages/cuenta_page.dart';
 import 'package:ecuaventure/src/pages/menu_page.dart';
-import 'package:ecuaventure/src/widgets/Card/sincronizacion_prueba.dart';
-//import 'package:ecuaventure/src/widgets/Card/sincronizacion_prueba.dart';
-//import 'package:ecuaventure/src/widgets/reservacion_widget.dart';
+import 'package:ecuaventure/src/widgets/reservacion_firebase_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,4 +16,8 @@ List<MenuItem> menuOptions = [
   MenuItem("Cuenta", Icons.person_outlined),
 ];
 
-List<Widget> contentWidgets = [const Menu(), const MantenimientosFirebaseList(), CuentaPage()];
+List<Widget> contentWidgets = [
+  const Menu(),
+  const VehiclesReservationList(),
+  CuentaPage()
+];

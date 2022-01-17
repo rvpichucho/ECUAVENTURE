@@ -6,6 +6,7 @@
     "bicycles":"Bicycles",
     "motorcycles":"Motorcycles",
     "quad":"Quad bike",
+    "reservationI":"Reservation",
     "@language":{
       "description": "The current Language"
     },
