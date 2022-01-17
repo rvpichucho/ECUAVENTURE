@@ -1,5 +1,6 @@
 import 'package:ecuaventure/src/theme/main_theme.dart';
 import 'package:flutter/material.dart';
+
 class BuggyPriorityWidget extends StatelessWidget {
   const BuggyPriorityWidget({Key? key, required this.priority})
       : super(key: key);
@@ -14,7 +15,7 @@ class BuggyPriorityWidget extends StatelessWidget {
             : priority == 2
                 ? AppTheme.colorMediumPriority
                 : AppTheme.colorLowPriority,
-        child: Icon(Icons.priority_high,
+        child: Icon(Icons.event_available_outlined,
             color: priority == 2 ? Colors.black : Colors.white));
   }
 }

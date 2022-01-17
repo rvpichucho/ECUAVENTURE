@@ -1,5 +1,6 @@
 import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 import 'package:flutter/material.dart';
 
 class BikeCard extends StatelessWidget {
@@ -32,6 +33,9 @@ class BikeCard extends StatelessWidget {
                       ListTile(
                         title: const Text('Descripción'),
                         subtitle: Text(model.description.toString()),
+                      ),
+                      Center(
+                        child: BikePriorityWidget(priority: model.prioridad),
                       ),
                     ],
                   ),

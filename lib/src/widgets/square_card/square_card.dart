@@ -1,5 +1,6 @@
 import 'package:ecuaventure/src/models/squares_vehicles.dart';
 import 'package:ecuaventure/src/pages/square_page.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
@@ -44,6 +45,13 @@ class SquareCard extends StatelessWidget {
                         ListTile(
                           title: const Text('Descripción'),
                           subtitle: Text(model.description.toString()),
+                        ),
+                        ListTile(
+                          title: const Text('Estado'),
+                          subtitle: model.prioridad == null ||
+                                  model.prioridad == 0
+                              ? null
+                              : SquarePriorityWidget(priority: model.prioridad),
                         ),
                       ],
                     ),

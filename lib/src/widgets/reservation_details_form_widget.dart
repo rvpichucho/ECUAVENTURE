@@ -1,18 +1,18 @@
-
 import 'dart:io';
 //import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/models/foto_model.dart';
 import 'package:ecuaventure/src/services/fotos_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReservationDetailsFormWidget extends StatefulWidget {
   const ReservationDetailsFormWidget({Key? key, required this.id})
       : super(key: key);
   final String id;
-  
 
   @override
   State<ReservationDetailsFormWidget> createState() =>
@@ -27,6 +27,11 @@ class _ReservationDetailsFormWidgetState
   final ImagePicker _picker = ImagePicker();
   bool _onSaving = false;
   final FotosService _fotosService = FotosService();
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection('bikes');
+  bool reservar = false;
+  final int valor = 2;
+  late Bikes uid;
 
   @override
   void initState() {
@@ -37,7 +42,7 @@ class _ReservationDetailsFormWidgetState
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    
+
     return SingleChildScrollView(
         child: Column(
       children: [
@@ -76,10 +81,30 @@ class _ReservationDetailsFormWidgetState
                       child: Text("Ingresar la fecha",
                           style: Theme.of(context).textTheme.subtitle1),
                     ),
-                   
+                    Padding(
+                      padding: const EdgeInsets.only(top: 7.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Reservar",
+                              style: Theme.of(context).textTheme.subtitle1),
+                          Checkbox(
+                            value: reservar,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                collection
+                                    .doc('DCVGpp9gbcvvbRNzwbdU')
+                                    .update({'prioridad': valor});
+                                reservar = value!;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),
-                      child: Text("Ingresar imagen inicial",
+                      child: Text("Subir imagen",
                           style: Theme.of(context).textTheme.subtitle1),
                     ),
                     SizedBox(
@@ -96,13 +121,21 @@ class _ReservationDetailsFormWidgetState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
-                            onPressed: () => _selectImage(ImageSource.camera),
-                            icon: const Icon(Icons.camera),
-                            label: const Text("Cámara")),
+                          onPressed: () => _selectImage(ImageSource.camera),
+                          icon: const Icon(Icons.camera),
+                          label: const Text("Cámara"),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  color_const.blueC)),
+                        ),
                         ElevatedButton.icon(
-                            onPressed: () => _selectImage(ImageSource.gallery),
-                            icon: const Icon(Icons.image),
-                            label: const Text("Galería")),
+                          onPressed: () => _selectImage(ImageSource.gallery),
+                          icon: const Icon(Icons.image),
+                          label: const Text("Galería"),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  color_const.blueC)),
+                        ),
                       ],
                     ),
                     _onSaving
@@ -114,11 +147,16 @@ class _ReservationDetailsFormWidgetState
                             child: Tooltip(
                               message: "Registrar inicio de mantenimiento",
                               child: ElevatedButton.icon(
-                                  onPressed: () {
-                                    _sendForm();
-                                  },
-                                  label: const Text("Guardar"),
-                                  icon: const Icon(Icons.save)),
+                                onPressed: () {
+                                  _sendForm();
+                                },
+                                label: const Text("Guardar"),
+                                icon: const Icon(Icons.save),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            color_const.blueC)),
+                              ),
                             ),
                           )
                   ],

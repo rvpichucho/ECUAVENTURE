@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/pages/bike_page.dart';
+import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 //import 'package:ecuaventure/src/pages/reservation_page.dart';
 //import 'package:ecuaventure/src/widgets/reservation_priority.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,13 @@ class BikeCard extends StatelessWidget {
                         ListTile(
                           title: const Text('Descripción'),
                           subtitle: Text(model.description.toString()),
+                        ),
+                        ListTile(
+                          title: const Text('Estado'),
+                          subtitle: model.prioridad == null ||
+                                  model.prioridad == 0
+                              ? null
+                              : BikePriorityWidget(priority: model.prioridad),
                         ),
                       ],
                     ),

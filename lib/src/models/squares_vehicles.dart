@@ -15,6 +15,7 @@ class Squares {
     this.model,
     this.description,
     this.image,
+    this.prioridad,
   });
 
   String? idsquare;
@@ -22,14 +23,15 @@ class Squares {
   String? model;
   String? description;
   String? image;
+  int? prioridad;
 
   factory Squares.fromJson(Map<String, dynamic> json) => Squares(
-        idsquare: json["idsquare"],
-        name: json["name"],
-        model: json["model"],
-        description: json["description"],
-        image: json["image"],
-      );
+      idsquare: json["idsquare"],
+      name: json["name"],
+      model: json["model"],
+      description: json["description"],
+      image: json["image"],
+      prioridad: json["prioridad"]);
 
   Map<String, dynamic> toJson() => {
         "idsquare": idsquare,
@@ -37,5 +39,6 @@ class Squares {
         "model": model,
         "description": description,
         "image": image,
+        "prioridad": prioridad,
       };
 }

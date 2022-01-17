@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_priority.dart';
 import 'package:flutter/material.dart';
 
 class SquareDetailsContentWidget extends StatelessWidget {
@@ -20,6 +21,16 @@ class SquareDetailsContentWidget extends StatelessWidget {
             ListTile(
                 title: const Text("Descripción:"),
                 subtitle: Text(reservation.description ?? "")),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
+              child: Center(
+                child:
+                    reservation.prioridad == null || reservation.prioridad == 0
+                        ? null
+                        : SquarePriorityWidget(priority: reservation.prioridad),
+              ),
+            ),
             //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
           ],
         ),
