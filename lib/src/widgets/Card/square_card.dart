@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/square_card/square_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -42,6 +43,7 @@ class SquareCard extends StatelessWidget {
                             ? null
                             : SquarePriorityWidget(priority: model.prioridad),
                       ),
+                      CheckDeleteSquare(uid: model.idsquare),
                     ],
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,7 @@ class MotorcyclesCard extends StatelessWidget {
                                 : MotorcyclePriorityWidget(
                                     priority: model.prioridad),
                       ),
+                      CheckDeleteMotorcycle(uid: model.idmotorcycle),
                     ],
                   ),
                 ),

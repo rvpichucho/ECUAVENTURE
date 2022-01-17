@@ -1,6 +1,6 @@
 import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+import 'package:ecuaventure/src/widgets/bike_card/bike_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
-//import 'package:ecuaventure/src/widgets/reservation_priority.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:timeago/timeago.dart' as timeago;
@@ -23,16 +23,17 @@ class BikeDetailsContentWidget extends StatelessWidget {
             ListTile(
                 title: const Text("Descripción:"),
                 subtitle: Text(reservation.description ?? "")),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
-              child: Center(
-                child:
-                    reservation.prioridad == null || reservation.prioridad == 0
-                        ? null
-                        : BikePriorityWidget(priority: reservation.prioridad),
+            ListTile(
+              title: const Text('Estado'),
+              subtitle: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
+                child: Center(
+                  child: BikePriorityWidget(priority: reservation.prioridad),
+                ),
               ),
             ),
+            CheckReservarBike(uid: reservation.idbike),
             //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
           ],
         ),

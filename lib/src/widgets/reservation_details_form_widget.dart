@@ -1,6 +1,4 @@
 import 'dart:io';
-//import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/models/foto_model.dart';
 import 'package:ecuaventure/src/services/fotos_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +29,6 @@ class _ReservationDetailsFormWidgetState
       FirebaseFirestore.instance.collection('bikes');
   bool reservar = false;
   final int valor = 2;
-  late Bikes uid;
 
   @override
   void initState() {
@@ -80,27 +77,6 @@ class _ReservationDetailsFormWidgetState
                       padding: const EdgeInsets.only(top: 7.0),
                       child: Text("Ingresar la fecha",
                           style: Theme.of(context).textTheme.subtitle1),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 7.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("Reservar",
-                              style: Theme.of(context).textTheme.subtitle1),
-                          Checkbox(
-                            value: reservar,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                collection
-                                    .doc('DCVGpp9gbcvvbRNzwbdU')
-                                    .update({'prioridad': valor});
-                                reservar = value!;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),

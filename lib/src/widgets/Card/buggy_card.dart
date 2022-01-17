@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/models/buggys_vehicles.dart';
+import 'package:ecuaventure/src/widgets/buggy_card/buggy_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/buggy_card/buggy_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -42,6 +43,7 @@ class BuggyCard extends StatelessWidget {
                             ? null
                             : BuggyPriorityWidget(priority: model.prioridad),
                       ),
+                      CheckDeleteBuggy(uid: model.idbuggy),
                     ],
                   ),
                 ),

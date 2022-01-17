@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart';
 import 'package:flutter/material.dart';
 
@@ -21,16 +22,22 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
             ListTile(
                 title: const Text("Descripción:"),
                 subtitle: Text(reservation.description ?? "")),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
-              child: Center(
-                child: reservation.prioridad == null ||
-                        reservation.prioridad == 0
-                    ? null
-                    : MotorcyclePriorityWidget(priority: reservation.prioridad),
+            ListTile(
+              title: const Text('Estado'),
+              subtitle: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
+                child: Center(
+                  child: reservation.prioridad == null ||
+                          reservation.prioridad == 0
+                      ? null
+                      : MotorcyclePriorityWidget(
+                          priority: reservation.prioridad),
+                ),
               ),
             ),
+            CheckReservarMotorcycle(uid: reservation.idmotorcycle),
+
             //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
           ],
         ),

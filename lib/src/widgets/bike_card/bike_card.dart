@@ -1,7 +1,5 @@
 import 'package:ecuaventure/src/pages/bike_page.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
-//import 'package:ecuaventure/src/pages/reservation_page.dart';
-//import 'package:ecuaventure/src/widgets/reservation_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/buggys_vehicles.dart';
-import 'package:ecuaventure/src/widgets/buggy_card/buggy_card.dart';
+import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:ecuaventure/src/widgets/square_card/square_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -55,9 +55,9 @@ class _SquareFirebaseListState extends State<SquareFirebaseList> {
                 const EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.0),
             child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Buggys model =
-                  Buggys.fromJson(document.data() as Map<String, dynamic>);
-              return BuggyCard(model: model);
+              Squares model =
+                  Squares.fromJson(document.data() as Map<String, dynamic>);
+              return SquareCard(model: model);
             }).toList()),
           );
         },
