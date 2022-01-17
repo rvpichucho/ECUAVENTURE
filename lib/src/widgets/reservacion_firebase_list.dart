@@ -55,15 +55,27 @@ class _VehiclesReservationListState extends State<VehiclesReservationList>
           tabs: [
             Tab(
               child: Text(AppLocalizations.of(context)!.bicycles),
+              icon: const Icon(
+                Icons.directions_bike_outlined,
+              ),
             ),
             Tab(
               child: Text(AppLocalizations.of(context)!.motorcycles),
+              icon: const Icon(
+                Icons.two_wheeler_outlined,
+              ),
             ),
             Tab(
               child: Text(AppLocalizations.of(context)!.quad),
+              icon: const Icon(
+                Icons.agriculture_outlined,
+              ),
             ),
             const Tab(
               text: 'Buggys',
+              icon: Icon(
+                Icons.agriculture_outlined,
+              ),
             ),
           ],
           controller: _tabController,
