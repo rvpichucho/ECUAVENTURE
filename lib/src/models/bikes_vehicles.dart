@@ -16,6 +16,7 @@ class Bikes {
     this.description,
     this.image,
     this.prioridad,
+    this.precio,
   });
 
   String? idbike;
@@ -24,6 +25,7 @@ class Bikes {
   String? description;
   String? image;
   int? prioridad;
+  String? precio;
 
   factory Bikes.fromJson(Map<String, dynamic> json) => Bikes(
       idbike: json["idbike"],
@@ -31,7 +33,8 @@ class Bikes {
       model: json["model"],
       description: json["description"],
       image: json["image"],
-      prioridad: json["prioridad"]);
+      prioridad: json["prioridad"],
+      precio: json["precio"]);
 
   get background => null;
 
@@ -42,5 +45,6 @@ class Bikes {
         "description": description,
         "image": image,
         "prioridad": prioridad,
+        "precio": precio,
       };
 }

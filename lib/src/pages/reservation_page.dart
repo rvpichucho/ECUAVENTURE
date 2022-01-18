@@ -1,35 +1,26 @@
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-import 'package:ecuaventure/src/widgets/reservation_details.dart';
+import 'package:ecuaventure/src/widgets/Card/sincronizacion_prueba.dart';
 import 'package:flutter/material.dart';
+import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
 class ReservationPage extends StatelessWidget {
-  const ReservationPage({Key? key, required this.reservation})
-      : super(key: key);
-  final Bikes reservation;
+  const ReservationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final url = reservation.image!;
-    return SafeArea(
-      child: Scaffold(
-          body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            pinned: true,
-            expandedHeight: 180,
-            flexibleSpace: FlexibleSpaceBar(
-              title:
-                  Text(reservation.name ?? "", overflow: TextOverflow.ellipsis),
-              // ignore: unrelated_type_equality_checks
-              background: Stack(
-                  fit: StackFit.expand, children: <Widget>[Image.network(url)]),
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: color_const.blueC,
+          centerTitle: true,
+          title: const Text(
+            'Reservación Completa',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
             ),
-          ),
-          SliverFillRemaining(
-              child: ReservationDetailsWidget(reservation: reservation))
-        ],
-      )),
+            textAlign: TextAlign.center,
+          )),
+      body: const MantenimientosFirebaseList(),
     );
   }
 }

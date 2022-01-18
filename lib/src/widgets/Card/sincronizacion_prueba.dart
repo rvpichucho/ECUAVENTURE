@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
-//import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
+import 'package:ecuaventure/src/models/reservation_model.dart';
 import 'package:ecuaventure/src/widgets/reservation_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ class MantenimientosFirebaseList extends StatefulWidget {
 class _MantenimientosFirebaseListState
     extends State<MantenimientosFirebaseList> {
   final Stream<QuerySnapshot> _mantenimientoStrem =
-      FirebaseFirestore.instance.collection('bikes').snapshots();
+      FirebaseFirestore.instance.collection('reservations').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +39,8 @@ class _MantenimientosFirebaseListState
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.0),
           child: ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Bikes model =
-                Bikes.fromJson(document.data() as Map<String, dynamic>);
+            Reservation model =
+                Reservation.fromJson(document.data() as Map<String, dynamic>);
             return ReservationCard(model: model);
           }).toList()),
         );

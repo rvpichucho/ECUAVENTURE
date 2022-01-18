@@ -4,6 +4,7 @@ import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/models/buggys_vehicles.dart';
 import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
 import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:ecuaventure/src/pages/details_reservation_page.dart';
 import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
 import 'package:ecuaventure/src/widgets/Card/buggy_card.dart';
 import 'package:ecuaventure/src/widgets/Card/motorcycle_card.dart';
@@ -88,6 +89,18 @@ class _VehiclesReservationListState extends State<VehiclesReservationList>
         ReservationSquare(),
         ReservationBuggys(),
       ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DetailsReservationPage()));
+        },
+        child: const Icon(
+          Icons.inventory_outlined,
+        ),
+        backgroundColor: color_const.ligthBlueC,
+      ),
     );
   }
 }

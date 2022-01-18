@@ -6,6 +6,9 @@
     "bicycles":"Bicicletas",
     "motorcycles":"Motos",
     "reservationI":"Reservación",
+    "reservationD":"Detalle de Reservación",
+    "rentalHours":"Ingresar horas de alquiler",
+    "confirm":"Confirmar",
     "quad":"Cuadrones",
     "helloWorld": "Hola Mundo!",
     "hello": "Hola {username}"

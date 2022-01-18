@@ -33,6 +33,11 @@ class BikeCard extends StatelessWidget {
                         title: const Text('Modelo'),
                         subtitle: Text(model.model.toString()),
                       ),
+                      ListTile(
+                        title: const Text('Precio'),
+                        subtitle:
+                            Text(model.precio.toString() + ' dólares la hora'),
+                      ),
                       /*ListTile(
                         title: const Text('Descripción'),
                         subtitle: Text(model.description.toString()),

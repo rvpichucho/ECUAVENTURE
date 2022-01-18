@@ -7,6 +7,9 @@
     "motorcycles":"Motorcycles",
     "quad":"Quad bike",
     "reservationI":"Reservation",
+    "reservationD":"Reservation Detail",
+    "rentalHours":"Enter rental hours",
+    "confirm":"Confirm",
     "@language":{
       "description": "The current Language"
     },
