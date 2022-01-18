@@ -1,24 +1,25 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:ecuaventure/src/models/foto_model.dart';
 
 class FotosService {
   FotosService();
 
-  final String _rootUrl = "https://trifasic-backend-9bc1e.web.app/api/foto";
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection('fotos');
+
+  //final String _rootUrl = "https://trifasic-backend-9bc1e.web.app/api/foto";
 
   Future<int> postFoto(Foto foto) async {
     try {
-      final Map<String, String> _headers = {"content-type": "application/json"};
+      //final Map<String, String> _headers = {"content-type": "application/json"};
       String _fotoBody = fotoToJson(foto);
-      var url = Uri.parse(_rootUrl);
-      final response = await http.post(url, headers: _headers, body: _fotoBody);
-      if (response.body.isEmpty) return 400;
-      Map<String, dynamic> content = json.decode(response.body);
-      return content["estado"];
+      //var url = Uri.parse(_rootUrl);
+      collection.add({"datos": _fotoBody});
+      //final response = await http.post(url, headers: _headers, body: _fotoBody);
+      return 400;
     } catch (ex) {
       // ignore: avoid_print
       print(ex);
@@ -27,7 +28,8 @@ class FotosService {
   }
 
   Future<String> uploadImage(File image) async {
-    final cloudinary = CloudinaryPublic('ESPE', 'l4zljfyv', cache: false);
+    final cloudinary =
+        CloudinaryPublic('ddfmqjxz5', 'ml_default', cache: false);
     try {
       CloudinaryResponse response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(image.path,
