@@ -1,3 +1,4 @@
+import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -44,7 +45,7 @@ class CuentaPage extends StatelessWidget {
                 height: 100,
                 child: Card(
                   child: ListTile(
-                    title: Text("username"),
+                    title: Text('usuario'),
                     subtitle: Text("usuario@gmail.com"),
                   ),
                 ),
@@ -61,6 +62,22 @@ class CuentaPage extends StatelessWidget {
                           final prefs = await SharedPreferences.getInstance();
                           await prefs.setBool("mode", value);
                         }),
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: Card(
+                  child: ListTile(
+                    title: const Text("Mis Reservaciones"),
+                    onTap: () {
+                      Navigator.push<void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              const ReservationPage(),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

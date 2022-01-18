@@ -11,7 +11,7 @@ class ReservationCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Stack(
           children: <Widget>[
             Card(

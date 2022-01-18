@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class Menu extends StatefulWidget {
   static String routeNme = "/Menu";
   const Menu({Key? key}) : super(key: key);
@@ -58,7 +59,7 @@ class _MenuState extends State<Menu> {
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 16.0, top: 20.0),
-                child: Text(AppLocalizations.of(context)!.welcome+":" + _name,
+                child: Text(AppLocalizations.of(context)!.welcome + ":" + _name,
                     style: TextStyle(
                         color: Colors.blue[900],
                         fontSize: 24.0,
@@ -168,8 +169,10 @@ class ListSquares extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SquareFirebaseList()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SquareFirebaseList()));
           },
           child: Container(
             height: 180,
@@ -221,8 +224,10 @@ class ListBikes extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BikeFirebaseList()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BikeFirebaseList()));
           },
           child: Container(
             height: 180,
@@ -274,8 +279,10 @@ class ListBuggys extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return MaterialButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BuggyFirebaseList()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BuggyFirebaseList()));
           },
           child: Container(
             height: 180,

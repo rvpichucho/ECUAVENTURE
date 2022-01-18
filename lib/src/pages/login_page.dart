@@ -4,6 +4,7 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
