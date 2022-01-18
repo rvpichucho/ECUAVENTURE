@@ -10,6 +10,7 @@
     "reservationD":"Reservation Detail",
     "rentalHours":"Enter rental hours",
     "confirm":"Confirm",
+    "datereserv":"Enter the reservation date",
     "@language":{
       "description": "The current Language"
     },

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/reservation_model.dart';
 import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -71,7 +70,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                         border: InputBorder.none,
                         icon: Icon(Icons.insert_invitation_outlined,
                             color: Theme.of(context).primaryColorDark),
-                        labelText: 'Ingrese la fecha de reservación',
+                        labelText: AppLocalizations.of(context)!.datereserv,
                       ),
                       controller: date,
                     ),

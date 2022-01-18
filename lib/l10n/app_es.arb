@@ -9,6 +9,7 @@
     "reservationD":"Detalle de Reservación",
     "rentalHours":"Ingresar horas de alquiler",
     "confirm":"Confirmar",
+    "datereserv":"Ingrese la fecha de reservación",
     "quad":"Cuadrones",
     "helloWorld": "Hola Mundo!",
     "hello": "Hola {username}"
