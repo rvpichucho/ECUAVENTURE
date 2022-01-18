@@ -8,7 +8,7 @@ import 'package:ecuaventure/src/models/foto_model.dart';
 class FotosService {
   FotosService();
 
-  final String _rootUrl = "https://trifasic-backend-9bc1e.web.app/api/foto";
+  final String _rootUrl = "https://ecuaventure-d9eb0.web.app/api/foto";
 
   Future<int> postFoto(Foto foto) async {
     try {

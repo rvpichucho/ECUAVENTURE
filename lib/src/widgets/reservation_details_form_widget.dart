@@ -69,15 +69,10 @@ class _ReservationDetailsFormWidgetState
                         validator: (value) {
                           return _validateObservacion(value!);
                         },
-                        decoration: const InputDecoration(
-                            labelText: "Observación inicial"),
+                        decoration:
+                            const InputDecoration(labelText: "Observación"),
                         maxLength: 255,
                         maxLines: 3),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 7.0),
-                      child: Text("Ingresar la fecha",
-                          style: Theme.of(context).textTheme.subtitle1),
-                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),
                       child: Text("Subir imagen",
