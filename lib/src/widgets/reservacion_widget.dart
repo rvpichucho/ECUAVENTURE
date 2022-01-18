@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecuaventure/src/models/reservation_model.dart';
 import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -16,6 +17,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
       FirebaseFirestore.instance.collection('reservations');
 
   final hour = TextEditingController();
+  final date = TextEditingController();
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
@@ -54,6 +56,30 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
               ),
             ),
             const SizedBox(height: 25.0),
+            Card(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              margin: const EdgeInsets.only(left: 12, right: 12),
+              elevation: 4,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: TextFormField(
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(Icons.insert_invitation_outlined,
+                            color: Theme.of(context).primaryColorDark),
+                        labelText: 'Ingrese la fecha de reservación',
+                      ),
+                      controller: date,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 25.0),
             Container(
               alignment: AlignmentDirectional.center,
               child: Card(
@@ -72,8 +98,9 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                     ),
                   ),
                   onPressed: () {
-                    _confirmar(context, hour.text);
+                    _confirmar(context, hour.text, date.text);
                     hour.clear();
+                    date.clear();
                   },
                 ),
               ),
@@ -84,13 +111,17 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
     );
   }
 
-  _confirmar(BuildContext context, String hora) {
+  _confirmar(BuildContext context, String hora, String fecha) {
     var num = int.parse(hora) * 3;
     String num1 = num.toString();
     Widget okButton = TextButton(
       child: const Text("Guardar"),
       onPressed: () {
-        derailsReservation.add({'hour': hora, 'total': num1});
+        derailsReservation.add({
+          'hour': hora,
+          'total': num1,
+          'fecha': fecha,
+        });
         Navigator.of(context).pop();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const ReservationPage()));

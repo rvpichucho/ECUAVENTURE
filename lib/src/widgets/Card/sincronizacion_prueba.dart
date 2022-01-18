@@ -24,7 +24,7 @@ class _MantenimientosFirebaseListState
         if (snapshot.hasError) {
           return const Center(
             child:
-                SizedBox(child: Text('Error al consultar los mantenimientos.')),
+                SizedBox(child: Text('Error al consultar los reservaciones.')),
           );
         }
 

@@ -14,21 +14,25 @@ class Reservation {
     this.idreservation,
     this.hour,
     this.total,
+    this.fecha,
   });
 
   String? idreservation;
   String? hour;
   String? total;
+  String? fecha;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         idreservation: json["idreservation"],
         hour: json["hour"],
         total: json["total"],
+        fecha: json["fecha"],
       );
 
   Map<String, dynamic> toJson() => {
         "idreservation": idreservation,
         "hour": hour,
         "total": total,
+        "fecha": fecha,
       };
 }

@@ -33,6 +33,10 @@ class ReservationCard extends StatelessWidget {
                         title: const Text('Costo final'),
                         subtitle: Text(model.total.toString() + ' dólares'),
                       ),
+                      ListTile(
+                        title: const Text('Fecha'),
+                        subtitle: Text(model.fecha.toString()),
+                      ),
                     ],
                   ),
                 ),
