@@ -51,8 +51,9 @@ class _MapaPageState extends State<MapaPage> {
 
            LatLng _kMnt= LatLng(model.lat ?? -1.39699,model.lng ?? -78.42289);  
            return Marker(
-             icon:model.prioridad==2? BitmapDescriptor.defaultMarkerWithHue(
-               BitmapDescriptor.hueAzure):model.prioridad==3 ? BitmapDescriptor.defaultMarkerWithHue(
+             icon:model.prioridad == 1 
+             ? BitmapDescriptor.defaultMarkerWithHue(
+               BitmapDescriptor.hueRed):model.prioridad == 2 ? BitmapDescriptor.defaultMarkerWithHue(
                  BitmapDescriptor.hueGreen):BitmapDescriptor.defaultMarkerWithHue(
                    BitmapDescriptor.hueOrange),
              infoWindow: InfoWindow(title:model.name), markerId: MarkerId(document.id), position:_kMnt); 
@@ -75,12 +76,5 @@ class _MapaPageState extends State<MapaPage> {
      );
   
 }
-
-
-
-
-
-
-
 
 }
