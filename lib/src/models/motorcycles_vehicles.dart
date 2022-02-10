@@ -17,6 +17,8 @@ class Motorcycles {
     this.description,
     this.image,
     this.prioridad,
+    this.lat,
+    this.lng,
   });
 
   String? idmotorcycle;
@@ -25,15 +27,18 @@ class Motorcycles {
   String? description;
   String? image;
   int? prioridad;
-
+  double? lat;
+  double? lng;
   factory Motorcycles.fromJson(Map<String, dynamic> json) => Motorcycles(
       idmotorcycle: json["idmotorcycle"],
       name: json["name"],
       model: json["model"],
       description: json["description"],
       image: json["image"],
-      prioridad: json["prioridad"]);
-
+      prioridad: json["prioridad"],
+      lat: json["lat"],
+      lng: json["lng"]);
+      
   Map<String, dynamic> toJson() => {
         "idmotorcycle": idmotorcycle,
         "name": name,
@@ -41,5 +46,7 @@ class Motorcycles {
         "description": description,
         "image": image,
         "prioridad": prioridad,
+        "lat": lat,
+        "lng": lng,
       };
 }

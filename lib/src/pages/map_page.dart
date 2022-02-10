@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+//import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // ignore: must_be_immutable
@@ -19,10 +20,10 @@ class _MapaPageState extends State<MapaPage> {
   );
    final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
-        .collection('bikes')
+        .collection('motorcycles')
         .where('prioridad', isEqualTo: 2)
         .snapshots();
-        
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,9 @@ class _MapaPageState extends State<MapaPage> {
         
       if(snapshot.hasData){
         Set<Marker> _rsv= snapshot.data!.docs.map<Marker>((DocumentSnapshot document){
-           Bikes model =Bikes.fromJson(document.data() as Map<String, dynamic>);
+          //Bikes model =Bikes.fromJson(document.data() as Map<String, dynamic>);
+          Motorcycles model =Motorcycles .fromJson(document.data() as Map<String, dynamic>);
+
            LatLng _kMnt= LatLng(model.lat ?? -1.39699,model.lng ?? -78.42289);  
            return Marker(
              icon:model.prioridad==2? BitmapDescriptor.defaultMarkerWithHue(
@@ -54,6 +57,7 @@ class _MapaPageState extends State<MapaPage> {
                    BitmapDescriptor.hueOrange),
              infoWindow: InfoWindow(title:model.name), markerId: MarkerId(document.id), position:_kMnt); 
         }).toSet();
+        //////
        return GoogleMap(
          markers: _rsv,
         //mapType: MapType.hybrid,
@@ -64,9 +68,19 @@ class _MapaPageState extends State<MapaPage> {
         },
       );
       }
+      /////
       return const CircularProgressIndicator();
-     }));
+     })
+     
+     );
   
 }
+
+
+
+
+
+
+
 
 }
