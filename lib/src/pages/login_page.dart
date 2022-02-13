@@ -93,22 +93,22 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       controller: emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.person,
                             color: Theme.of(context).primaryColorDark),
-                        /*hintText: 'nombre@gmail.com',
-                        labelText: 'Ingrese su correro electrónico',*/
-                        hintText: 'Nombre Apellido',
-                        labelText: AppLocalizations.of(context)!.name,
+                        hintText: 'nombre@gmail.com',
+                        labelText: 'Ingrese su correro electrónico',
+                        //labelText: AppLocalizations.of(context)!.name,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            /*const SizedBox(height: 25.0),
+            const SizedBox(height: 25.0),
             Card(
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -119,6 +119,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(Icons.lock_outline,
@@ -130,7 +131,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                   ),
                 ],
               ),
-            ),*/
+            ),
             const SizedBox(height: 25.0),
             Container(
               alignment: AlignmentDirectional.center,

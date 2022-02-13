@@ -16,7 +16,7 @@ class Foto {
 
   factory Foto.fromJson(Map<String, dynamic> json) => Foto(
         url: json["url"],
-        fecha: DateTime.parse(json["fecha"]),
+        fecha: json["fecha"],
         observacion: json["observacion"],
         idvehicles: json["idvehicles"],
       );
@@ -28,3 +28,5 @@ class Foto {
         "idvehicles": idvehicles,
       };
 }
+
+class T15 {}

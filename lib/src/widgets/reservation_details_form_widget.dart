@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ecuaventure/src/models/foto_model.dart';
+import 'package:ecuaventure/src/pages/data_foto_page.dart';
 import 'package:ecuaventure/src/services/fotos_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +121,11 @@ class _ReservationDetailsFormWidgetState
                               child: ElevatedButton.icon(
                                 onPressed: () {
                                   _sendForm();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const FotoPage()));
                                 },
                                 label: const Text("Guardar"),
                                 icon: const Icon(Icons.save),
