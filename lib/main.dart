@@ -1,3 +1,6 @@
+import 'package:ecuaventure/src/pages/SignUpPage.dart';
+import 'package:ecuaventure/src/pages/cuenta_page.dart';
+import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
@@ -9,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 import 'package:ecuaventure/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,9 +35,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-    // Set the background messaging handler early on, as a named top-level function
+  // Set the background messaging handler early on, as a named top-level function
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-   if (!kIsWeb) {
+  if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications', // title
@@ -117,20 +121,8 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    /*return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => MotoProvider()),
-        ChangeNotifierProvider(create: (_) => ThemeChanger()),
-        ChangeNotifierProvider(create: (_) => MainProvider()),
-      ],
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false, //PARA QUITAR EL DEBUG DE LA APP
-        title: 'ecuadventure',
-        home: LoginPage(),
-      ),
-    );*/
     final mainProvider = Provider.of<MainProvider>(context, listen: true);
     return FutureBuilder<bool>(
         future: mainProvider.getPreferences(),
@@ -150,13 +142,23 @@ class _MyAppState extends State<MyApp> {
                     debugShowCheckedModeBanner: false,
                     title: 'ecuaventure',
                     theme: AppTheme.themeData(mainProvider.mode),
-                    home: const LoginPage()));
+                    routes: {
+                      "/singUp": (context) => SignUpPage(),
+                      "/cuenta": (context) => CuentaPage()
+                    },
+                    //home: const LoginPage()
+                    home: mainProvider.token == ""
+                        ? const LoginPage()
+                        : JwtDecoder.isExpired(mainProvider.token)
+                            ? const LoginPage()
+                            : const HomePage()));
           }
           return const SizedBox.square(
               dimension: 50.0, child: CircularProgressIndicator());
         });
   }
-   _setupToken() async {
+
+  _setupToken() async {
     String? token = await FirebaseMessaging.instance.getToken();
     developer.log(token ?? "");
   }

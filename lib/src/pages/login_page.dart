@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Builder(
         builder: (BuildContext context) {
           return ListView(
-            padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 0),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
             children: <Widget>[
               SafeArea(child: Container(height: 30.0)),
               Stack(
@@ -49,11 +49,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 25.0),
                   const EmailPaswordForm(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                        'Ingresar el nombre para que el SharedPreferences guarde el dato ',
-                        style: Theme.of(context).textTheme.headline6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text("¿No tiene una cuenta?"),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/singUp");
+                          },
+                          child: const Text("Registrarse")),
+                    ],
                   ),
                 ]),
               ),
@@ -151,7 +157,7 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
                     ),
                   ),
                   onPressed: () {
-                    saveName();
+                    //saveName();
                     //Navigator.push(context,
                     //MaterialPageRoute(builder: (context) => const Menu()));
                   },
@@ -164,14 +170,14 @@ class _EmailPaswordFormState extends State<EmailPaswordForm> {
     );
   }
 
-  void saveName() {
+  /*void saveName() {
     //var _controller = TextEditingController();
     String name = emailController.text;
     saveNamePreference(name).then((bool commit) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     });
-  }
+  }*/
 }
 
 _avatar() {
@@ -188,12 +194,12 @@ _avatar() {
       )));
 }
 
-Future<bool> saveNamePreference(String name) async {
+/*Future<bool> saveNamePreference(String name) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString("name", name);
   // ignore: deprecated_member_use
   return prefs.commit();
-}
+}*/
 
 Future<String?> getNamePreference() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
