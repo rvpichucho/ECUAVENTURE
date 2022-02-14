@@ -1,4 +1,5 @@
 import 'package:ecuaventure/src/pages/login_page.dart';
+import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 
@@ -32,6 +33,17 @@ class MenuLateral extends StatelessWidget {
             decoration: const BoxDecoration(
               color: color_const.blueC,
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.list_alt_outlined,
+                color: Theme.of(context).primaryColorDark),
+            title: const Text('Mis Reservaciones'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ReservationPage()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout_outlined,

@@ -8,20 +8,6 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-_avatar() {
-  return Container(
-      width: 100.0,
-      height: 100.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100.0), color: color_const.blueC),
-      child: const ClipOval(
-          child: Icon(
-        Icons.person,
-        color: Colors.white,
-        size: 50,
-      )));
-}
-
 class CuentaPage extends StatefulWidget {
   const CuentaPage({Key? key}) : super(key: key);
 
@@ -79,8 +65,18 @@ class _CuentaPageState extends State<CuentaPage> {
               SizedBox(
                 child: Card(
                   child: ListTile(
-                    leading: Text("${_model.displayName}"),
-                    trailing: Text("${_model.email}"),
+                    leading: Text(
+                      "${_model.displayName}",
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    trailing: Text(
+                      "${_model.email}",
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -115,10 +111,51 @@ class _CuentaPageState extends State<CuentaPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 120.0),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                color: color_const.blueC,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 16.0),
+                  child: const Text(
+                    "Salir",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/login");
+                },
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  _avatar() {
+    return Container(
+        width: 100.0,
+        height: 100.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100.0),
+            color: color_const.blueC),
+        child: ClipOval(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Text(
+              // ignore: unnecessary_string_interpolations
+              "${_model.displayName.toString().substring(0, 1)}",
+              style: const TextStyle(
+                fontSize: 50.0,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ));
   }
 }
