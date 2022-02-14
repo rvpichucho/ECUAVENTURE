@@ -14,13 +14,13 @@ class MenuItem {
 List<MenuItem> menuOptions = [
   MenuItem("Inicio", Icons.home),
   MenuItem("Reservación", Icons.book_online_outlined),
+  MenuItem("Mapa", Icons.map_outlined),
   MenuItem("Cuenta", Icons.person_outlined),
-  MenuItem("Mapa", Icons.map_outlined ),
 ];
 
 List<Widget> contentWidgets = [
   const Menu(),
   const VehiclesReservationList(),
-  CuentaPage(),
-  MapaPage()
+  MapaPage(),
+  const CuentaPage()
 ];

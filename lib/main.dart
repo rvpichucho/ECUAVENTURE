@@ -1,7 +1,7 @@
-import 'package:ecuaventure/src/pages/SignUpPage.dart';
 import 'package:ecuaventure/src/pages/cuenta_page.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
+import 'package:ecuaventure/src/pages/sing_up_page.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
@@ -143,8 +143,9 @@ class _MyAppState extends State<MyApp> {
                     title: 'ecuaventure',
                     theme: AppTheme.themeData(mainProvider.mode),
                     routes: {
-                      "/singUp": (context) => SignUpPage(),
-                      "/cuenta": (context) => CuentaPage()
+                      "/login": (context) => const LoginPage(),
+                      "/singUp": (context) => const SignUpPage(),
+                      "/cuenta": (context) => const CuentaPage()
                     },
                     //home: const LoginPage()
                     home: mainProvider.token == ""

@@ -1,10 +1,4 @@
-import 'dart:async';
-
 import 'package:ecuaventure/src/components/menu_lateral.dart';
-//import 'package:ecuaventure/src/pages/bike_page.dart';
-import 'package:ecuaventure/src/pages/login_page.dart';
-
-//import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_firebase_list.dart';
 import 'package:ecuaventure/src/widgets/buggy_card/buggy_firebase_list.dart';
@@ -24,12 +18,12 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  String _name = "";
+  /*String _name = "";
   @override
   void initState() {
     getNamePreference().then(updateName);
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +48,17 @@ class _MenuState extends State<Menu> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.only(top: 100),
           child: ListView(
             children: [
-              Container(
+              /*Container(
                 padding: const EdgeInsets.only(left: 16.0, top: 20.0),
                 child: Text(AppLocalizations.of(context)!.welcome + ":" + _name,
                     style: TextStyle(
                         color: Colors.blue[900],
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold)),
-              ),
+              ),*/
               SizedBox(
                 height: 200,
                 child: SingleChildScrollView(
@@ -96,11 +90,11 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  FutureOr updateName(String? name) {
+  /*FutureOr updateName(String? name) {
     setState(() {
       _name = name!;
     });
-  }
+  }*/
 }
 
 class ThemeProvider {}

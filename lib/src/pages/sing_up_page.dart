@@ -1,32 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/bloc/login_bloc.dart';
+import 'package:ecuaventure/src/models/user_model.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   late LoginBloc bloc;
-  // form key
-  final _formKey = GlobalKey<FormState>();
-
-  // editing controller
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  // firebase
   final _auth = FirebaseAuth.instance;
 
   // string for displaying the error Message
   String? errorMessage;
+
+  // our form key
+  final _formKey = GlobalKey<FormState>();
+  // editing Controller
+  final displayNameEditingController = TextEditingController();
+  final emailEditingController = TextEditingController();
+  final passwordEditingController = TextEditingController();
+
   bool _obscureText = true;
 
   @override
@@ -37,11 +38,38 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    //display name field
+    final displayNameField = TextFormField(
+      keyboardType: TextInputType.name,
+      autofocus: false,
+      controller: displayNameEditingController,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        icon: Icon(Icons.person, color: Theme.of(context).primaryColorDark),
+        hintText: 'Ingrese su nombre',
+        //labelText: AppLocalizations.of(context)!.name,
+      ),
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{10,}$');
+        if (value!.isEmpty) {
+          return ("Name cannot be Empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter Valid name(Min. 10 Character)");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        displayNameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+
     //email field
     final emailField = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      controller: emailController,
+      controller: emailEditingController,
       decoration: InputDecoration(
         border: InputBorder.none,
         icon: Icon(Icons.email_outlined,
@@ -61,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
         return null;
       },
       onSaved: (value) {
-        emailController.text = value!;
+        emailEditingController.text = value!;
       },
       textInputAction: TextInputAction.next,
     );
@@ -73,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
         autofocus: false,
         obscureText: _obscureText,
         onChanged: bloc.changePassword,
-        controller: passwordController,
+        controller: passwordEditingController,
         decoration: InputDecoration(
           border: InputBorder.none,
           suffixIcon: IconButton(
@@ -99,27 +127,27 @@ class _LoginPageState extends State<LoginPage> {
           }
         },
         onSaved: (value) {
-          passwordController.text = value!;
+          passwordEditingController.text = value!;
         },
         textInputAction: TextInputAction.done,
       ),
     );
 
-    //boton login
-    final loginButton = MaterialButton(
+    //boton sing up
+    final singUpButton = MaterialButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
       color: color_const.blueC,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
-        child: Text(
-          AppLocalizations.of(context)!.sing_in,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
+        child: const Text(
+          "Registrarse",
+          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
       onPressed: () {
-        signIn(emailController.text, passwordController.text);
+        signUp(emailEditingController.text, passwordEditingController.text);
       },
     );
 
@@ -154,8 +182,24 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
-                        child: Text(AppLocalizations.of(context)!.language,
+                        child: Text("Registrarse",
                             style: Theme.of(context).textTheme.headline3),
+                      ),
+                      const SizedBox(height: 25.0),
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        elevation: 4,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: displayNameField,
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 25.0),
                       Card(
@@ -190,17 +234,17 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 25.0),
-                      loginButton,
+                      singUpButton,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text("¿No tiene una cuenta?"),
+                          const Text("¿Desea ir al login?"),
                           TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, "/singUp");
+                                Navigator.pushNamed(context, "/login");
                               },
-                              child: const Text("Registrarse")),
+                              child: const Text("Regresar")),
                         ],
                       ),
                     ]),
@@ -212,22 +256,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // login function
-  void signIn(String email, String password) async {
+  void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
         await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const HomePage())),
-                });
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) => {postDetailsToFirestore()})
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
             errorMessage = "Your email address appears to be malformed.";
-
             break;
           case "wrong-password":
             errorMessage = "Your password is wrong.";
@@ -253,16 +294,34 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-}
 
-/*void saveName() {
-    //var _controller = TextEditingController();
-    String name = emailController.text;
-    saveNamePreference(name).then((bool commit) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    });
-  }*/
+  postDetailsToFirestore() async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+
+    Usuario _model = Usuario();
+
+    // writing all the values
+    _model.email = user!.email;
+    _model.uid = user.uid;
+    _model.displayName = displayNameEditingController.text;
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(_model.toMap());
+    Fluttertoast.showToast(msg: "Account created successfully :) ");
+
+    Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => const HomePage()),
+        (route) => false);
+  }
+}
 
 _avatar() {
   return Container(
@@ -277,16 +336,3 @@ _avatar() {
         size: 50,
       )));
 }
-
-/*Future<bool> saveNamePreference(String name) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString("name", name);
-  // ignore: deprecated_member_use
-  return prefs.commit();
-}
-
-Future<String?> getNamePreference() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? name = prefs.getString("name");
-  return name;
-}*/
