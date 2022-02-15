@@ -52,10 +52,10 @@ class _SignUpPageState extends State<SignUpPage> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{10,}$');
         if (value!.isEmpty) {
-          return ("Name cannot be Empty");
+          return ("Se requiere el nombre");
         }
         if (!regex.hasMatch(value)) {
-          return ("Enter Valid name(Min. 10 Character)");
+          return ("El nombre debe tener al menos 10 caracteres");
         }
         return null;
       },
@@ -155,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Builder(
         builder: (BuildContext context) {
           return ListView(
-            padding: const EdgeInsets.only(top: 60),
+            padding: const EdgeInsets.only(top: 10),
             children: <Widget>[
               SafeArea(child: Container(height: 30.0)),
               Stack(

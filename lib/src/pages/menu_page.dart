@@ -48,7 +48,7 @@ class _MenuState extends State<Menu> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 40),
           child: ListView(
             children: [
               /*Container(

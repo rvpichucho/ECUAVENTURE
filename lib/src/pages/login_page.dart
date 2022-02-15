@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Builder(
         builder: (BuildContext context) {
           return ListView(
-            padding: const EdgeInsets.only(top: 60),
+            padding: const EdgeInsets.only(top: 10),
             children: <Widget>[
               SafeArea(child: Container(height: 30.0)),
               Stack(

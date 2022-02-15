@@ -111,7 +111,7 @@ class _CuentaPageState extends State<CuentaPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 120.0),
+              const SizedBox(height: 50.0),
               MaterialButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
