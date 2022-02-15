@@ -21,6 +21,6 @@ List<MenuItem> menuOptions = [
 List<Widget> contentWidgets = [
   const Menu(),
   const VehiclesReservationList(),
-  MapaPage(),
+  const MapaPage(),
   const CuentaPage()
 ];

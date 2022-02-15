@@ -50,7 +50,7 @@ class RutaCard extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MapaPage()));
+                                  builder: (context) => const MapaPage()));
                         },
                       ),
                     ],
