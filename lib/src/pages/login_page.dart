@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   // firebase
   final _auth = FirebaseAuth.instance;
 
-  // string for displaying the error Message
   String? errorMessage;
   bool _obscureText = true;
 
@@ -54,7 +53,6 @@ class _LoginPageState extends State<LoginPage> {
         if (value!.isEmpty) {
           return (AppLocalizations.of(context)!.email);
         }
-        // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
           return (AppLocalizations.of(context)!.valido);
         }
@@ -232,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
 
             break;
           case "wrong-password":
-            errorMessage = AppLocalizations.of(context)!.password;
+            errorMessage = AppLocalizations.of(context)!.password_required;
             break;
           case "user-not-found":
             errorMessage = AppLocalizations.of(context)!.noexiste;

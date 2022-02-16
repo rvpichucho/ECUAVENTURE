@@ -32,7 +32,7 @@
     "email_required": "Email is required",
     "password": "Enter your password",
     "password_valid": "Password must be at least 5 characters",
-    "password_required": "Password is required",
+    "password_required": "Password is incorrect",
     "register": "Register",
     "myacount":"My Acount",
     "my_reservation":"My Reservations",
