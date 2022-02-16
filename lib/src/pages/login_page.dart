@@ -47,16 +47,16 @@ class _LoginPageState extends State<LoginPage> {
         icon: Icon(Icons.email_outlined,
             color: Theme.of(context).primaryColorDark),
         hintText: 'usuario@usuario.com',
-        labelText: 'Ingrese su correro electrónico',
+        labelText: AppLocalizations.of(context)!.email,
         //labelText: AppLocalizations.of(context)!.name,
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Se requiere el correro electrónico");
+          return (AppLocalizations.of(context)!.email_required);
         }
         // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return ("El correo electrónico no es válido");
+          return (AppLocalizations.of(context)!.email_error);
         }
         return null;
       },
@@ -87,15 +87,15 @@ class _LoginPageState extends State<LoginPage> {
           errorText: snapshot.error?.toString(),
           icon: Icon(Icons.lock_outline,
               color: Theme.of(context).primaryColorDark),
-          labelText: 'Ingrese su contraseña',
+          labelText: AppLocalizations.of(context)!.password
         ),
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Se requiere la contraseña");
+            return (AppLocalizations.of(context)!.password_required);
           }
           if (!regex.hasMatch(value)) {
-            return ("La contraseña debe tener al menos 5 caracteres");
+            return (AppLocalizations.of(context)!.password_valid);
           }
         },
         onSaved: (value) {
@@ -195,12 +195,12 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text("¿No tiene una cuenta?"),
+                          Text(AppLocalizations.of(context)!.account),
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, "/singUp");
                               },
-                              child: const Text("Registrarse")),
+                              child:  Text(AppLocalizations.of(context)!.register)),
                         ],
                       ),
                     ]),

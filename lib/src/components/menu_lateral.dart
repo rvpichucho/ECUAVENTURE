@@ -2,7 +2,7 @@ import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class MenuLateral extends StatelessWidget {
   const MenuLateral({Key? key}) : super(key: key);
 
@@ -37,7 +37,7 @@ class MenuLateral extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.list_alt_outlined,
                 color: Theme.of(context).primaryColorDark),
-            title: const Text('Mis Reservaciones'),
+            title: Text(AppLocalizations.of(context)!.my_reservation),
             onTap: () {
               Navigator.push(
                   context,
@@ -48,7 +48,7 @@ class MenuLateral extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.logout_outlined,
                 color: Theme.of(context).primaryColorDark),
-            title: const Text('Salir'),
+            title: Text(AppLocalizations.of(context)!.get_out),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const LoginPage()));

@@ -2,6 +2,7 @@ import 'package:ecuaventure/src/pages/cuenta_page.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/pages/sing_up_page.dart';
+import 'package:ecuaventure/src/providers/locale_provider.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
@@ -72,6 +73,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => MotoProvider()),
         ChangeNotifierProvider(create: (_) => ThemeChanger()),
         ChangeNotifierProvider(create: (_) => MainProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: const MyApp(),
     ),

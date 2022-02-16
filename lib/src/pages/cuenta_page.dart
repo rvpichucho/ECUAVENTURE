@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CuentaPage extends StatefulWidget {
   const CuentaPage({Key? key}) : super(key: key);
 
@@ -42,10 +42,10 @@ class _CuentaPageState extends State<CuentaPage> {
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 50),
-                child: const Text(
-                  "Mi Cuenta",
+                child: Text(
+                  AppLocalizations.of(context)!.myacount,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                 ),
               ),
               Stack(
@@ -83,7 +83,7 @@ class _CuentaPageState extends State<CuentaPage> {
               SizedBox.square(
                 child: Card(
                   child: ListTile(
-                    title: const Text("Modo Oscuro"),
+                    title: Text(AppLocalizations.of(context)!.mode),
                     trailing: Switch(
                         activeColor: color_const.blueC,
                         value: mainProvider.mode,
@@ -98,7 +98,7 @@ class _CuentaPageState extends State<CuentaPage> {
               SizedBox(
                 child: Card(
                   child: ListTile(
-                    title: const Text("Mis Reservaciones"),
+                    title: Text(AppLocalizations.of(context)!.my_reservation),
                     onTap: () {
                       Navigator.push<void>(
                         context,
@@ -120,9 +120,9 @@ class _CuentaPageState extends State<CuentaPage> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 16.0),
-                  child: const Text(
-                    "Salir",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  child: Text(
+                    AppLocalizations.of(context)!.get_out,
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
                 onPressed: () {

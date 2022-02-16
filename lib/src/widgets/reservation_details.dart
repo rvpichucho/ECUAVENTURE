@@ -15,7 +15,7 @@ class ReservationDetailsWidget extends StatefulWidget {
 class _ReservationDetailsWidgetState extends State<ReservationDetailsWidget>
     with SingleTickerProviderStateMixin {
   final List<Tab> _myTabs = <Tab>[
-    const Tab(text: 'Detalles'),
+    const Tab(text: 'Detalles dsd'),
     const Tab(text: 'Inicio'),
     const Tab(text: 'Fin'),
   ];

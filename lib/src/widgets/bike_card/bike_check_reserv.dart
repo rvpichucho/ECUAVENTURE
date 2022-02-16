@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // ignore: must_be_immutable
 class CheckReservarBike extends StatefulWidget {
   CheckReservarBike({Key? key, this.uid}) : super(key: key);
@@ -21,7 +21,7 @@ class _CheckReservarBikeState extends State<CheckReservarBike> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("Reservar", style: Theme.of(context).textTheme.subtitle1),
+          Text(AppLocalizations.of(context)!.reserve, style: Theme.of(context).textTheme.subtitle1),
           Checkbox(
             value: reservar,
             onChanged: (bool? value) {
