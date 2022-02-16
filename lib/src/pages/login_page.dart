@@ -87,15 +87,15 @@ class _LoginPageState extends State<LoginPage> {
           errorText: snapshot.error?.toString(),
           icon: Icon(Icons.lock_outline,
               color: Theme.of(context).primaryColorDark),
-          labelText: AppLocalizations.of(context)!.passworddd,
+          labelText: AppLocalizations.of(context)!.password,
         ),
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return (AppLocalizations.of(context)!.passworddd);
+            return (AppLocalizations.of(context)!.password);
           }
           if (!regex.hasMatch(value)) {
-            return (AppLocalizations.of(context)!.passworcarac);
+            return (AppLocalizations.of(context)!.password_valid);
           }
         },
         onSaved: (value) {
@@ -195,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(AppLocalizations.of(context)!.cuenta),
+                          Text(AppLocalizations.of(context)!.account),
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, "/singUp");
