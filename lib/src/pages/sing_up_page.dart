@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -46,16 +47,16 @@ class _SignUpPageState extends State<SignUpPage> {
       decoration: InputDecoration(
         border: InputBorder.none,
         icon: Icon(Icons.person, color: Theme.of(context).primaryColorDark),
-        hintText: 'Ingrese su nombre',
+        hintText: AppLocalizations.of(context)!.name,
         //labelText: AppLocalizations.of(context)!.name,
       ),
       validator: (value) {
         RegExp regex = RegExp(r'^.{10,}$');
         if (value!.isEmpty) {
-          return ("Se requiere el nombre");
+          return (AppLocalizations.of(context)!.name);
         }
         if (!regex.hasMatch(value)) {
-          return ("El nombre debe tener al menos 10 caracteres");
+          return (AppLocalizations.of(context)!.namecarac);
         }
         return null;
       },
@@ -75,16 +76,16 @@ class _SignUpPageState extends State<SignUpPage> {
         icon: Icon(Icons.email_outlined,
             color: Theme.of(context).primaryColorDark),
         hintText: 'usuario@usuario.com',
-        labelText: 'Ingrese su correro electrónico',
+        labelText: AppLocalizations.of(context)!.email,
         //labelText: AppLocalizations.of(context)!.name,
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Se requiere el correro electrónico");
+          return (AppLocalizations.of(context)!.email);
         }
         // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return ("El correo electrónico no es válido");
+          return (AppLocalizations.of(context)!.valido);
         }
         return null;
       },
@@ -115,15 +116,15 @@ class _SignUpPageState extends State<SignUpPage> {
           errorText: snapshot.error?.toString(),
           icon: Icon(Icons.lock_outline,
               color: Theme.of(context).primaryColorDark),
-          labelText: 'Ingrese su contraseña',
+          labelText: AppLocalizations.of(context)!.passworddd,
         ),
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Se requiere la contraseña");
+            return (AppLocalizations.of(context)!.passworddd);
           }
           if (!regex.hasMatch(value)) {
-            return ("La contraseña debe tener al menos 5 caracteres");
+            return (AppLocalizations.of(context)!.passworcarac);
           }
         },
         onSaved: (value) {
@@ -141,9 +142,9 @@ class _SignUpPageState extends State<SignUpPage> {
       color: color_const.blueC,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
-        child: const Text(
-          "Registrarse",
-          style: TextStyle(color: Colors.white, fontSize: 18),
+        child: Text(
+          AppLocalizations.of(context)!.register,
+          style: const TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
       onPressed: () {
@@ -182,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Column(children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
-                        child: Text("Registrarse",
+                        child: Text(AppLocalizations.of(context)!.register,
                             style: Theme.of(context).textTheme.headline3),
                       ),
                       const SizedBox(height: 25.0),
@@ -239,12 +240,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text("¿Desea ir al login?"),
+                          Text(AppLocalizations.of(context)!.irlogin),
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, "/login");
                               },
-                              child: const Text("Regresar")),
+                              child:
+                                  Text(AppLocalizations.of(context)!.regresar)),
                         ],
                       ),
                     ]),
@@ -268,25 +270,25 @@ class _SignUpPageState extends State<SignUpPage> {
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+            errorMessage = AppLocalizations.of(context)!.valido;
             break;
           case "wrong-password":
-            errorMessage = "Your password is wrong.";
+            errorMessage = AppLocalizations.of(context)!.password;
             break;
           case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
+            errorMessage = AppLocalizations.of(context)!.noexiste;
             break;
           case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
+            errorMessage = AppLocalizations.of(context)!.deshabilitado;
             break;
           case "too-many-requests":
-            errorMessage = "Too many requests";
+            errorMessage = AppLocalizations.of(context)!.solicitudes;
             break;
           case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
+            errorMessage = AppLocalizations.of(context)!.empawnohab;
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = AppLocalizations.of(context)!.errorindefinido;
         }
         Fluttertoast.showToast(msg: errorMessage!);
         // ignore: avoid_print
@@ -314,7 +316,7 @@ class _SignUpPageState extends State<SignUpPage> {
         .collection("users")
         .doc(user.uid)
         .set(_model.toMap());
-    Fluttertoast.showToast(msg: "Account created successfully :) ");
+    Fluttertoast.showToast(msg: AppLocalizations.of(context)!.cuentacreada);
 
     Navigator.pushAndRemoveUntil(
         (context),
