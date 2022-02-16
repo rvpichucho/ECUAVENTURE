@@ -52,11 +52,11 @@ class _LoginPageState extends State<LoginPage> {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return (AppLocalizations.of(context)!.email_required);
+          return (AppLocalizations.of(context)!.email);
         }
         // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return (AppLocalizations.of(context)!.email_error);
+          return (AppLocalizations.of(context)!.valido);
         }
         return null;
       },
@@ -87,15 +87,15 @@ class _LoginPageState extends State<LoginPage> {
           errorText: snapshot.error?.toString(),
           icon: Icon(Icons.lock_outline,
               color: Theme.of(context).primaryColorDark),
-          labelText: AppLocalizations.of(context)!.password
+          labelText: AppLocalizations.of(context)!.passworddd,
         ),
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return (AppLocalizations.of(context)!.password_required);
+            return (AppLocalizations.of(context)!.passworddd);
           }
           if (!regex.hasMatch(value)) {
-            return (AppLocalizations.of(context)!.password_valid);
+            return (AppLocalizations.of(context)!.passworcarac);
           }
         },
         onSaved: (value) {
@@ -195,12 +195,13 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(AppLocalizations.of(context)!.account),
+                          Text(AppLocalizations.of(context)!.cuenta),
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, "/singUp");
                               },
-                              child:  Text(AppLocalizations.of(context)!.register)),
+                              child:
+                                  Text(AppLocalizations.of(context)!.register)),
                         ],
                       ),
                     ]),
@@ -219,33 +220,34 @@ class _LoginPageState extends State<LoginPage> {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
+                  Fluttertoast.showToast(
+                      msg: AppLocalizations.of(context)!.exitoso),
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const HomePage())),
                 });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+            errorMessage = AppLocalizations.of(context)!.valido;
 
             break;
           case "wrong-password":
-            errorMessage = "Your password is wrong.";
+            errorMessage = AppLocalizations.of(context)!.password;
             break;
           case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
+            errorMessage = AppLocalizations.of(context)!.noexiste;
             break;
           case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
+            errorMessage = AppLocalizations.of(context)!.deshabilitado;
             break;
           case "too-many-requests":
-            errorMessage = "Too many requests";
+            errorMessage = AppLocalizations.of(context)!.solicitudes;
             break;
           case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
+            errorMessage = AppLocalizations.of(context)!.empawnohab;
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = AppLocalizations.of(context)!.errorindefinido;
         }
         Fluttertoast.showToast(msg: errorMessage!);
         // ignore: avoid_print

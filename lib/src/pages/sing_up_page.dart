@@ -52,10 +52,10 @@ class _SignUpPageState extends State<SignUpPage> {
       validator: (value) {
         RegExp regex = RegExp(r'^.{10,}$');
         if (value!.isEmpty) {
-          return (AppLocalizations.of(context)!.name_required);
+          return (AppLocalizations.of(context)!.name);
         }
         if (!regex.hasMatch(value)) {
-          return (AppLocalizations.of(context)!.name_error);
+          return (AppLocalizations.of(context)!.namecarac);
         }
         return null;
       },
@@ -80,11 +80,11 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return (AppLocalizations.of(context)!.email_required);
+          return (AppLocalizations.of(context)!.email);
         }
         // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return (AppLocalizations.of(context)!.email_error);
+          return (AppLocalizations.of(context)!.valido);
         }
         return null;
       },
@@ -115,15 +115,15 @@ class _SignUpPageState extends State<SignUpPage> {
           errorText: snapshot.error?.toString(),
           icon: Icon(Icons.lock_outline,
               color: Theme.of(context).primaryColorDark),
-          labelText: AppLocalizations.of(context)!.password
+          labelText: AppLocalizations.of(context)!.passworddd,
         ),
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return (AppLocalizations.of(context)!.password_required);
+            return (AppLocalizations.of(context)!.passworddd);
           }
           if (!regex.hasMatch(value)) {
-            return (AppLocalizations.of(context)!.password_valid);
+            return (AppLocalizations.of(context)!.passworcarac);
           }
         },
         onSaved: (value) {
@@ -239,12 +239,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text( AppLocalizations.of(context)!.behind),
+                          Text(AppLocalizations.of(context)!.irlogin),
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, "/login");
                               },
-                              child:  Text(AppLocalizations.of(context)!.return_login)),
+                              child:
+                                  Text(AppLocalizations.of(context)!.regresar)),
                         ],
                       ),
                     ]),
@@ -268,25 +269,25 @@ class _SignUpPageState extends State<SignUpPage> {
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+            errorMessage = AppLocalizations.of(context)!.valido;
             break;
           case "wrong-password":
-            errorMessage = "Your password is wrong.";
+            errorMessage = AppLocalizations.of(context)!.password;
             break;
           case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
+            errorMessage = AppLocalizations.of(context)!.noexiste;
             break;
           case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
+            errorMessage = AppLocalizations.of(context)!.deshabilitado;
             break;
           case "too-many-requests":
-            errorMessage = "Too many requests";
+            errorMessage = AppLocalizations.of(context)!.solicitudes;
             break;
           case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
+            errorMessage = AppLocalizations.of(context)!.empawnohab;
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = AppLocalizations.of(context)!.errorindefinido;
         }
         Fluttertoast.showToast(msg: errorMessage!);
         // ignore: avoid_print
@@ -314,7 +315,7 @@ class _SignUpPageState extends State<SignUpPage> {
         .collection("users")
         .doc(user.uid)
         .set(_model.toMap());
-    Fluttertoast.showToast(msg: "Account created successfully :) ");
+    Fluttertoast.showToast(msg: AppLocalizations.of(context)!.cuentacreada);
 
     Navigator.pushAndRemoveUntil(
         (context),
