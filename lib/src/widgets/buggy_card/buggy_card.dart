@@ -3,7 +3,7 @@ import 'package:ecuaventure/src/pages/buggy_page.dart';
 import 'package:ecuaventure/src/widgets/buggy_card/buggy_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BuggyCard extends StatelessWidget {
   const BuggyCard({Key? key, required this.model}) : super(key: key);
   final Buggys model;
@@ -39,15 +39,15 @@ class BuggyCard extends StatelessWidget {
                     subtitle: Column(
                       children: [
                         ListTile(
-                          title: const Text('Modelo'),
+                          title: Text(AppLocalizations.of(context)!.model),
                           subtitle: Text(model.model.toString()),
                         ),
                         ListTile(
-                          title: const Text('Descripción'),
+                          title: Text(AppLocalizations.of(context)!.description),
                           subtitle: Text(model.description.toString()),
                         ),
                         ListTile(
-                          title: const Text('Estado'),
+                          title: Text(AppLocalizations.of(context)!.state),
                           subtitle: model.prioridad == null ||
                                   model.prioridad == 0
                               ? null

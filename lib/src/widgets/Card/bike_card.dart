@@ -3,7 +3,7 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:ecuaventure/src/widgets/bike_card/bike_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // ignore: must_be_immutable
 class BikeCard extends StatelessWidget {
   const BikeCard({Key? key, required this.model}) : super(key: key);
@@ -30,20 +30,20 @@ class BikeCard extends StatelessWidget {
                   subtitle: Column(
                     children: [
                       ListTile(
-                        title: const Text('Modelo'),
+                        title: Text(AppLocalizations.of(context)!.model),
                         subtitle: Text(model.model.toString()),
                       ),
                       ListTile(
-                        title: const Text('Precio'),
+                        title: Text(AppLocalizations.of(context)!.precio),
                         subtitle:
-                            Text(model.precio.toString() + ' dólares la hora'),
+                            Text(model.precio.toString() + ' '+AppLocalizations.of(context)!.pagos),
                       ),
                       /*ListTile(
                         title: const Text('Descripción'),
                         subtitle: Text(model.description.toString()),
                       ),*/
                       ListTile(
-                        title: const Text('Estado'),
+                        title: Text(AppLocalizations.of(context)!.state),
                         subtitle:
                             model.prioridad == null || model.prioridad == 0
                                 ? null
