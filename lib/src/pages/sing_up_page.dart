@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -272,7 +273,7 @@ class _SignUpPageState extends State<SignUpPage> {
             errorMessage = AppLocalizations.of(context)!.valido;
             break;
           case "wrong-password":
-            errorMessage = AppLocalizations.of(context)!.password;
+            errorMessage = AppLocalizations.of(context)!.password_required;
             break;
           case "user-not-found":
             errorMessage = AppLocalizations.of(context)!.noexiste;

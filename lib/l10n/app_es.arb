@@ -27,7 +27,7 @@
     "email_required": "Se requiere el correo electrónico",
     "password": "Ingrese su contraseña",
     "password_valid": "La contraseña debe tener al menos 5 caracteres",
-    "password_required": "Se requiere la contraseña",
+    "password_required": "La contraseña es incorrecta",
     "register": "Registrarse",
     "myacount":"Mi Cuenta",
     "my_reservation":"Mi Reservaciones",
