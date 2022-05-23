@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ReservationDetailsFormWidget extends StatefulWidget {
   const ReservationDetailsFormWidget({Key? key, required this.id})
       : super(key: key);
@@ -70,8 +71,9 @@ class _ReservationDetailsFormWidgetState
                         validator: (value) {
                           return _validateObservacion(value!);
                         },
-                        decoration:
-                            InputDecoration(labelText: AppLocalizations.of(context)!.observation),
+                        decoration: InputDecoration(
+                            labelText:
+                                AppLocalizations.of(context)!.observation),
                         maxLength: 255,
                         maxLines: 3),
                     Padding(
@@ -85,7 +87,7 @@ class _ReservationDetailsFormWidgetState
                       child: Padding(
                         padding: const EdgeInsets.all(7.0),
                         child: _imagen == null
-                            ? Image.asset('assets/bikes.png')
+                            ? Image.asset('assets/CI.png')
                             : Image.file(_imagen!),
                       ),
                     ),
