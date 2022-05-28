@@ -18,11 +18,11 @@ class L10n {
       //case 'hi':
       //return '🇮🇳';
       case 'zh':
-        return 'CN';
+        return '🇨🇳';
       case 'pt':
-        return 'BR';
+        return '🇧🇷';
       case 'es':
-        return '🇪🇸';
+        return '🇪🇨';
       //case 'de':
       //return '🇩🇪';
       case 'en':

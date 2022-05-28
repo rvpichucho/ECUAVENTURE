@@ -1,5 +1,6 @@
 import 'package:ecuaventure/bloc/login_bloc.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
+import 'package:ecuaventure/src/widgets/language_picker_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -37,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     //email field
+
     final emailField = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
@@ -150,6 +152,15 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Column(children: [
+                      //AUI ES DONDE CAMBIA EL IDIOMA
+                      AppBar(
+                        title: const Text("Idiomas"),
+                        centerTitle: true,
+                        actions: const [
+                          LanguagePickerWidget(),
+                          SizedBox(width: 12),
+                        ],
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(AppLocalizations.of(context)!.language,
@@ -172,6 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 25.0),
+
                       Card(
                         shape: const RoundedRectangleBorder(
                             borderRadius:
@@ -202,6 +214,29 @@ class _LoginPageState extends State<LoginPage> {
                                   Text(AppLocalizations.of(context)!.register)),
                         ],
                       ),
+                      //DISEÑO PARA VER CUANDO SE CAMBIA DE IDIOMA
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        elevation: 4,
+                        child: Column(children: <Widget>[
+                          const LanguageWidget(),
+                          const SizedBox(height: 32),
+                          Text(
+                            AppLocalizations.of(context)!.language,
+                            style: const TextStyle(
+                                fontSize: 36, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            AppLocalizations.of(context)!.helloWorld,
+                            style: const TextStyle(fontSize: 36),
+                          ),
+                        ]),
+                      ),
+                      const SizedBox(height: 25.0),
                     ]),
                   )),
             ],

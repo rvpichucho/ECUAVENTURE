@@ -126,6 +126,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context, listen: true);
+    final provider = Provider.of<LocaleProvider>(context);
     return FutureBuilder<bool>(
         future: mainProvider.getPreferences(),
         builder: (context, snapshot) {
@@ -133,6 +134,7 @@ class _MyAppState extends State<MyApp> {
             return ScreenUtilInit(
                 designSize: const Size(360, 690),
                 builder: () => MaterialApp(
+                    locale: provider.locale,
                     supportedLocales: L10n.all,
                     // ignore: prefer_const_literals_to_create_immutables
                     localizationsDelegates: [
