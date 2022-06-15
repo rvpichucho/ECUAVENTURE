@@ -1,11 +1,11 @@
-import 'package:ecuaventure/src/models/reservation_model.dart';
-import 'package:ecuaventure/src/pages/ruta_page.dart';
+import 'package:ecuaventure/src/models/ruta_model.dart';
+import 'package:ecuaventure/src/pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-class ReservationCard extends StatelessWidget {
-  const ReservationCard({Key? key, required this.model}) : super(key: key);
-  final Reservation model;
+
+class RutaCard extends StatelessWidget {
+  const RutaCard({Key? key, required this.model}) : super(key: key);
+  final Ruta model;
 
   @override
   Widget build(BuildContext context) {
@@ -21,32 +21,36 @@ class ReservationCard extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20.0),
                 child: ListTile(
                   title: Center(
-                    child: Text(AppLocalizations.of(context)!.detail_reservation,
+                    child: Text(model.name.toString(),
                         style: Theme.of(context).textTheme.headline5),
                   ),
                   subtitle: Column(
                     children: [
+                      const SizedBox(height: 25.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Image(
+                              image: NetworkImage(model.image.toString()),
+                              height: 140,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 25.0),
                       ListTile(
-                        title: Text(AppLocalizations.of(context)!.hour),
-                        subtitle: Text(model.hour.toString()),
+                        title: const Text('Descripción:'),
+                        subtitle: Text(model.description.toString()),
                       ),
                       ListTile(
-                        title: Text(AppLocalizations.of(context)!.cost),
-                        subtitle: Text(model.total.toString() + ' ' +AppLocalizations.of(context)!.dollar),
-                      ),
-                      ListTile(
-                        title: Text(AppLocalizations.of(context)!.date),
-                        subtitle: Text(model.fecha.toString()),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.alt_route_outlined,
+                        leading: Icon(Icons.map_outlined,
                             color: Theme.of(context).primaryColorDark),
-                        title: Text(AppLocalizations.of(context)!.route),
+                        title: const Text('Ver mapa'),
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const RutaPage()));
+                                  builder: (context) => const MapaPage()));
                         },
                       ),
                     ],

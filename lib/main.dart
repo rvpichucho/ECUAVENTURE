@@ -1,7 +1,8 @@
-import 'package:ecuaventure/src/pages/SignUpPage.dart';
 import 'package:ecuaventure/src/pages/cuenta_page.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
+import 'package:ecuaventure/src/pages/sing_up_page.dart';
+import 'package:ecuaventure/src/providers/locale_provider.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
 import 'package:ecuaventure/src/providers/provider_menu.dart';
 import 'package:ecuaventure/src/providers/provider_moto.dart';
@@ -72,6 +73,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => MotoProvider()),
         ChangeNotifierProvider(create: (_) => ThemeChanger()),
         ChangeNotifierProvider(create: (_) => MainProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: const MyApp(),
     ),
@@ -124,6 +126,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context, listen: true);
+    final provider = Provider.of<LocaleProvider>(context);
     return FutureBuilder<bool>(
         future: mainProvider.getPreferences(),
         builder: (context, snapshot) {
@@ -131,6 +134,7 @@ class _MyAppState extends State<MyApp> {
             return ScreenUtilInit(
                 designSize: const Size(360, 690),
                 builder: () => MaterialApp(
+                    locale: provider.locale,
                     supportedLocales: L10n.all,
                     // ignore: prefer_const_literals_to_create_immutables
                     localizationsDelegates: [
@@ -144,8 +148,8 @@ class _MyAppState extends State<MyApp> {
                     theme: AppTheme.themeData(mainProvider.mode),
                     routes: {
                       "/login": (context) => const LoginPage(),
-                      "/singUp": (context) => SignUpPage(),
-                      "/cuenta": (context) => CuentaPage()
+                      "/singUp": (context) => const SignUpPage(),
+                      "/cuenta": (context) => const CuentaPage()
                     },
                     home: mainProvider.token == ""
                         ? const LoginPage()

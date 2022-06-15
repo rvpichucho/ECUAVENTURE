@@ -2,7 +2,7 @@ import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class MotorcycleDetailsContentWidget extends StatelessWidget {
   const MotorcycleDetailsContentWidget({Key? key, required this.reservation})
       : super(key: key);
@@ -17,13 +17,13 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ListTile(
-                title: const Text("Modelo:"),
+                title: Text(AppLocalizations.of(context)!.model),
                 subtitle: Text(reservation.model ?? "")),
             ListTile(
-                title: const Text("Descripción:"),
+                title: Text(AppLocalizations.of(context)!.description),
                 subtitle: Text(reservation.description ?? "")),
             ListTile(
-              title: const Text('Estado'),
+              title: Text(AppLocalizations.of(context)!.state),
               subtitle: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),

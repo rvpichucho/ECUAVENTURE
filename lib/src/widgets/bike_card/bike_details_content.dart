@@ -2,7 +2,7 @@ import 'package:ecuaventure/src/models/bikes_vehicles.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 //import 'package:timeago/timeago.dart' as timeago;
 class BikeDetailsContentWidget extends StatelessWidget {
   const BikeDetailsContentWidget({Key? key, required this.reservation})
@@ -18,13 +18,13 @@ class BikeDetailsContentWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ListTile(
-                title: const Text("Modelo:"),
+                title: Text(AppLocalizations.of(context)!.model),
                 subtitle: Text(reservation.model ?? "")),
             ListTile(
-                title: const Text("Descripción:"),
+                title:  Text(AppLocalizations.of(context)!.description),
                 subtitle: Text(reservation.description ?? "")),
             ListTile(
-              title: const Text('Estado'),
+              title: Text(AppLocalizations.of(context)!.state),
               subtitle: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),

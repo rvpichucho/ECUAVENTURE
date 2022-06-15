@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReservationDetailsFormWidget extends StatefulWidget {
   const ReservationDetailsFormWidget({Key? key, required this.id})
@@ -70,13 +71,14 @@ class _ReservationDetailsFormWidgetState
                         validator: (value) {
                           return _validateObservacion(value!);
                         },
-                        decoration:
-                            const InputDecoration(labelText: "Observación"),
+                        decoration: InputDecoration(
+                            labelText:
+                                AppLocalizations.of(context)!.observation),
                         maxLength: 255,
                         maxLines: 3),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),
-                      child: Text("Subir imagen",
+                      child: Text(AppLocalizations.of(context)!.image_upload,
                           style: Theme.of(context).textTheme.subtitle1),
                     ),
                     SizedBox(
@@ -85,7 +87,7 @@ class _ReservationDetailsFormWidgetState
                       child: Padding(
                         padding: const EdgeInsets.all(7.0),
                         child: _imagen == null
-                            ? Image.asset('assets/bikes.png')
+                            ? Image.asset('assets/CI.png')
                             : Image.file(_imagen!),
                       ),
                     ),
@@ -95,7 +97,7 @@ class _ReservationDetailsFormWidgetState
                         ElevatedButton.icon(
                           onPressed: () => _selectImage(ImageSource.camera),
                           icon: const Icon(Icons.camera),
-                          label: const Text("Cámara"),
+                          label: Text(AppLocalizations.of(context)!.camera),
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   color_const.blueC)),
@@ -103,7 +105,7 @@ class _ReservationDetailsFormWidgetState
                         ElevatedButton.icon(
                           onPressed: () => _selectImage(ImageSource.gallery),
                           icon: const Icon(Icons.image),
-                          label: const Text("Galería"),
+                          label: Text(AppLocalizations.of(context)!.image),
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   color_const.blueC)),
@@ -127,7 +129,7 @@ class _ReservationDetailsFormWidgetState
                                           builder: (context) =>
                                               const FotoPage()));
                                 },
-                                label: const Text("Guardar"),
+                                label: Text(AppLocalizations.of(context)!.save),
                                 icon: const Icon(Icons.save),
                                 style: ButtonStyle(
                                     backgroundColor:

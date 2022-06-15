@@ -33,6 +33,8 @@ class Buggys {
       image: json["image"],
       prioridad: json["prioridad"]);
 
+  get precio => null;
+
   Map<String, dynamic> toJson() => {
         "idbuggy": idbuggy,
         "name": name,
