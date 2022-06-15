@@ -1,6 +1,5 @@
 import 'package:ecuaventure/src/pages/SignUpPage.dart';
 import 'package:ecuaventure/src/pages/cuenta_page.dart';
-import 'package:ecuaventure/src/pages/grafico.dart';
 import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/providers/provider_color.dart';
@@ -144,15 +143,15 @@ class _MyAppState extends State<MyApp> {
                     title: 'ecuaventure',
                     theme: AppTheme.themeData(mainProvider.mode),
                     routes: {
+                      "/login": (context) => const LoginPage(),
                       "/singUp": (context) => SignUpPage(),
                       "/cuenta": (context) => CuentaPage()
                     },
-                    home: const GraficoPage()));
-            /*home: mainProvider.token == ""
+                    home: mainProvider.token == ""
                         ? const LoginPage()
                         : JwtDecoder.isExpired(mainProvider.token)
                             ? const LoginPage()
-                            : const HomePage()));*/
+                            : const HomePage()));
           }
           return const SizedBox.square(
               dimension: 50.0, child: CircularProgressIndicator());
