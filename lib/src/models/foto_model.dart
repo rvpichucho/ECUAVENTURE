@@ -16,17 +16,15 @@ class Foto {
 
   factory Foto.fromJson(Map<String, dynamic> json) => Foto(
         url: json["url"],
-        fecha: json["fecha"],
+        fecha: DateTime.parse(json["fecha"]),
         observacion: json["observacion"],
         idvehicles: json["idvehicles"],
       );
 
   Map<String, dynamic> toJson() => {
         "url": url,
-        "fecha": fecha!.toIso8601String(),
+        "fecha": fecha!.toString(),
         "observacion": observacion,
         "idvehicles": idvehicles,
       };
 }
-
-class T15 {}

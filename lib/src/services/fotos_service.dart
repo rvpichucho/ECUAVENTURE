@@ -15,9 +15,10 @@ class FotosService {
   Future<int> postFoto(Foto foto) async {
     try {
       //final Map<String, String> _headers = {"content-type": "application/json"};
-      String _fotoBody = fotoToJson(foto);
+      //String _fotoBody = fotoToJson(foto);
+      Map<String, dynamic> _fotoBody = foto.toJson();
       //var url = Uri.parse(_rootUrl);
-      collection.add({"datos": _fotoBody});
+      collection.add(_fotoBody);
       //final response = await http.post(url, headers: _headers, body: _fotoBody);
       return 400;
     } catch (ex) {
@@ -28,8 +29,7 @@ class FotosService {
   }
 
   Future<String> uploadImage(File image) async {
-    final cloudinary =
-        CloudinaryPublic('ddfmqjxz5', 'ml_default', cache: false);
+    final cloudinary = CloudinaryPublic('ddfmqjxz5', 'ovq0olas', cache: false);
     try {
       CloudinaryResponse response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(image.path,

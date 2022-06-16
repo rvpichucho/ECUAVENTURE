@@ -50,6 +50,7 @@ class DataFotoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final url = model.url!;
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
@@ -72,12 +73,27 @@ class DataFotoCard extends StatelessWidget {
                         subtitle: Text(model.observacion.toString()),
                       ),
                       ListTile(
+                        title: const Text('Fecha'),
+                        subtitle: Text(model.fecha.toString()),
+                      ),
+                      ListTile(
                         title: const Text('Vehículo'),
                         subtitle: Text(model.idvehicles.toString()),
                       ),
                     ],
                   ),
                 ),
+              ),
+            ),
+            FractionalTranslation(
+              translation: const Offset(0.0, -0.4),
+              child: Align(
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: NetworkImage(url),
+                  backgroundColor: color_const.ligthBlueC,
+                ),
+                alignment: const FractionalOffset(0.5, 0.0),
               ),
             ),
           ],

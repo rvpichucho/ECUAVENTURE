@@ -1,8 +1,10 @@
+import 'package:ecuaventure/src/pages/data_foto_page.dart';
 import 'package:ecuaventure/src/pages/login_page.dart';
 import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class MenuLateral extends StatelessWidget {
   const MenuLateral({Key? key}) : super(key: key);
 
@@ -43,6 +45,15 @@ class MenuLateral extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const ReservationPage()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.remember_me_outlined,
+                color: Theme.of(context).primaryColorDark),
+            title: const Text("Datos"),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const FotoPage()));
             },
           ),
           ListTile(
