@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReservationDetailsFormWidget extends StatefulWidget {
@@ -27,10 +26,6 @@ class _ReservationDetailsFormWidgetState
   final ImagePicker _picker = ImagePicker();
   bool _onSaving = false;
   final FotosService _fotosService = FotosService();
-  CollectionReference collection =
-      FirebaseFirestore.instance.collection('bikes');
-  bool reservar = false;
-  final int valor = 2;
 
   @override
   void initState() {

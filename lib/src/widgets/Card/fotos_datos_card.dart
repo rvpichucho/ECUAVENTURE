@@ -60,7 +60,7 @@ class DataFotoCard extends StatelessWidget {
             Card(
               color: color_const.skyColorC,
               child: Padding(
-                padding: const EdgeInsets.only(top: 60.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: ListTile(
                   title: Center(
                     child: Text('Datos',
@@ -68,6 +68,18 @@ class DataFotoCard extends StatelessWidget {
                   ),
                   subtitle: Column(
                     children: [
+                      const SizedBox(height: 25.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Image(
+                              image: NetworkImage(url),
+                              height: 140,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 25.0),
                       ListTile(
                         title: const Text('Observación'),
                         subtitle: Text(model.observacion.toString()),
@@ -83,17 +95,6 @@ class DataFotoCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ),
-            FractionalTranslation(
-              translation: const Offset(0.0, -0.4),
-              child: Align(
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage(url),
-                  backgroundColor: color_const.ligthBlueC,
-                ),
-                alignment: const FractionalOffset(0.5, 0.0),
               ),
             ),
           ],
