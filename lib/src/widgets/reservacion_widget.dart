@@ -3,6 +3,7 @@ import 'package:ecuaventure/src/pages/reservation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 class ReservacionWidget extends StatefulWidget {
   const ReservacionWidget({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
       FirebaseFirestore.instance.collection('reservations');
 
   final hour = TextEditingController();
-  final date = TextEditingController();
+  DateTime date = DateTime.now();
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
@@ -27,7 +28,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
@@ -49,6 +50,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                         labelText: AppLocalizations.of(context)!.rentalHours,
                       ),
                       controller: hour,
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                 ],
@@ -63,18 +65,18 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: TextFormField(
-                      keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        icon: Icon(Icons.insert_invitation_outlined,
-                            color: Theme.of(context).primaryColorDark),
-                        labelText: AppLocalizations.of(context)!.datereserv,
-                      ),
-                      controller: date,
-                    ),
+                    padding: const EdgeInsets.only(top: 7.0),
+                    child: Text("Ingresar la fecha",
+                        style: Theme.of(context).textTheme.subtitle1),
                   ),
+                  DatePickerWidget(
+                      lastDate: DateTime.now().add(const Duration(days: 90)),
+                      looping: false, // default is not looping
+                      dateFormat: "dd-MMMM-yyyy",
+                      locale: DatePicker.localeFromString('es'),
+                      onChange: (DateTime newDate, _) {
+                        date = newDate;
+                      }),
                 ],
               ),
             ),
@@ -97,9 +99,9 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                     ),
                   ),
                   onPressed: () {
-                    _confirmar(context, hour.text, date.text);
+                    _confirmar(context, hour.text, date);
                     hour.clear();
-                    date.clear();
+                    //date.clear();
                   },
                 ),
               ),
@@ -110,7 +112,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
     );
   }
 
-  _confirmar(BuildContext context, String hora, String fecha) {
+  _confirmar(BuildContext context, String hora, DateTime fecha) {
     var num = int.parse(hora) * 3;
     String num1 = num.toString();
     Widget okButton = TextButton(
@@ -119,7 +121,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         derailsReservation.add({
           'hour': hora,
           'total': num1,
-          'fecha': fecha,
+          'fecha': fecha.toString(),
         });
         Navigator.of(context).pop();
         Navigator.push(context,

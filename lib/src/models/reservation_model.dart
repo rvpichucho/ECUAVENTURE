@@ -22,6 +22,9 @@ class Reservation {
   String? total;
   String? fecha;
 
+  factory Reservation.created(String value) =>
+      Reservation(idreservation: value);
+
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         idreservation: json["idreservation"],
         hour: json["hour"],
