@@ -4,6 +4,7 @@ import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class MotorcycleCard extends StatelessWidget {
   const MotorcycleCard({Key? key, required this.model}) : super(key: key);
   final Motorcycles model;
@@ -44,7 +45,8 @@ class MotorcycleCard extends StatelessWidget {
                           subtitle: Text(model.model.toString()),
                         ),
                         ListTile(
-                          title: Text(AppLocalizations.of(context)!.description),
+                          title:
+                              Text(AppLocalizations.of(context)!.description),
                           subtitle: Text(model.description.toString()),
                         ),
                         ListTile(

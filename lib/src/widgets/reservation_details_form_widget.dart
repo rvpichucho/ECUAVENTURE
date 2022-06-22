@@ -66,6 +66,7 @@ class _ReservationDetailsFormWidgetState
                         validator: (value) {
                           return _validateObservacion(value!);
                         },
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             labelText:
                                 AppLocalizations.of(context)!.observation),

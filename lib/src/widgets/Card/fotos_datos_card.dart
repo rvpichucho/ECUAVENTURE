@@ -1,4 +1,9 @@
+import 'package:ecuaventure/src/models/bikes_vehicles.dart';
+import 'package:ecuaventure/src/models/buggys_vehicles.dart';
 import 'package:ecuaventure/src/models/foto_model.dart';
+import 'package:ecuaventure/src/models/motorcycles_vehicles.dart';
+import 'package:ecuaventure/src/models/squares_vehicles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
@@ -11,10 +16,15 @@ class ListDataFoto extends StatefulWidget {
 }
 
 class _ListDataFotoState extends State<ListDataFoto> {
-  final Stream<QuerySnapshot> _listDataFotos =
-      FirebaseFirestore.instance.collection('fotos').snapshots();
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _listDataFotos = FirebaseFirestore.instance
+        .collection('fotos')
+        .where('iduser', isEqualTo: user!.uid)
+        .snapshots();
+
     return StreamBuilder<QuerySnapshot>(
       stream: _listDataFotos,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -36,7 +46,9 @@ class _ListDataFotoState extends State<ListDataFoto> {
           child: ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Foto model = Foto.fromJson(document.data() as Map<String, dynamic>);
-            return DataFotoCard(model: model);
+            return DataFotoCard(
+              model: model,
+            );
           }).toList()),
         );
       },
@@ -44,13 +56,75 @@ class _ListDataFotoState extends State<ListDataFoto> {
   }
 }
 
-class DataFotoCard extends StatelessWidget {
+class DataFotoCard extends StatefulWidget {
   const DataFotoCard({Key? key, required this.model}) : super(key: key);
   final Foto model;
+  @override
+  State<DataFotoCard> createState() => _DataFotoCardState();
+}
+
+class _DataFotoCardState extends State<DataFotoCard> {
+  Bikes _data = Bikes();
+  Buggys _data1 = Buggys();
+  Motorcycles _data2 = Motorcycles();
+  Squares _data3 = Squares();
+  String _dataVehicles = '';
+
+  @override
+  void initState() {
+    super.initState();
+    //bikes
+    FirebaseFirestore.instance
+        .collection("bikes")
+        .doc(widget.model.idvehicles)
+        .get()
+        .then((value) {
+      _data = Bikes.fromJson(value.data() as Map<String, dynamic>);
+      setState(() {});
+    });
+    //buggys
+    FirebaseFirestore.instance
+        .collection("buggys")
+        .doc(widget.model.idvehicles)
+        .get()
+        .then((value) {
+      _data1 = Buggys.fromJson(value.data() as Map<String, dynamic>);
+      setState(() {});
+    });
+    //motos
+    FirebaseFirestore.instance
+        .collection("motorcycles")
+        .doc(widget.model.idvehicles)
+        .get()
+        .then((value) {
+      _data2 = Motorcycles.fromJson(value.data() as Map<String, dynamic>);
+      setState(() {});
+    });
+    //cuadrones
+    FirebaseFirestore.instance
+        .collection("squares")
+        .doc(widget.model.idvehicles)
+        .get()
+        .then((value) {
+      _data3 = Squares.fromJson(value.data() as Map<String, dynamic>);
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final url = model.url!;
+    final url = widget.model.url!;
+    //condiciones para mostrar datos de las colecciones de vehiculos
+    if (widget.model.idvehicles == _data.idbike) {
+      _dataVehicles = _data.name.toString() + ' - ' + _data.model.toString();
+    } else if (widget.model.idvehicles == _data1.idbuggy) {
+      _dataVehicles = _data1.name.toString() + ' - ' + _data1.model.toString();
+    } else if (widget.model.idvehicles == _data2.idmotorcycle) {
+      _dataVehicles = _data2.name.toString() + ' - ' + _data2.model.toString();
+    } else if (widget.model.idvehicles == _data3.idsquare) {
+      _dataVehicles = _data3.name.toString() + ' - ' + _data3.model.toString();
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
@@ -82,15 +156,15 @@ class DataFotoCard extends StatelessWidget {
                       const SizedBox(height: 25.0),
                       ListTile(
                         title: const Text('Observación'),
-                        subtitle: Text(model.observacion.toString()),
+                        subtitle: Text(widget.model.observacion.toString()),
                       ),
                       ListTile(
                         title: const Text('Fecha'),
-                        subtitle: Text(model.fecha.toString()),
+                        subtitle: Text(widget.model.fecha.toString()),
                       ),
                       ListTile(
                         title: const Text('Vehículo'),
-                        subtitle: Text(model.idvehicles.toString()),
+                        subtitle: Text(_dataVehicles.toString()),
                       ),
                     ],
                   ),

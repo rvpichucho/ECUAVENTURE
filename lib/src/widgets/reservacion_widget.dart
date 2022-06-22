@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/src/pages/reservation_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,6 +19,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
 
   final hour = TextEditingController();
   DateTime date = DateTime.now();
+  User? user = FirebaseAuth.instance.currentUser;
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
@@ -119,6 +121,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
       child: const Text("Guardar"),
       onPressed: () {
         derailsReservation.add({
+          'iduser': user!.uid,
           'hour': hora,
           'total': num1,
           'fecha': fecha.toString(),

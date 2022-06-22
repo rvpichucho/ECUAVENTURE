@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/src/models/reservation_model.dart';
 import 'package:ecuaventure/src/widgets/reservation_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MantenimientosFirebaseList extends StatefulWidget {
@@ -13,11 +14,15 @@ class MantenimientosFirebaseList extends StatefulWidget {
 
 class _MantenimientosFirebaseListState
     extends State<MantenimientosFirebaseList> {
-  final Stream<QuerySnapshot> _mantenimientoStrem =
-      FirebaseFirestore.instance.collection('reservations').snapshots();
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(Object context) {
+    final Stream<QuerySnapshot> _mantenimientoStrem = FirebaseFirestore.instance
+        .collection('reservations')
+        .where('iduser', isEqualTo: user!.uid)
+        .snapshots();
+
     return StreamBuilder<QuerySnapshot>(
       stream: _mantenimientoStrem,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

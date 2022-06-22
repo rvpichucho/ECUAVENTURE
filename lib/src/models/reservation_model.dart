@@ -11,31 +11,28 @@ String reservationToJson(Reservation data) => json.encode(data.toJson());
 
 class Reservation {
   Reservation({
-    this.idreservation,
+    this.iduser,
     this.hour,
     this.total,
     this.fecha,
   });
 
-  String? idreservation;
+  String? iduser;
   String? hour;
   String? total;
-  String? fecha;
-
-  factory Reservation.created(String value) =>
-      Reservation(idreservation: value);
+  DateTime? fecha;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
-        idreservation: json["idreservation"],
+        iduser: json["iduser"],
         hour: json["hour"],
         total: json["total"],
-        fecha: json["fecha"],
+        fecha: DateTime.parse(json["fecha"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "idreservation": idreservation,
+        "iduser": iduser,
         "hour": hour,
         "total": total,
-        "fecha": fecha,
+        "fecha": fecha!.toString(),
       };
 }

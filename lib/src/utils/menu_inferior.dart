@@ -8,7 +8,10 @@ import 'package:flutter/cupertino.dart';
 class MenuItem {
   String label;
   IconData icon;
-  MenuItem(this.label, this.icon);
+  MenuItem(
+    this.label,
+    this.icon,
+  );
 }
 
 List<MenuItem> menuOptions = [

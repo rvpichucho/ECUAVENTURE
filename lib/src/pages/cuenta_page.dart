@@ -8,6 +8,7 @@ import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class CuentaPage extends StatefulWidget {
   const CuentaPage({Key? key}) : super(key: key);
 
@@ -45,7 +46,8 @@ class _CuentaPageState extends State<CuentaPage> {
                 child: Text(
                   AppLocalizations.of(context)!.myacount,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 22),
                 ),
               ),
               Stack(
