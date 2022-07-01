@@ -12,6 +12,7 @@ String motorcyclesToJson(Motorcycles data) => json.encode(data.toJson());
 class Motorcycles {
   Motorcycles({
     this.idmotorcycle,
+    this.iduser,
     this.name,
     this.model,
     this.description,
@@ -23,6 +24,7 @@ class Motorcycles {
   });
 
   String? idmotorcycle;
+  String? iduser;
   String? name;
   String? model;
   String? description;
@@ -33,6 +35,7 @@ class Motorcycles {
   double? lng;
   factory Motorcycles.fromJson(Map<String, dynamic> json) => Motorcycles(
       idmotorcycle: json["idmotorcycle"],
+      iduser: json["iduser"],
       name: json["name"],
       model: json["model"],
       description: json["description"],
@@ -43,9 +46,10 @@ class Motorcycles {
       lng: json["lng"]);
 
   get background => null;
-      
+
   Map<String, dynamic> toJson() => {
         "idmotorcycle": idmotorcycle,
+        "iduser": iduser,
         "name": name,
         "model": model,
         "description": description,

@@ -11,6 +11,15 @@ class BuggyDetailsContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isVisible = false;
+    //condiciones para mostrar el check
+    if (reservation.prioridad == 3) {
+      isVisible = true;
+    } else if (reservation.prioridad == 2) {
+      isVisible = false;
+    } else if (reservation.prioridad == 1) {
+      isVisible = false;
+    }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -32,13 +41,16 @@ class BuggyDetailsContentWidget extends StatelessWidget {
                   child: reservation.prioridad == null ||
                           reservation.prioridad == 0
                       ? null
-                      : BuggyPriorityWidget(priority: reservation.prioridad),
+                      : BuggyPriorityWidget(
+                          priority: reservation.prioridad,
+                          uid: reservation.idbuggy),
                 ),
               ),
             ),
-            CheckReservarBuggy(uid: reservation.idbuggy),
-
-            //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
+            Visibility(
+              visible: isVisible,
+              child: CheckReservarBuggy(uid: reservation.idbuggy),
+            ),
           ],
         ),
       ),

@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecuaventure/src/models/foto_model.dart';
 import 'package:ecuaventure/src/pages/data_foto_page.dart';
 import 'package:ecuaventure/src/services/fotos_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,17 +28,49 @@ class _ReservationDetailsFormWidgetState
   final ImagePicker _picker = ImagePicker();
   bool _onSaving = false;
   final FotosService _fotosService = FotosService();
+  //consulta para el documento de identificacion
+  User? user = FirebaseAuth.instance.currentUser;
+  Foto _data = Foto();
+  String imageUpload = '';
 
   @override
   void initState() {
     _foto = Foto.created(widget.id);
     super.initState();
+
+    //consultas para saber si ya tiene registrada el documento de identificacion
+    //bikes
+    CollectionReference collectionBike =
+        FirebaseFirestore.instance.collection('fotos');
+    collectionBike
+        .where('iduser', isEqualTo: user!.uid)
+        .get()
+        .then((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        // doc.data() is never undefined for query doc snapshots
+        _data = Foto.fromJson(doc.data() as Map<String, dynamic>);
+        setState(() {});
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    //variales bool para activar o desactivar la visibilidad
+    bool isVisible = false;
+    bool isVisibleBotonNo = true;
+    //condiciones para mostrar el check
+    if (_data.url == null) {
+      isVisible = true;
+      isVisibleBotonNo = false;
+      imageUpload = 'Subir su documento de identificación';
+    } else {
+      isVisible = false;
+      isVisibleBotonNo = true;
+      imageUpload =
+          '¿Desea utilizar su documento de identificación registrado?';
+    }
     return SingleChildScrollView(
         child: Column(
       children: [
@@ -72,7 +106,9 @@ class _ReservationDetailsFormWidgetState
                                 AppLocalizations.of(context)!.observation),
                         maxLength: 255,
                         maxLines: 3),
-                    Padding(
+
+                    //codigo si estado de visibilidad
+                    /*Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7.0),
                       child: Text(AppLocalizations.of(context)!.image_upload,
                           style: Theme.of(context).textTheme.subtitle1),
@@ -88,25 +124,93 @@ class _ReservationDetailsFormWidgetState
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: () => _selectImage(ImageSource.camera),
-                          icon: const Icon(Icons.camera),
-                          label: Text(AppLocalizations.of(context)!.camera),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  color_const.blueC)),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () => _selectImage(ImageSource.camera),
+                            icon: const Icon(Icons.camera),
+                            label: Text(AppLocalizations.of(context)!.camera),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        color_const.blueC)),
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () => _selectImage(ImageSource.gallery),
+                            icon: const Icon(Icons.image),
+                            label: Text(AppLocalizations.of(context)!.image),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        color_const.blueC)),
+                          ),
+                        ],
+                      ),*/
+                    //codigo con estado de visibilidad
+                    //codigo para mostrar si tiene el documento de identificacion registrado
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 7.0),
+                      child: Text(imageUpload,
+                          style: Theme.of(context).textTheme.subtitle1),
+                    ),
+                    Visibility(
+                      visible: isVisibleBotonNo,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            isVisibleBotonNo = !isVisibleBotonNo;
+                            isVisible = true;
+                            _data.url = null;
+                          });
+                        },
+                        icon: const Icon(Icons.not_interested_outlined),
+                        label: const Text("No"),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                color_const.blueC)),
+                      ),
+                    ),
+
+                    //mostrar el documento de identificacion tomado por a camara o galeria
+                    Visibility(
+                      visible: isVisible,
+                      child: SizedBox(
+                        height: 100.h,
+                        width: 150.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: _imagen == null
+                              ? Image.asset('assets/CI.png')
+                              : Image.file(_imagen!),
                         ),
-                        ElevatedButton.icon(
-                          onPressed: () => _selectImage(ImageSource.gallery),
-                          icon: const Icon(Icons.image),
-                          label: Text(AppLocalizations.of(context)!.image),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  color_const.blueC)),
-                        ),
-                      ],
+                      ),
+                    ),
+                    //mostrar los botones de camara y galeria
+                    Visibility(
+                      visible: isVisible,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () => _selectImage(ImageSource.camera),
+                            icon: const Icon(Icons.camera),
+                            label: Text(AppLocalizations.of(context)!.camera),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        color_const.blueC)),
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () => _selectImage(ImageSource.gallery),
+                            icon: const Icon(Icons.image),
+                            label: Text(AppLocalizations.of(context)!.image),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        color_const.blueC)),
+                          ),
+                        ],
+                      ),
                     ),
                     _onSaving
                         ? const Padding(
@@ -163,7 +267,12 @@ class _ReservationDetailsFormWidgetState
 
     if (_imagen != null) {
       _foto.url = await _fotosService.uploadImage(_imagen!);
+    } else {
+      _foto.url = _data.url;
     }
+
+    //guardar el valor del id usuario
+    _foto.iduser = user!.uid;
 
     //Invoca al servicio POST para enviar la Foto
     int estado = await _fotosService.postFoto(_foto);

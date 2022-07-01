@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 // ignore: must_be_immutable
 class CheckDeleteBike extends StatefulWidget {
   CheckDeleteBike({Key? key, this.uid}) : super(key: key);
@@ -22,12 +23,15 @@ class _CheckDeleteBikeState extends State<CheckDeleteBike> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(AppLocalizations.of(context)!.delete, style: Theme.of(context).textTheme.subtitle1),
+          Text(AppLocalizations.of(context)!.delete,
+              style: Theme.of(context).textTheme.subtitle1),
           Checkbox(
             value: reservar,
             onChanged: (bool? value) {
               setState(() {
-                collection.doc(widget.uid).update({'prioridad': valor});
+                collection
+                    .doc(widget.uid)
+                    .update({'prioridad': valor, 'iduser': ''});
                 reservar = value!;
               });
             },

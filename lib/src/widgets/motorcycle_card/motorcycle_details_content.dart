@@ -3,6 +3,7 @@ import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_check_reserv.
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class MotorcycleDetailsContentWidget extends StatelessWidget {
   const MotorcycleDetailsContentWidget({Key? key, required this.reservation})
       : super(key: key);
@@ -10,6 +11,15 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isVisible = false;
+    //condiciones para mostrar el check
+    if (reservation.prioridad == 3) {
+      isVisible = true;
+    } else if (reservation.prioridad == 2) {
+      isVisible = false;
+    } else if (reservation.prioridad == 1) {
+      isVisible = false;
+    }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -32,13 +42,15 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
                           reservation.prioridad == 0
                       ? null
                       : MotorcyclePriorityWidget(
-                          priority: reservation.prioridad),
+                          priority: reservation.prioridad,
+                          uid: reservation.idmotorcycle),
                 ),
               ),
             ),
-            CheckReservarMotorcycle(uid: reservation.idmotorcycle),
-
-            //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
+            Visibility(
+              visible: isVisible,
+              child: CheckReservarMotorcycle(uid: reservation.idmotorcycle),
+            ),
           ],
         ),
       ),

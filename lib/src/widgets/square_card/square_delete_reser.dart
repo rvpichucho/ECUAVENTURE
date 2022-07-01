@@ -27,7 +27,9 @@ class _CheckDeleteSquareState extends State<CheckDeleteSquare> {
             value: reservar,
             onChanged: (bool? value) {
               setState(() {
-                collection.doc(widget.uid).update({'prioridad': valor});
+                collection
+                    .doc(widget.uid)
+                    .update({'prioridad': valor, 'iduser': ''});
                 reservar = value!;
               });
             },

@@ -4,6 +4,7 @@ import 'package:ecuaventure/src/widgets/bike_card/bike_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 // ignore: must_be_immutable
 class BikeCard extends StatelessWidget {
   const BikeCard({Key? key, required this.model}) : super(key: key);
@@ -35,8 +36,9 @@ class BikeCard extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle:
-                            Text(model.precio.toString() + ' '+AppLocalizations.of(context)!.pagos),
+                        subtitle: Text(model.precio.toString() +
+                            ' ' +
+                            AppLocalizations.of(context)!.pagos),
                       ),
                       /*ListTile(
                         title: const Text('Descripción'),
@@ -47,7 +49,9 @@ class BikeCard extends StatelessWidget {
                         subtitle:
                             model.prioridad == null || model.prioridad == 0
                                 ? null
-                                : BikePriorityWidget(priority: model.prioridad),
+                                : BikePriorityWidget(
+                                    priority: model.prioridad,
+                                    uid: model.idbike),
                       ),
                       CheckDeleteBike(uid: model.idbike),
                     ],

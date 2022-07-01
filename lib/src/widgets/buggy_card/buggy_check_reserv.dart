@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,9 +13,11 @@ class CheckReservarBuggy extends StatefulWidget {
 }
 
 class _CheckReservarBuggyState extends State<CheckReservarBuggy> {
+  User? user = FirebaseAuth.instance.currentUser;
   CollectionReference collection =
       FirebaseFirestore.instance.collection('buggys');
   bool reservar = false;
+  bool isVisible = true;
   final int valor = 2;
   @override
   Widget build(BuildContext context) {
@@ -25,14 +28,20 @@ class _CheckReservarBuggyState extends State<CheckReservarBuggy> {
         children: <Widget>[
           Text(AppLocalizations.of(context)!.reserve,
               style: Theme.of(context).textTheme.subtitle1),
-          Checkbox(
-            value: reservar,
-            onChanged: (bool? value) {
-              setState(() {
-                collection.doc(widget.uid).update({'prioridad': valor});
-                reservar = value!;
-              });
-            },
+          Visibility(
+            visible: isVisible,
+            child: Checkbox(
+              value: reservar,
+              onChanged: (bool? value) {
+                setState(() {
+                  collection
+                      .doc(widget.uid)
+                      .update({'prioridad': valor, 'iduser': user!.uid});
+                  reservar = value!;
+                  isVisible = !value;
+                });
+              },
+            ),
           ),
         ],
       ),

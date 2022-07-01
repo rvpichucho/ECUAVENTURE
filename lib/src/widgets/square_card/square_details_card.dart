@@ -36,11 +36,24 @@ class _SquareDetailsWidgetState extends State<SquareDetailsWidget>
 
   @override
   Widget build(BuildContext context) {
+    bool isVisible = false;
+    //condiciones para mostrar el formulario de fotos si esta reservado o en espera
+    if (widget.reservation.prioridad == 3) {
+      isVisible = true;
+    } else if (widget.reservation.prioridad == 2) {
+      isVisible = false;
+    } else if (widget.reservation.prioridad == 1) {
+      isVisible = false;
+    }
     return Scaffold(
       appBar: TabBar(tabs: _myTabs, controller: _tabController),
       body: TabBarView(controller: _tabController, children: [
         SquareDetailsContentWidget(reservation: widget.reservation),
-        ReservationDetailsFormWidget(id: widget.reservation.idsquare ?? "")
+        Visibility(
+          visible: isVisible,
+          child: ReservationDetailsFormWidget(
+              id: widget.reservation.idsquare ?? ""),
+        ),
       ]),
     );
   }

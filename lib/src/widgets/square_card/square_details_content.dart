@@ -3,12 +3,22 @@ import 'package:ecuaventure/src/widgets/square_card/square_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/square_card/square_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SquareDetailsContentWidget extends StatelessWidget {
   const SquareDetailsContentWidget({Key? key, required this.reservation})
       : super(key: key);
   final Squares reservation;
   @override
   Widget build(BuildContext context) {
+    bool isVisible = false;
+    //condiciones para mostrar el check
+    if (reservation.prioridad == 3) {
+      isVisible = true;
+    } else if (reservation.prioridad == 2) {
+      isVisible = false;
+    } else if (reservation.prioridad == 1) {
+      isVisible = false;
+    }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -27,12 +37,16 @@ class SquareDetailsContentWidget extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
                 child: Center(
-                  child: SquarePriorityWidget(priority: reservation.prioridad),
+                  child: SquarePriorityWidget(
+                      priority: reservation.prioridad,
+                      uid: reservation.idsquare),
                 ),
               ),
             ),
-            CheckReservarSquare(uid: reservation.idsquare),
-            //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
+            Visibility(
+              visible: isVisible,
+              child: CheckReservarSquare(uid: reservation.idsquare),
+            )
           ],
         ),
       ),

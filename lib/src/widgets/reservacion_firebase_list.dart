@@ -9,6 +9,7 @@ import 'package:ecuaventure/src/widgets/Card/bike_card.dart';
 import 'package:ecuaventure/src/widgets/Card/buggy_card.dart';
 import 'package:ecuaventure/src/widgets/Card/motorcycle_card.dart';
 import 'package:ecuaventure/src/widgets/Card/square_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -110,10 +111,12 @@ class ReservationBike extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('bikes')
         .where('prioridad', isEqualTo: 2)
+        .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
@@ -159,10 +162,12 @@ class ReservationMotorcycle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('motorcycles')
         .where('prioridad', isEqualTo: 2)
+        .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
@@ -208,10 +213,12 @@ class ReservationSquare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('squares')
         .where('prioridad', isEqualTo: 2)
+        .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(
@@ -257,10 +264,12 @@ class ReservationBuggys extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('buggys')
         .where('prioridad', isEqualTo: 2)
+        .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
     return StreamBuilder<QuerySnapshot>(

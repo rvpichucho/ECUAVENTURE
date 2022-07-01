@@ -1,8 +1,5 @@
 import 'dart:convert';
 
-import 'package:firebase_auth/firebase_auth.dart';
-
-User? user = FirebaseAuth.instance.currentUser;
 Foto fotoFromJson(String str) => Foto.fromJson(json.decode(str));
 
 String fotoToJson(Foto data) => json.encode(data.toJson());
@@ -16,7 +13,7 @@ class Foto {
   String? iduser;
 
   factory Foto.created(String value) =>
-      Foto(idvehicles: value, iduser: user!.uid, fecha: DateTime.now());
+      Foto(idvehicles: value, fecha: DateTime.now());
 
   factory Foto.fromJson(Map<String, dynamic> json) => Foto(
         url: json["url"],

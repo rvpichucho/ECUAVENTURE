@@ -37,7 +37,7 @@
     "map":"Mapa",
     "reservation":"Reservación",
     "home_init":"Inicio",
-    "name":"Ingrese su nombre",
+    "name":"Ingrese su nombre y apellido",
     "namecarac":"El nombre debe tener al menos 10 caracteres",
     "sing_in":"Ingresar",
     "welcome":"Bienvenido",

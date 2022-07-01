@@ -55,7 +55,8 @@ class MotorcycleCard extends StatelessWidget {
                               model.prioridad == null || model.prioridad == 0
                                   ? null
                                   : MotorcyclePriorityWidget(
-                                      priority: model.prioridad),
+                                      priority: model.prioridad,
+                                      uid: model.idmotorcycle),
                         ),
                       ],
                     ),

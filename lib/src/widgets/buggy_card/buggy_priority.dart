@@ -1,21 +1,63 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecuaventure/src/models/buggys_vehicles.dart';
 import 'package:ecuaventure/src/theme/main_theme.dart';
 import 'package:flutter/material.dart';
 
-class BuggyPriorityWidget extends StatelessWidget {
-  const BuggyPriorityWidget({Key? key, required this.priority})
+// ignore: must_be_immutable
+class BuggyPriorityWidget extends StatefulWidget {
+  BuggyPriorityWidget({Key? key, required this.priority, required this.uid})
       : super(key: key);
   final int? priority;
+  String? uid;
+
+  @override
+  State<BuggyPriorityWidget> createState() => _BuggyPriorityWidgetState();
+}
+
+class _BuggyPriorityWidgetState extends State<BuggyPriorityWidget> {
+  Buggys _data = Buggys();
+  String _dataEstado = '';
+
+  @override
+  void initState() {
+    super.initState();
+    //bikes
+    FirebaseFirestore.instance
+        .collection("buggys")
+        .doc(widget.uid)
+        .get()
+        .then((value) {
+      _data = Buggys.fromJson(value.data() as Map<String, dynamic>);
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-        radius: 20.0,
-        backgroundColor: priority == 1
-            ? AppTheme.colorHighPriority
-            : priority == 2
-                ? AppTheme.colorMediumPriority
-                : AppTheme.colorLowPriority,
-        child: Icon(Icons.event_available_outlined,
-            color: priority == 2 ? Colors.black : Colors.white));
+    if (_data.prioridad == 3) {
+      _dataEstado = 'Disponible';
+    } else if (_data.prioridad == 2) {
+      _dataEstado = 'En Espera';
+    } else if (_data.prioridad == 1) {
+      _dataEstado = 'Reservado';
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 0.0),
+      child: Column(
+        children: [
+          Text(_dataEstado.toString()),
+          const SizedBox(height: 25.0),
+          CircleAvatar(
+              radius: 20.0,
+              backgroundColor: widget.priority == 1
+                  ? AppTheme.colorHighPriority
+                  : widget.priority == 2
+                      ? AppTheme.colorMediumPriority
+                      : AppTheme.colorLowPriority,
+              child: Icon(Icons.event_available_outlined,
+                  color: widget.priority == 2 ? Colors.black : Colors.white)),
+        ],
+      ),
+    );
   }
 }

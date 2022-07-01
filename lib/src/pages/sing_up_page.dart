@@ -5,8 +5,10 @@ import 'package:ecuaventure/src/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -28,6 +30,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final displayNameEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
+  final direccionEditingController = TextEditingController();
+  final telefonoEditingController = TextEditingController();
+  DateTime date = DateTime.now();
+  DateFormat formatoYear = DateFormat("y");
 
   bool _obscureText = true;
 
@@ -130,9 +136,75 @@ class _SignUpPageState extends State<SignUpPage> {
         onSaved: (value) {
           passwordEditingController.text = value!;
         },
-        textInputAction: TextInputAction.done,
+        textInputAction: TextInputAction.next,
       ),
     );
+
+    //direccion field
+    final direccionField = TextFormField(
+      keyboardType: TextInputType.text,
+      autofocus: false,
+      controller: direccionEditingController,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        icon: Icon(Icons.house, color: Theme.of(context).primaryColorDark),
+        hintText: 'Ingrese su dirección',
+      ),
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{10,}$');
+        if (value!.isEmpty) {
+          return ('Ingrese su dirección');
+        }
+        if (!regex.hasMatch(value)) {
+          return ('La dirección debe tener 6 caracteres');
+        }
+        return null;
+      },
+      onSaved: (value) {
+        direccionEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+
+    //telefono field
+    final telefonoField = TextFormField(
+      keyboardType: TextInputType.phone,
+      autofocus: false,
+      controller: telefonoEditingController,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        icon: Icon(Icons.phone_android,
+            color: Theme.of(context).primaryColorDark),
+        hintText: 'Ingrese su teléfono',
+      ),
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{10,}$');
+        if (value!.isEmpty) {
+          return ('Ingrese su teléfono');
+        }
+        if (!regex.hasMatch(value)) {
+          return ('El teléfono debe tener 10 digitos');
+        }
+        return null;
+      },
+      onSaved: (value) {
+        direccionEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+    );
+
+    //edad
+
+    final fechaNacimiento = DatePickerWidget(
+        initialDate: DateTime(int.parse(formatoYear.format(date)) - 18),
+        firstDate: DateTime(1900),
+        lastDate: DateTime(int.parse(formatoYear.format(date)) - 18),
+        looping: false, // default is not looping
+        dateFormat: "dd-MMMM-yyyy",
+        locale: DatePicker.localeFromString('es'),
+        onChange: (DateTime newDate, _) {
+          date = newDate;
+        });
 
     //boton sing up
     final singUpButton = MaterialButton(
@@ -235,6 +307,56 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(height: 25.0),
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        elevation: 4,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: direccionField,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 25.0),
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        elevation: 4,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: telefonoField,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 25.0),
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        margin: const EdgeInsets.only(left: 12, right: 12),
+                        elevation: 4,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7.0),
+                              child: Text("Ingresar su fecha de nacimiento",
+                                  style: Theme.of(context).textTheme.subtitle1),
+                            ),
+                            fechaNacimiento,
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 25.0),
                       singUpButton,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -304,6 +426,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
+    DateTime fechaActual = DateTime.now();
 
     Usuario _model = Usuario();
 
@@ -311,6 +434,9 @@ class _SignUpPageState extends State<SignUpPage> {
     _model.email = user!.email;
     _model.uid = user.uid;
     _model.displayName = displayNameEditingController.text;
+    _model.direccion = direccionEditingController.text;
+    _model.telefono = telefonoEditingController.text;
+    _model.edad = fechaActual.year - date.year;
 
     await firebaseFirestore
         .collection("users")

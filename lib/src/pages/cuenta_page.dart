@@ -79,6 +79,31 @@ class _CuentaPageState extends State<CuentaPage> {
                         fontSize: 16.0,
                       ),
                     ),
+                    onTap: () {
+                      AlertDialog alert = AlertDialog(
+                        title: Text("Dirección: ${_model.direccion}",
+                            textAlign: TextAlign.center),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Teléfono: ${_model.telefono}",
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              "Edad: ${_model.edad} años",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      );
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return alert;
+                        },
+                      );
+                    },
                   ),
                 ),
               ),

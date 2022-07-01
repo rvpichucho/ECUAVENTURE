@@ -4,6 +4,7 @@ import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_delete_reser.
 import 'package:ecuaventure/src/widgets/motorcycle_card/motorcycle_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class MotorcyclesCard extends StatelessWidget {
   const MotorcyclesCard({Key? key, required this.model}) : super(key: key);
   final Motorcycles model;
@@ -37,8 +38,9 @@ class MotorcyclesCard extends StatelessWidget {
                       ),*/
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle:
-                            Text(model.precio.toString() + ' '+AppLocalizations.of(context)!.pagos),
+                        subtitle: Text(model.precio.toString() +
+                            ' ' +
+                            AppLocalizations.of(context)!.pagos),
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.state),
@@ -46,7 +48,8 @@ class MotorcyclesCard extends StatelessWidget {
                             model.prioridad == null || model.prioridad == 0
                                 ? null
                                 : MotorcyclePriorityWidget(
-                                    priority: model.prioridad),
+                                    priority: model.prioridad,
+                                    uid: model.idmotorcycle),
                       ),
                       CheckDeleteMotorcycle(uid: model.idmotorcycle),
                     ],

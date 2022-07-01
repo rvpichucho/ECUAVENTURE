@@ -3,6 +3,7 @@ import 'package:ecuaventure/src/widgets/bike_card/bike_check_reserv.dart';
 import 'package:ecuaventure/src/widgets/bike_card/bike_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 //import 'package:timeago/timeago.dart' as timeago;
 class BikeDetailsContentWidget extends StatelessWidget {
   const BikeDetailsContentWidget({Key? key, required this.reservation})
@@ -11,6 +12,15 @@ class BikeDetailsContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isVisible = false;
+    //condiciones para mostrar el check
+    if (reservation.prioridad == 3) {
+      isVisible = true;
+    } else if (reservation.prioridad == 2) {
+      isVisible = false;
+    } else if (reservation.prioridad == 1) {
+      isVisible = false;
+    }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
@@ -21,20 +31,23 @@ class BikeDetailsContentWidget extends StatelessWidget {
                 title: Text(AppLocalizations.of(context)!.model),
                 subtitle: Text(reservation.model ?? "")),
             ListTile(
-                title:  Text(AppLocalizations.of(context)!.description),
+                title: Text(AppLocalizations.of(context)!.description),
                 subtitle: Text(reservation.description ?? "")),
             ListTile(
               title: Text(AppLocalizations.of(context)!.state),
               subtitle: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
+                    const EdgeInsets.symmetric(horizontal: 7.0, vertical: 20.0),
                 child: Center(
-                  child: BikePriorityWidget(priority: reservation.prioridad),
+                  child: BikePriorityWidget(
+                      priority: reservation.prioridad, uid: reservation.idbike),
                 ),
               ),
             ),
-            CheckReservarBike(uid: reservation.idbike),
-            //ListTile(title: const Text("Registrado:"), subtitle: Text(created)),
+            Visibility(
+              visible: isVisible,
+              child: CheckReservarBike(uid: reservation.idbike),
+            ),
           ],
         ),
       ),

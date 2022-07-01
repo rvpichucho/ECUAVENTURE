@@ -3,6 +3,7 @@ import 'package:ecuaventure/src/widgets/buggy_card/buggy_delete_reser.dart';
 import 'package:ecuaventure/src/widgets/buggy_card/buggy_priority.dart';
 import 'package:flutter/material.dart';
 import 'package:ecuaventure/src/utils/colors_constants.dart' as color_const;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuggyCard extends StatelessWidget {
   const BuggyCard({Key? key, required this.model}) : super(key: key);
@@ -37,11 +38,19 @@ class BuggyCard extends StatelessWidget {
                         subtitle: Text(model.description.toString()),
                       ),*/
                       ListTile(
+                        title: Text(AppLocalizations.of(context)!.precio),
+                        subtitle: Text(model.precio.toString() +
+                            ' ' +
+                            AppLocalizations.of(context)!.pagos),
+                      ),
+                      ListTile(
                         title: const Text('Estado'),
-                        subtitle: model.prioridad == null ||
-                                model.prioridad == 0
-                            ? null
-                            : BuggyPriorityWidget(priority: model.prioridad),
+                        subtitle:
+                            model.prioridad == null || model.prioridad == 0
+                                ? null
+                                : BuggyPriorityWidget(
+                                    priority: model.prioridad,
+                                    uid: model.idbuggy),
                       ),
                       CheckDeleteBuggy(uid: model.idbuggy),
                     ],
