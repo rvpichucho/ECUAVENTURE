@@ -36,7 +36,7 @@ class BikeCard extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle: Text(model.precio.toString() +
+                        subtitle: Text(model.price.toString() +
                             ' ' +
                             AppLocalizations.of(context)!.pagos),
                       ),
@@ -46,12 +46,10 @@ class BikeCard extends StatelessWidget {
                       ),*/
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.state),
-                        subtitle:
-                            model.prioridad == null || model.prioridad == 0
-                                ? null
-                                : BikePriorityWidget(
-                                    priority: model.prioridad,
-                                    uid: model.idbike),
+                        subtitle: model.priority == null || model.priority == 0
+                            ? null
+                            : BikePriorityWidget(
+                                priority: model.priority, uid: model.idbike),
                       ),
                       CheckDeleteBike(uid: model.idbike),
                     ],

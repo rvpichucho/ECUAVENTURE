@@ -81,17 +81,17 @@ class _CuentaPageState extends State<CuentaPage> {
                     ),
                     onTap: () {
                       AlertDialog alert = AlertDialog(
-                        title: Text("Dirección: ${_model.direccion}",
+                        title: Text("Dirección: ${_model.direction}",
                             textAlign: TextAlign.center),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Teléfono: ${_model.telefono}",
+                              "Teléfono: ${_model.phone}",
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              "Edad: ${_model.edad} años",
+                              "Edad: ${_model.age} años",
                               textAlign: TextAlign.center,
                             ),
                           ],

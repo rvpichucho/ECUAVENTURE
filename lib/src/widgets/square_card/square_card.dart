@@ -51,10 +51,10 @@ class SquareCard extends StatelessWidget {
                         ListTile(
                           title: Text(AppLocalizations.of(context)!.state),
                           subtitle:
-                              model.prioridad == null || model.prioridad == 0
+                              model.priority == null || model.priority == 0
                                   ? null
                                   : SquarePriorityWidget(
-                                      priority: model.prioridad,
+                                      priority: model.priority,
                                       uid: model.idsquare),
                         ),
                       ],

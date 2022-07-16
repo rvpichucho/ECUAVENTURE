@@ -49,7 +49,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                       FirebaseFirestore.instance.collection('bikes');
                   updateBike
                       .where('iduser', isEqualTo: user!.uid)
-                      .where('prioridad', isEqualTo: 1)
+                      .where('priority', isEqualTo: 1)
                       .get()
                       .then((querySnapshot) {
                     for (var doc in querySnapshot.docs) {
@@ -57,7 +57,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                       bike = Bikes.fromJson(doc.data() as Map<String, dynamic>);
                       updateBike
                           .doc(bike.idbike)
-                          .update({'prioridad': 3, 'iduser': ''});
+                          .update({'priority': 3, 'iduser': ''});
                     }
                   });
                   //buggys
@@ -65,7 +65,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                       FirebaseFirestore.instance.collection('buggys');
                   updateBuggys
                       .where('iduser', isEqualTo: user!.uid)
-                      .where('prioridad', isEqualTo: 1)
+                      .where('priority', isEqualTo: 1)
                       .get()
                       .then((querySnapshot) {
                     for (var doc in querySnapshot.docs) {
@@ -74,7 +74,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                           Buggys.fromJson(doc.data() as Map<String, dynamic>);
                       updateBuggys
                           .doc(buggy.idbuggy)
-                          .update({'prioridad': 3, 'iduser': ''});
+                          .update({'priority': 3, 'iduser': ''});
                     }
                   });
                   //motos
@@ -82,7 +82,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                       FirebaseFirestore.instance.collection('motorcycles');
                   updateMotorcycles
                       .where('iduser', isEqualTo: user!.uid)
-                      .where('prioridad', isEqualTo: 1)
+                      .where('priority', isEqualTo: 1)
                       .get()
                       .then((querySnapshot) {
                     for (var doc in querySnapshot.docs) {
@@ -91,7 +91,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                           doc.data() as Map<String, dynamic>);
                       updateMotorcycles
                           .doc(motorcycle.idmotorcycle)
-                          .update({'prioridad': 3, 'iduser': ''});
+                          .update({'priority': 3, 'iduser': ''});
                     }
                   });
                   //squares
@@ -99,7 +99,7 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                       FirebaseFirestore.instance.collection('squares');
                   updateSquares
                       .where('iduser', isEqualTo: user!.uid)
-                      .where('prioridad', isEqualTo: 1)
+                      .where('priority', isEqualTo: 1)
                       .get()
                       .then((querySnapshot) {
                     for (var doc in querySnapshot.docs) {
@@ -108,13 +108,13 @@ class _CheckEntregaReservacionState extends State<CheckEntregaReservacion> {
                           Squares.fromJson(doc.data() as Map<String, dynamic>);
                       updateSquares
                           .doc(square.idsquare)
-                          .update({'prioridad': 3, 'iduser': ''});
+                          .update({'priority': 3, 'iduser': ''});
                     }
                   });
                   //reservaciones
                   CollectionReference updateReservacion =
                       FirebaseFirestore.instance.collection('reservations');
-                  updateReservacion.doc(widget.uid).update({'estado': 2});
+                  updateReservacion.doc(widget.uid).update({'state': 2});
 
                   //cambiar el estado
                   entregar = value!;

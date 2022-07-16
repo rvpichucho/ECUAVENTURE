@@ -39,18 +39,16 @@ class SquareCard extends StatelessWidget {
                       ),*/
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle: Text(model.precio.toString() +
+                        subtitle: Text(model.price.toString() +
                             ' ' +
                             AppLocalizations.of(context)!.pagos),
                       ),
                       ListTile(
                         title: const Text('Estado'),
-                        subtitle:
-                            model.prioridad == null || model.prioridad == 0
-                                ? null
-                                : SquarePriorityWidget(
-                                    priority: model.prioridad,
-                                    uid: model.idsquare),
+                        subtitle: model.priority == null || model.priority == 0
+                            ? null
+                            : SquarePriorityWidget(
+                                priority: model.priority, uid: model.idsquare),
                       ),
                       CheckDeleteSquare(uid: model.idsquare),
                     ],

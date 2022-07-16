@@ -12,7 +12,7 @@ class RutaFirebaseList extends StatefulWidget {
 
 class _RutaFirebaseListState extends State<RutaFirebaseList> {
   final Stream<QuerySnapshot> _rutaslist =
-      FirebaseFirestore.instance.collection('rutas').snapshots();
+      FirebaseFirestore.instance.collection('routes').snapshots();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(

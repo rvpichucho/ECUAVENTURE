@@ -21,7 +21,7 @@ class _ListDataFotoState extends State<ListDataFoto> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _listDataFotos = FirebaseFirestore.instance
-        .collection('fotos')
+        .collection('photos')
         .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
@@ -156,11 +156,11 @@ class _DataFotoCardState extends State<DataFotoCard> {
                       const SizedBox(height: 25.0),
                       ListTile(
                         title: const Text('Observación'),
-                        subtitle: Text(widget.model.observacion.toString()),
+                        subtitle: Text(widget.model.observation.toString()),
                       ),
                       ListTile(
                         title: const Text('Fecha'),
-                        subtitle: Text(widget.model.fecha.toString()),
+                        subtitle: Text(widget.model.date.toString()),
                       ),
                       ListTile(
                         title: const Text('Vehículo'),

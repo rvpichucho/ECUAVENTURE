@@ -38,11 +38,11 @@ class _BuggyDetailsWidgetState extends State<BuggyDetailsWidget>
   Widget build(BuildContext context) {
     bool isVisible = false;
     //condiciones para mostrar el formulario de fotos si esta reservado o en espera
-    if (widget.reservation.prioridad == 3) {
+    if (widget.reservation.priority == 3) {
       isVisible = true;
-    } else if (widget.reservation.prioridad == 2) {
+    } else if (widget.reservation.priority == 2) {
       isVisible = false;
-    } else if (widget.reservation.prioridad == 1) {
+    } else if (widget.reservation.priority == 1) {
       isVisible = false;
     }
     return Scaffold(

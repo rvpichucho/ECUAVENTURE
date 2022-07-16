@@ -33,11 +33,11 @@ class _BikePriorityWidgetState extends State<BikePriorityWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_data.prioridad == 3) {
+    if (_data.priority == 3) {
       _dataEstado = 'Disponible';
-    } else if (_data.prioridad == 2) {
+    } else if (_data.priority == 2) {
       _dataEstado = 'En Espera';
-    } else if (_data.prioridad == 1) {
+    } else if (_data.priority == 1) {
       _dataEstado = 'Reservado';
     }
     return Padding(

@@ -41,7 +41,7 @@ class _ReservationDetailsFormWidgetState
     //consultas para saber si ya tiene registrada el documento de identificacion
     //bikes
     CollectionReference collectionBike =
-        FirebaseFirestore.instance.collection('fotos');
+        FirebaseFirestore.instance.collection('photos');
     collectionBike
         .where('iduser', isEqualTo: user!.uid)
         .get()
@@ -69,7 +69,7 @@ class _ReservationDetailsFormWidgetState
       isVisible = false;
       isVisibleBotonNo = true;
       imageUpload =
-          '¿Desea utilizar su documento de identificación registrado?';
+          '¡Se va a utilizar su documento de identificación registrado!';
     }
     return SingleChildScrollView(
         child: Column(
@@ -92,10 +92,10 @@ class _ReservationDetailsFormWidgetState
                   children: [
                     TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: _foto.observacion,
+                        initialValue: _foto.observation,
                         onSaved: (value) {
                           //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
-                          _foto.observacion = value.toString();
+                          _foto.observation = value.toString();
                         },
                         validator: (value) {
                           return _validateObservacion(value!);
@@ -275,7 +275,7 @@ class _ReservationDetailsFormWidgetState
     _foto.iduser = user!.uid;
 
     //Invoca al servicio POST para enviar la Foto
-    int estado = await _fotosService.postFoto(_foto);
+    int estado = await _fotosService.postDetailsPhoto(_foto);
     if (estado == 201) {
       _formKey.currentState!.reset();
       _onSaving = false;

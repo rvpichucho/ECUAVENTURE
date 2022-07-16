@@ -19,7 +19,7 @@ class ReservacionWidget extends StatefulWidget {
 }
 
 class _ReservacionWidgetState extends State<ReservacionWidget> {
-  CollectionReference derailsReservation =
+  CollectionReference detailsReservation =
       FirebaseFirestore.instance.collection('reservations');
 
   final hour = TextEditingController();
@@ -66,7 +66,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         FirebaseFirestore.instance.collection('bikes');
     collectionBike
         .where('iduser', isEqualTo: user!.uid)
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .get()
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
@@ -74,7 +74,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         _data = Bikes.fromJson(doc.data() as Map<String, dynamic>);
         //dataVehiclesBikes = _data.name.toString() + ' - ' + _data.model;
         vehicles.add(_data.name.toString() + ' - ' + _data.model.toString());
-        vehiclesBikesPrecio.add(int.parse(_data.precio.toString()));
+        vehiclesBikesPrecio.add(int.parse(_data.price.toString()));
         List<int> nums = vehiclesBikesPrecio;
         sumBikes = nums.sum;
         setState(() {});
@@ -85,14 +85,14 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         FirebaseFirestore.instance.collection('buggys');
     collectionBuggy
         .where('iduser', isEqualTo: user!.uid)
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .get()
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
         // doc.data() is never undefined for query doc snapshots
         _data1 = Buggys.fromJson(doc.data() as Map<String, dynamic>);
         vehicles1.add(_data1.name.toString() + ' - ' + _data1.model.toString());
-        vehiclesBuggysPrecio.add(int.parse(_data1.precio.toString()));
+        vehiclesBuggysPrecio.add(int.parse(_data1.price.toString()));
         List<int> nums1 = vehiclesBuggysPrecio;
         sumBuggys = nums1.sum;
         setState(() {});
@@ -103,14 +103,14 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         FirebaseFirestore.instance.collection('motorcycles');
     collectionMotorcycle
         .where('iduser', isEqualTo: user!.uid)
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .get()
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
         // doc.data() is never undefined for query doc snapshots
         _data2 = Motorcycles.fromJson(doc.data() as Map<String, dynamic>);
         vehicles2.add(_data2.name.toString() + ' - ' + _data2.model.toString());
-        vehiclesMotorcyclesPrecio.add(int.parse(_data2.precio.toString()));
+        vehiclesMotorcyclesPrecio.add(int.parse(_data2.price.toString()));
         List<int> nums2 = vehiclesMotorcyclesPrecio;
         sumMotorcycles = nums2.sum;
         setState(() {});
@@ -121,14 +121,14 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
         FirebaseFirestore.instance.collection('squares');
     collectionSquare
         .where('iduser', isEqualTo: user!.uid)
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .get()
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
         // doc.data() is never undefined for query doc snapshots
         _data3 = Squares.fromJson(doc.data() as Map<String, dynamic>);
         vehicles3.add(_data3.name.toString() + ' - ' + _data3.model.toString());
-        vehiclesSquaresPrecio.add(int.parse(_data3.precio.toString()));
+        vehiclesSquaresPrecio.add(int.parse(_data3.price.toString()));
         List<int> nums3 = vehiclesSquaresPrecio;
         sumSquares = nums3.sum;
         setState(() {});
@@ -217,7 +217,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                     ),
                   ),
                   onPressed: () {
-                    calcularTotalReservacion(context, hour.text, date);
+                    postDetailsReservation(context, hour.text, date);
                     hour.clear();
                     //date.clear();
                   },
@@ -230,7 +230,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
     );
   }
 
-  calcularTotalReservacion(BuildContext context, String hora, DateTime fecha) {
+  postDetailsReservation(BuildContext context, String hora, DateTime fecha) {
     //total de la sumatoria del precio de vehiculos
     var total =
         (sumBikes + sumBuggys + sumMotorcycles + sumSquares) * int.parse(hora);
@@ -244,13 +244,13 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
             FirebaseFirestore.instance.collection('bikes');
         updateBike
             .where('iduser', isEqualTo: user!.uid)
-            .where('prioridad', isEqualTo: 2)
+            .where('priority', isEqualTo: 2)
             .get()
             .then((querySnapshot) {
           for (var doc in querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
             bike = Bikes.fromJson(doc.data() as Map<String, dynamic>);
-            updateBike.doc(bike.idbike).update({'prioridad': 1});
+            updateBike.doc(bike.idbike).update({'priority': 1});
             setState(() {});
           }
         });
@@ -259,13 +259,13 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
             FirebaseFirestore.instance.collection('buggys');
         updateBuggys
             .where('iduser', isEqualTo: user!.uid)
-            .where('prioridad', isEqualTo: 2)
+            .where('priority', isEqualTo: 2)
             .get()
             .then((querySnapshot) {
           for (var doc in querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
             buggy = Buggys.fromJson(doc.data() as Map<String, dynamic>);
-            updateBuggys.doc(buggy.idbuggy).update({'prioridad': 1});
+            updateBuggys.doc(buggy.idbuggy).update({'priority': 1});
             setState(() {});
           }
         });
@@ -274,7 +274,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
             FirebaseFirestore.instance.collection('motorcycles');
         updateMotorcycles
             .where('iduser', isEqualTo: user!.uid)
-            .where('prioridad', isEqualTo: 2)
+            .where('priority', isEqualTo: 2)
             .get()
             .then((querySnapshot) {
           for (var doc in querySnapshot.docs) {
@@ -283,7 +283,7 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
                 Motorcycles.fromJson(doc.data() as Map<String, dynamic>);
             updateMotorcycles
                 .doc(motorcycle.idmotorcycle)
-                .update({'prioridad': 1});
+                .update({'priority': 1});
             setState(() {});
           }
         });
@@ -292,27 +292,27 @@ class _ReservacionWidgetState extends State<ReservacionWidget> {
             FirebaseFirestore.instance.collection('squares');
         updateSquares
             .where('iduser', isEqualTo: user!.uid)
-            .where('prioridad', isEqualTo: 2)
+            .where('priority', isEqualTo: 2)
             .get()
             .then((querySnapshot) {
           for (var doc in querySnapshot.docs) {
             // doc.data() is never undefined for query doc snapshots
             square = Squares.fromJson(doc.data() as Map<String, dynamic>);
-            updateSquares.doc(square.idsquare).update({'prioridad': 1});
+            updateSquares.doc(square.idsquare).update({'priority': 1});
             setState(() {});
           }
         });
         //añadir datos de reservacion a firebase
-        derailsReservation.add({
-          'idreservacion': '',
+        detailsReservation.add({
+          'idreservation': '',
           'iduser': user!.uid,
           'hour': hora,
-          'total': totalTexto,
-          'fecha': fecha.toString(),
+          'totalValue': totalTexto,
+          'date': fecha.toString(),
           'vehicles': (vehicles + vehicles1 + vehicles2 + vehicles3).toList(),
-          'estado': 1,
+          'state': 1,
         }).then((value) {
-          derailsReservation.doc(value.id).update({'idreservacion': value.id});
+          detailsReservation.doc(value.id).update({'idreservation': value.id});
         });
         Navigator.of(context).pop();
         Navigator.push(context,

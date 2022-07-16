@@ -380,6 +380,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  // funcion para registrarse
   void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -420,9 +421,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   postDetailsToFirestore() async {
-    // calling our firestore
-    // calling our user model
-    // sedning these values
+    // llamando a la basa de datos firestore
+    // llamando al modelo de usuario
+    // enviando los valores
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
@@ -432,11 +433,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
     // writing all the values
     _model.email = user!.email;
-    _model.uid = user.uid;
+    _model.iduser = user.uid;
     _model.displayName = displayNameEditingController.text;
-    _model.direccion = direccionEditingController.text;
-    _model.telefono = telefonoEditingController.text;
-    _model.edad = fechaActual.year - date.year;
+    _model.direction = direccionEditingController.text;
+    _model.phone = telefonoEditingController.text;
+    _model.age = fechaActual.year - date.year;
 
     await firebaseFirestore
         .collection("users")

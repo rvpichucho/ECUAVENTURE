@@ -20,7 +20,7 @@ class _MapaPageState extends State<MapaPage> {
   );
   final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore.instance
       .collection('motorcycles')
-      .where('prioridad', isEqualTo: 2)
+      .where('priority', isEqualTo: 2)
       .snapshots();
 
   @override
@@ -56,10 +56,10 @@ class _MapaPageState extends State<MapaPage> {
                   LatLng _kMnt =
                       LatLng(model.lat ?? -1.39699, model.lng ?? -78.42289);
                   return Marker(
-                      icon: model.prioridad == 1
+                      icon: model.priority == 1
                           ? BitmapDescriptor.defaultMarkerWithHue(
                               BitmapDescriptor.hueRed)
-                          : model.prioridad == 2
+                          : model.priority == 2
                               ? BitmapDescriptor.defaultMarkerWithHue(
                                   BitmapDescriptor.hueGreen)
                               : BitmapDescriptor.defaultMarkerWithHue(

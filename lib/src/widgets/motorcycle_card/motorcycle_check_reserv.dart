@@ -37,7 +37,7 @@ class _CheckReservarMotorcycleState extends State<CheckReservarMotorcycle> {
                 setState(() {
                   collection
                       .doc(widget.uid)
-                      .update({'prioridad': valor, 'iduser': user!.uid});
+                      .update({'priority': valor, 'iduser': user!.uid});
                   reservar = value!;
                   isVisible = !value;
                 });

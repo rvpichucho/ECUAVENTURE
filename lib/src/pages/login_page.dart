@@ -246,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // login function
+  // funcion para iniciar sesion
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {

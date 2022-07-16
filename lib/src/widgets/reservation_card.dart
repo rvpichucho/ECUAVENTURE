@@ -20,10 +20,10 @@ class _ReservationCardState extends State<ReservationCard> {
   Widget build(BuildContext context) {
     bool isVisible = false;
     //condiciones para mostrar mensaje de estado de reservacion
-    if (widget.model.estado == 1) {
+    if (widget.model.state == 1) {
       mensajeEntregar = 'Entregar';
       isVisible = true;
-    } else if (widget.model.estado == 2) {
+    } else if (widget.model.state == 2) {
       mensajeEntregar = 'Entregado';
       isVisible = false;
     }
@@ -52,13 +52,13 @@ class _ReservationCardState extends State<ReservationCard> {
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.cost),
-                        subtitle: Text(widget.model.total.toString() +
+                        subtitle: Text(widget.model.totalValue.toString() +
                             ' ' +
                             AppLocalizations.of(context)!.dollar),
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.date),
-                        subtitle: Text(widget.model.fecha.toString()),
+                        subtitle: Text(widget.model.date.toString()),
                       ),
                       ListTile(
                         title: const Text("Vehículos"),
@@ -86,7 +86,7 @@ class _ReservationCardState extends State<ReservationCard> {
                       Visibility(
                         visible: isVisible,
                         child: CheckEntregaReservacion(
-                            uid: widget.model.idreservacion),
+                            uid: widget.model.idreservation),
                       ),
                     ],
                   ),

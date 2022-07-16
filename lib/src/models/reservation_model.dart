@@ -11,40 +11,40 @@ String reservationToJson(Reservation data) => json.encode(data.toJson());
 
 class Reservation {
   Reservation({
-    this.idreservacion,
+    this.idreservation,
     this.iduser,
     this.hour,
-    this.total,
-    this.fecha,
+    this.totalValue,
+    this.date,
     this.vehicles,
-    this.estado,
+    this.state,
   });
 
-  String? idreservacion;
+  String? idreservation;
   String? iduser;
   String? hour;
-  String? total;
-  DateTime? fecha;
+  String? totalValue;
+  DateTime? date;
   List<dynamic>? vehicles;
-  int? estado;
+  int? state;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
-        idreservacion: json["idreservacion"],
+        idreservation: json["idreservation"],
         iduser: json["iduser"],
         hour: json["hour"],
-        total: json["total"],
-        fecha: DateTime.parse(json["fecha"]),
+        totalValue: json["totalValue"],
+        date: DateTime.parse(json["date"]),
         vehicles: json["vehicles"],
-        estado: json["estado"],
+        state: json["state"],
       );
 
   Map<String, dynamic> toJson() => {
-        "idreservacion": idreservacion,
+        "idreservation": idreservation,
         "iduser": iduser,
         "hour": hour,
-        "total": total,
-        "fecha": fecha!.toString(),
+        "totalValue": totalValue,
+        "date": date!.toString(),
         "vehicles": vehicles,
-        "estado": estado,
+        "state": state,
       };
 }

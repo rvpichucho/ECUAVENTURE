@@ -16,8 +16,8 @@ class Bikes {
     this.model,
     this.description,
     this.image,
-    this.prioridad,
-    this.precio,
+    this.priority,
+    this.price,
     this.lat,
     this.lng,
   });
@@ -28,8 +28,8 @@ class Bikes {
   String? model;
   String? description;
   String? image;
-  int? prioridad;
-  String? precio;
+  int? priority;
+  String? price;
   double? lat;
   double? lng;
   factory Bikes.fromJson(Map<String, dynamic> json) => Bikes(
@@ -39,8 +39,8 @@ class Bikes {
       model: json["model"],
       description: json["description"],
       image: json["image"],
-      prioridad: json["prioridad"],
-      precio: json["precio"],
+      priority: json["priority"],
+      price: json["price"],
       lat: json["lat"],
       lng: json["lng"]);
   get background => null;
@@ -52,8 +52,8 @@ class Bikes {
         "model": model,
         "description": description,
         "image": image,
-        "prioridad": prioridad,
-        "precio": precio,
+        "priority": priority,
+        "price": price,
         "lat": lat,
         "lng": lng,
       };

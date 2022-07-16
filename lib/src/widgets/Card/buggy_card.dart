@@ -39,18 +39,16 @@ class BuggyCard extends StatelessWidget {
                       ),*/
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle: Text(model.precio.toString() +
+                        subtitle: Text(model.price.toString() +
                             ' ' +
                             AppLocalizations.of(context)!.pagos),
                       ),
                       ListTile(
                         title: const Text('Estado'),
-                        subtitle:
-                            model.prioridad == null || model.prioridad == 0
-                                ? null
-                                : BuggyPriorityWidget(
-                                    priority: model.prioridad,
-                                    uid: model.idbuggy),
+                        subtitle: model.priority == null || model.priority == 0
+                            ? null
+                            : BuggyPriorityWidget(
+                                priority: model.priority, uid: model.idbuggy),
                       ),
                       CheckDeleteBuggy(uid: model.idbuggy),
                     ],

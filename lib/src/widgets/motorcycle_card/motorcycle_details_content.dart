@@ -13,11 +13,11 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isVisible = false;
     //condiciones para mostrar el check
-    if (reservation.prioridad == 3) {
+    if (reservation.priority == 3) {
       isVisible = true;
-    } else if (reservation.prioridad == 2) {
+    } else if (reservation.priority == 2) {
       isVisible = false;
-    } else if (reservation.prioridad == 1) {
+    } else if (reservation.priority == 1) {
       isVisible = false;
     }
     return SingleChildScrollView(
@@ -38,12 +38,12 @@ class MotorcycleDetailsContentWidget extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 7.0, vertical: 50.0),
                 child: Center(
-                  child: reservation.prioridad == null ||
-                          reservation.prioridad == 0
-                      ? null
-                      : MotorcyclePriorityWidget(
-                          priority: reservation.prioridad,
-                          uid: reservation.idmotorcycle),
+                  child:
+                      reservation.priority == null || reservation.priority == 0
+                          ? null
+                          : MotorcyclePriorityWidget(
+                              priority: reservation.priority,
+                              uid: reservation.idmotorcycle),
                 ),
               ),
             ),

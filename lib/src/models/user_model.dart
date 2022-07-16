@@ -3,42 +3,42 @@
 //     final usuario = usuarioFromJson(jsonString);
 
 class Usuario {
-  String? uid;
+  String? iduser;
   String? email;
   String? displayName;
-  String? direccion;
-  String? telefono;
-  int? edad;
+  String? direction;
+  String? phone;
+  int? age;
 
   Usuario(
-      {this.uid,
+      {this.iduser,
       this.email,
       this.displayName,
-      this.direccion,
-      this.telefono,
-      this.edad});
+      this.direction,
+      this.phone,
+      this.age});
 
   // receiving data from server
   factory Usuario.fromMap(map) {
     return Usuario(
-      uid: map['uid'],
+      iduser: map['iduser'],
       email: map['email'],
       displayName: map['displayName'],
-      direccion: map['direccion'],
-      telefono: map['telefono'],
-      edad: map['edad'],
+      direction: map['direction'],
+      phone: map['phone'],
+      age: map['age'],
     );
   }
 
   // sending data to our server
   Map<String, dynamic> toMap() {
     return {
-      'uid': uid,
+      'iduser': iduser,
       'email': email,
       'displayName': displayName,
-      'direccion': direccion,
-      'telefono': telefono,
-      'edad': edad,
+      'direction': direction,
+      'phone': phone,
+      'age': age,
     };
   }
 }

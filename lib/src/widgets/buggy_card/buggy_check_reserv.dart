@@ -36,7 +36,7 @@ class _CheckReservarBuggyState extends State<CheckReservarBuggy> {
                 setState(() {
                   collection
                       .doc(widget.uid)
-                      .update({'prioridad': valor, 'iduser': user!.uid});
+                      .update({'priority': valor, 'iduser': user!.uid});
                   reservar = value!;
                   isVisible = !value;
                 });

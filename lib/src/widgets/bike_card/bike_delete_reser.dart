@@ -31,7 +31,7 @@ class _CheckDeleteBikeState extends State<CheckDeleteBike> {
               setState(() {
                 collection
                     .doc(widget.uid)
-                    .update({'prioridad': valor, 'iduser': ''});
+                    .update({'priority': valor, 'iduser': ''});
                 reservar = value!;
               });
             },

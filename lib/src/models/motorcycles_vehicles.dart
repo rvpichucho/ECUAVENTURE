@@ -17,10 +17,10 @@ class Motorcycles {
     this.model,
     this.description,
     this.image,
-    this.prioridad,
+    this.priority,
+    this.price,
     this.lat,
     this.lng,
-    this.precio,
   });
 
   String? idmotorcycle;
@@ -29,8 +29,8 @@ class Motorcycles {
   String? model;
   String? description;
   String? image;
-  String? precio;
-  int? prioridad;
+  int? priority;
+  String? price;
   double? lat;
   double? lng;
   factory Motorcycles.fromJson(Map<String, dynamic> json) => Motorcycles(
@@ -40,8 +40,8 @@ class Motorcycles {
       model: json["model"],
       description: json["description"],
       image: json["image"],
-      precio: json["precio"],
-      prioridad: json["prioridad"],
+      priority: json["priority"],
+      price: json["price"],
       lat: json["lat"],
       lng: json["lng"]);
 
@@ -54,8 +54,8 @@ class Motorcycles {
         "model": model,
         "description": description,
         "image": image,
-        "precio": precio,
-        "prioridad": prioridad,
+        "priority": priority,
+        "price": price,
         "lat": lat,
         "lng": lng,
       };

@@ -38,18 +38,17 @@ class MotorcyclesCard extends StatelessWidget {
                       ),*/
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.precio),
-                        subtitle: Text(model.precio.toString() +
+                        subtitle: Text(model.price.toString() +
                             ' ' +
                             AppLocalizations.of(context)!.pagos),
                       ),
                       ListTile(
                         title: Text(AppLocalizations.of(context)!.state),
-                        subtitle:
-                            model.prioridad == null || model.prioridad == 0
-                                ? null
-                                : MotorcyclePriorityWidget(
-                                    priority: model.prioridad,
-                                    uid: model.idmotorcycle),
+                        subtitle: model.priority == null || model.priority == 0
+                            ? null
+                            : MotorcyclePriorityWidget(
+                                priority: model.priority,
+                                uid: model.idmotorcycle),
                       ),
                       CheckDeleteMotorcycle(uid: model.idmotorcycle),
                     ],

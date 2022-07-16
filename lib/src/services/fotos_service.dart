@@ -8,11 +8,11 @@ class FotosService {
   FotosService();
 
   CollectionReference collection =
-      FirebaseFirestore.instance.collection('fotos');
+      FirebaseFirestore.instance.collection('photos');
 
   //final String _rootUrl = "https://trifasic-backend-9bc1e.web.app/api/foto";
 
-  Future<int> postFoto(Foto foto) async {
+  Future<int> postDetailsPhoto(Foto foto) async {
     try {
       //final Map<String, String> _headers = {"content-type": "application/json"};
       //String _fotoBody = fotoToJson(foto);

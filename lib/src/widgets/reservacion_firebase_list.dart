@@ -115,7 +115,7 @@ class ReservationBike extends StatelessWidget {
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('bikes')
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
@@ -166,7 +166,7 @@ class ReservationMotorcycle extends StatelessWidget {
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('motorcycles')
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
@@ -217,7 +217,7 @@ class ReservationSquare extends StatelessWidget {
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('squares')
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
@@ -268,7 +268,7 @@ class ReservationBuggys extends StatelessWidget {
     final Stream<QuerySnapshot> _bikesListReservation = FirebaseFirestore
         .instance
         .collection('buggys')
-        .where('prioridad', isEqualTo: 2)
+        .where('priority', isEqualTo: 2)
         .where('iduser', isEqualTo: user!.uid)
         .snapshots();
 
